@@ -17,6 +17,10 @@ from render_message import render_message
 
 # Load environment variables
 load_dotenv()
+
+# Debugging step: print the API key to verify it's loaded
+st.write(f"OPENAI_API_KEY: {os.getenv('OPENAI_API_KEY')}")
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.set_page_config(
