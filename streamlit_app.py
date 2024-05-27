@@ -25,12 +25,6 @@ st.set_page_config(
 # Load environment variables
 load_dotenv()
 
-# Debugging step: print the API key to verify it's loaded
-st.write(f"OPENAI_API_KEY: {os.getenv('OPENAI_API_KEY')}")
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-
 st.markdown("""
 <style>
 div.stButton {
