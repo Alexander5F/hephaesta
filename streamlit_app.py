@@ -17,10 +17,6 @@ from render_message import render_message
 
 # Load environment variables
 load_dotenv()
-
-# Debugging step: print the API key to verify it's loaded
-st.write(f"OPENAI_API_KEY: {os.getenv('OPENAI_API_KEY')}")
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.set_page_config(
@@ -82,6 +78,7 @@ async def handle_streamed_input(user_input, settings, iterations=1):
     
     for _ in range(iterations):
         # Add placeholders for responses
+                        
         assistant_placeholder = st.empty()
         assistant_placeholders.append(assistant_placeholder)
 
