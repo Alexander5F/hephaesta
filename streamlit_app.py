@@ -15,6 +15,10 @@ from bullets_of_improvements import bullets_of_improvements
 from final_code import final_code
 from render_message import render_message
 
+# Load environment variables
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 st.set_page_config(
     page_title="Copilot on Steroids",
     page_icon="🧠",
@@ -74,7 +78,6 @@ async def handle_streamed_input(user_input, settings, iterations=1):
     
     for _ in range(iterations):
         # Add placeholders for responses
-                        
         assistant_placeholder = st.empty()
         assistant_placeholders.append(assistant_placeholder)
 
