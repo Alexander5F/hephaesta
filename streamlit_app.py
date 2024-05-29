@@ -9,11 +9,8 @@ import os
 from dotenv import load_dotenv
 from settings_to_system_prompt import settings_to_system_prompt
 from create_prompt_from_settings import create_prompt_from_settings
-from stream_assistant_response import stream_assistant_response
-from stream_instructor_response import stream_instructor_response
-from bullets_of_improvements import bullets_of_improvements
-from final_code import final_code
 from render_message import render_message
+from handle_streamed_input import handle_streamed_input
 
 st.set_page_config(
     page_title="Copilot on Steroids",
@@ -42,6 +39,12 @@ div.stButton {
 [data-testid="stSidebar"][aria-expanded="false"] {
     transition: none;
 }
+#expand-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -56,61 +59,22 @@ if 'counter' not in st.session_state:
     st.session_state.counter = 0
 if 'show_buttons' not in st.session_state:
     st.session_state.show_buttons = True
+if 'expand_all' not in st.session_state:
+    st.session_state.expand_all = True
 
-async def handle_streamed_input(user_input, settings, iterations=1):
-    # Append user input
-    st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
-    st.session_state.run = True
-
-    # Append settings as system prompt
-    settings_prompt = create_prompt_from_settings(settings)
-    st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
-
-    # Display user message
-    user_input_placeholder = st.empty()
-    render_message(user_input_placeholder, "You", user_input, no_expander=True)
-
-    # Placeholders for responses
-    assistant_placeholders = []
-    instructor_placeholders = []
-    progress_placeholders = []
-    
-    for _ in range(iterations):
-        # Add placeholders for responses
-        assistant_placeholder = st.empty()
-        assistant_placeholders.append(assistant_placeholder)
-
-        progress_placeholder = st.empty()
-        progress_placeholders.append(progress_placeholder)
-
-        instructor_placeholder = st.empty()
-        instructor_placeholders.append(instructor_placeholder)
-
-        # Get assistant response
-        await stream_assistant_response(st.session_state.messages, assistant_placeholder)
-        
-        doing_message = "🔁 🤖 Improving my code"
-        render_message(progress_placeholder, "Doing", doing_message, no_expander=True)
-
-        # Get instructor response
-        await stream_instructor_response(st.session_state.messages, instructor_placeholder)
-
-    # final response
-    final_response_placeholder = st.empty()
-    await stream_assistant_response(st.session_state.messages, final_response_placeholder, no_expander=True)
-    
-    st.session_state.run = False
-    st.session_state.show_buttons = False
 
 def send_message(settings):
-    st.session_state.counter += 1
     prompt = st.chat_input("Challenge me")
     if prompt:
+        st.session_state.show_buttons = False  # Ensure the button is hidden
         asyncio.run(handle_streamed_input(prompt, settings))
 
 def handle_button_click(prompt, settings):
     st.session_state.show_buttons = False  # Ensure the button is hidden
     asyncio.run(handle_streamed_input(prompt, settings))
+
+def toggle_expand_all():
+    st.session_state.expand_all = not st.session_state.expand_all
 
 def main():
     settings = load_custom_html()
@@ -144,6 +108,14 @@ def main():
 
     with right_column:
         st.empty()
+
+    with st.sidebar:
+        st.session_state.expand_all = st.checkbox("Expand all messages", value=True)
+
+    # Add toggle button at the top right corner
+    with st.container():
+        st.markdown('<div id="expand-toggle"></div>', unsafe_allow_html=True)
+        st.sidebar.button("Expand all outputs", on_click=toggle_expand_all)
 
 if __name__ == "__main__":
     main()
