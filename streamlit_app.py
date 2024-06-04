@@ -100,7 +100,7 @@ def main():
 
         with text_col:
             github_link = st.text_input("Fingerprint your repo and for code gen with stellar context awareness.", value="", placeholder="url to your github repo")
-        st.write('Note: Currently only visualisation. Loading the context into the conversation background will be here in the next days.')
+        st.write('Note: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
         # Move button to be directly beneath the text input
         if st.button("Visualize Repo"):
             visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
