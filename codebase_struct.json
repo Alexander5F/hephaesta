@@ -1,0 +1,485 @@
+{
+    "cloned_repo/get_text_between_tags.py": {
+        "imports": [],
+        "functions": [
+            {
+                "name": "get_text_between_tags",
+                "args": [
+                    "stream",
+                    "start_tag",
+                    "end_tag"
+                ],
+                "calls": [
+                    "extract_content",
+                    "extract_content",
+                    "len",
+                    "len",
+                    "len",
+                    "len",
+                    "len"
+                ],
+                "loc": 36
+            },
+            {
+                "name": "extract_content",
+                "args": [
+                    "buffer",
+                    "start_tag",
+                    "end_tag"
+                ],
+                "calls": [
+                    "len",
+                    "len",
+                    "len",
+                    "len",
+                    "len"
+                ],
+                "loc": 19
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/stream_assistant_response.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='call_stream_response', names=[alias(name='call_stream_response')], level=0)",
+            "ImportFrom(module='render_message', names=[alias(name='render_message')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "stream_assistant_response",
+                "args": [
+                    "messages",
+                    "placeholder",
+                    "theme",
+                    "no_expander",
+                    "expanded"
+                ],
+                "calls": [
+                    "call_stream_response",
+                    "render_message",
+                    "len"
+                ],
+                "loc": 8
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/initialize_session_states.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])"
+        ],
+        "functions": [
+            {
+                "name": "initialize_session_states",
+                "args": [],
+                "calls": [],
+                "loc": 11
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/messages_to_string.py": {
+        "imports": [],
+        "functions": [
+            {
+                "name": "messages_to_string",
+                "args": [
+                    "messages"
+                ],
+                "calls": [],
+                "loc": 5
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/call_stream_response.py": {
+        "imports": [
+            "ImportFrom(module='stream_response', names=[alias(name='stream_response')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "call_stream_response",
+                "args": [
+                    "messages"
+                ],
+                "calls": [
+                    "stream_response"
+                ],
+                "loc": 3
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/stream_response.py": {
+        "imports": [
+            "Import(names=[alias(name='openai')])",
+            "Import(names=[alias(name='asyncio')])",
+            "Import(names=[alias(name='os')])",
+            "ImportFrom(module='dotenv', names=[alias(name='load_dotenv')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "stream_response",
+                "args": [
+                    "messages"
+                ],
+                "calls": [
+                    "hasattr"
+                ],
+                "loc": 17
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/handle_streamed_input.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='create_prompt_from_settings', names=[alias(name='create_prompt_from_settings')], level=0)",
+            "ImportFrom(module='render_message', names=[alias(name='render_message')], level=0)",
+            "ImportFrom(module='stream_assistant_response', names=[alias(name='stream_assistant_response')], level=0)",
+            "ImportFrom(module='stream_instructor_response', names=[alias(name='stream_instructor_response')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "handle_streamed_input",
+                "args": [
+                    "user_input",
+                    "settings",
+                    "iterations"
+                ],
+                "calls": [
+                    "create_prompt_from_settings",
+                    "render_message",
+                    "range",
+                    "render_message",
+                    "stream_assistant_response",
+                    "stream_assistant_response",
+                    "stream_instructor_response"
+                ],
+                "loc": 44
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/render_message.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])"
+        ],
+        "functions": [
+            {
+                "name": "render_message",
+                "args": [
+                    "placeholder",
+                    "role",
+                    "new_content",
+                    "theme",
+                    "expanded",
+                    "no_expander"
+                ],
+                "calls": [],
+                "loc": 59
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/show_image_popup.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])"
+        ],
+        "functions": [
+            {
+                "name": "show_image_popup",
+                "args": [
+                    "image_url"
+                ],
+                "calls": [],
+                "loc": 17
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/streamlit_app.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "Import(names=[alias(name='openai')])",
+            "Import(names=[alias(name='asyncio')])",
+            "ImportFrom(module='initialize_session_state', names=[alias(name='initialize_session_state')], level=0)",
+            "ImportFrom(module='stream_response', names=[alias(name='stream_response')], level=0)",
+            "ImportFrom(module='load_custom_html', names=[alias(name='load_custom_html')], level=0)",
+            "ImportFrom(module='gpt_response', names=[alias(name='gpt_response')], level=0)",
+            "Import(names=[alias(name='os')])",
+            "ImportFrom(module='dotenv', names=[alias(name='load_dotenv')], level=0)",
+            "ImportFrom(module='settings_to_system_prompt', names=[alias(name='settings_to_system_prompt')], level=0)",
+            "ImportFrom(module='create_prompt_from_settings', names=[alias(name='create_prompt_from_settings')], level=0)",
+            "ImportFrom(module='render_message', names=[alias(name='render_message')], level=0)",
+            "ImportFrom(module='handle_streamed_input', names=[alias(name='handle_streamed_input')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "send_message",
+                "args": [
+                    "settings"
+                ],
+                "calls": [
+                    "handle_streamed_input"
+                ],
+                "loc": 5
+            },
+            {
+                "name": "handle_button_click",
+                "args": [
+                    "prompt",
+                    "settings"
+                ],
+                "calls": [
+                    "handle_streamed_input"
+                ],
+                "loc": 3
+            },
+            {
+                "name": "toggle_expand_all",
+                "args": [],
+                "calls": [],
+                "loc": 2
+            },
+            {
+                "name": "main",
+                "args": [],
+                "calls": [
+                    "load_custom_html",
+                    "initialize_session_state",
+                    "send_message",
+                    "handle_button_click"
+                ],
+                "loc": 40
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/coder.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='gpt_response', names=[alias(name='gpt_response')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "coder",
+                "args": [
+                    "user_message"
+                ],
+                "calls": [
+                    "print",
+                    "gpt_response"
+                ],
+                "loc": 22
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/brain.py": {
+        "imports": [
+            "Import(names=[alias(name='openai')])",
+            "Import(names=[alias(name='asyncio')])",
+            "ImportFrom(module='stream_response', names=[alias(name='stream_response')], level=0)",
+            "ImportFrom(module='settings_to_system_prompt', names=[alias(name='settings_to_system_prompt')], level=0)",
+            "ImportFrom(module='display_messages', names=[alias(name='display_messages')], level=0)",
+            "ImportFrom(module='messages_to_string', names=[alias(name='messages_to_string')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "brain",
+                "args": [
+                    "messages",
+                    "settings",
+                    "max_iterations",
+                    "current_iteration"
+                ],
+                "calls": [
+                    "messages_to_string",
+                    "settings_to_system_prompt",
+                    "stream_response",
+                    "stream_response",
+                    "brain",
+                    "len",
+                    "len"
+                ],
+                "loc": 66
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/bullets_of_improvements.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='call_stream_response', names=[alias(name='call_stream_response')], level=0)",
+            "ImportFrom(module='messages_to_string', names=[alias(name='messages_to_string')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "bullets_of_improvements",
+                "args": [
+                    "messages",
+                    "placeholder"
+                ],
+                "calls": [
+                    "messages_to_string",
+                    "call_stream_response",
+                    "len"
+                ],
+                "loc": 29
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/gpt_response.py": {
+        "imports": [
+            "Import(names=[alias(name='time')])",
+            "Import(names=[alias(name='openai')])",
+            "Import(names=[alias(name='os')])",
+            "ImportFrom(module='dotenv', names=[alias(name='load_dotenv')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "gpt_response",
+                "args": [
+                    "prompt"
+                ],
+                "calls": [
+                    "load_dotenv",
+                    "isinstance",
+                    "isinstance",
+                    "print",
+                    "print",
+                    "print",
+                    "print",
+                    "print",
+                    "type",
+                    "str"
+                ],
+                "loc": 41
+            },
+            {
+                "name": "test",
+                "args": [],
+                "calls": [
+                    "gpt_response",
+                    "print"
+                ],
+                "loc": 4
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/load_custom_html.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='streamlit_extras.buy_me_a_coffee', names=[alias(name='button')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "load_custom_html",
+                "args": [],
+                "calls": [
+                    "button"
+                ],
+                "loc": 34
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/display_messages.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])"
+        ],
+        "functions": [
+            {
+                "name": "display_messages",
+                "args": [
+                    "messages"
+                ],
+                "calls": [
+                    "enumerate"
+                ],
+                "loc": 18
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/settings_to_system_prompt.py": {
+        "imports": [],
+        "functions": [
+            {
+                "name": "settings_to_system_prompt",
+                "args": [
+                    "settings"
+                ],
+                "calls": [],
+                "loc": 44
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/stream_instructor_response.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='call_stream_response', names=[alias(name='call_stream_response')], level=0)",
+            "ImportFrom(module='messages_to_string', names=[alias(name='messages_to_string')], level=0)",
+            "ImportFrom(module='render_message', names=[alias(name='render_message')], level=0)",
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='call_stream_response', names=[alias(name='call_stream_response')], level=0)",
+            "ImportFrom(module='messages_to_string', names=[alias(name='messages_to_string')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "stream_instructor_response",
+                "args": [
+                    "messages",
+                    "placeholder",
+                    "theme",
+                    "no_expander"
+                ],
+                "calls": [
+                    "messages_to_string",
+                    "call_stream_response",
+                    "render_message",
+                    "len"
+                ],
+                "loc": 38
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/create_prompt_from_settings.py": {
+        "imports": [
+            "ImportFrom(module='settings_to_system_prompt', names=[alias(name='settings_to_system_prompt')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "create_prompt_from_settings",
+                "args": [
+                    "settings"
+                ],
+                "calls": [
+                    "settings_to_system_prompt"
+                ],
+                "loc": 10
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/initialize_session_state.py": {
+        "imports": [
+            "Import(names=[alias(name='streamlit', asname='st')])"
+        ],
+        "functions": [
+            {
+                "name": "initialize_session_state",
+                "args": [],
+                "calls": [],
+                "loc": 3
+            }
+        ],
+        "classes": []
+    }
+}
