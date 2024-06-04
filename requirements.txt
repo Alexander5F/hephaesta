@@ -8,3 +8,4 @@ pandas
 plotly
 python-dotenv
 streamlit-float
+pydot
