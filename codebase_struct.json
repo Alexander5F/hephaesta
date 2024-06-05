@@ -254,7 +254,21 @@
                     "visualiserepo",
                     "handle_button_click"
                 ],
-                "loc": 57
+                "loc": 55
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/test.py": {
+        "imports": [],
+        "functions": [
+            {
+                "name": "test",
+                "args": [],
+                "calls": [
+                    "print"
+                ],
+                "loc": 3
             }
         ],
         "classes": []

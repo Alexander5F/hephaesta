@@ -12,6 +12,7 @@ from settings_to_system_prompt import settings_to_system_prompt
 from create_prompt_from_settings import create_prompt_from_settings
 from render_message import render_message
 from handle_streamed_input import handle_streamed_input
+from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 
 # Set the page configuration first
 st.set_page_config(
@@ -57,6 +58,8 @@ if 'show_buttons' not in st.session_state:
     st.session_state.show_buttons = True
 if 'expand_all' not in st.session_state:
     st.session_state.expand_all = True
+if 'first_load' not in st.session_state:
+    st.session_state.first_load = True
 
 def send_message(settings):
     prompt = st.chat_input("Challenge me")
@@ -104,11 +107,11 @@ def main():
             visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
 
         # Display the output image from the visualiserepo function if exists
+        check_and_delete_file_on_first_load()
         output_image_path = "codebase_graph.png"
         if os.path.exists(output_image_path):  # assuming visualiserepo saves output to this file
             st.image(output_image_path)
-        else:
-            
+        else:            
             st.image("https://i.imgur.com/k9YDfOV.png") # vizualisation placeholder png if viz hasn't been generated yet
         st.divider()
         send_message(settings)
