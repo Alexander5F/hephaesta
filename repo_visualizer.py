@@ -159,8 +159,15 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
             cluster.add_node(node)
         graph.add_subgraph(cluster)
 
-    graph.write_png(output_file)
-    logging.info(f"Visualization saved to {output_file}")
+    dot_data = graph.to_string()
+    logging.debug(f"DOT file content:\n{dot_data}")
+
+    try:
+        graph.write_png(output_file)
+        logging.info(f"Visualization saved to {output_file}")
+    except Exception as e:
+        logging.error(f"Failed to generate graph: {e}")
+
 
 def visualiserepo(github_link):
     logging.debug(f"Starting visualization for repo: {github_link}")
