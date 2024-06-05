@@ -100,19 +100,19 @@ def save_structure_to_json(structure, filename='codebase_struct.json'):
 def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
     logging.debug("Visualizing codebase structure")
     graph = pydot.Dot(graph_type='digraph', layout='neato', overlap=False, splines=True, resolution=120)
-    graph.set_graph_defaults(size="12,12!", dpi="1115")
+    graph.set_graph_defaults(size="12,12!", dpi="780")
 
     file_nodes = {}
     function_nodes = {}
     class_nodes = {}
     folder_clusters = defaultdict(list)
 
-    for file, details in structure.items():
-        folder = os.path.dirname(file)
+    def add_node_and_edges(file, details):
         if file not in file_nodes:
             file_node = pydot.Node(file, shape='box', style='filled', fillcolor='lightgrey', fontsize=16, fontcolor='black', width=3.0, height=0.3)
             graph.add_node(file_node)
             file_nodes[file] = file_node
+            folder = os.path.dirname(file)
             folder_clusters[folder].append(file_node)
 
         for cls in details['classes']:
@@ -153,21 +153,29 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
 
                 graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))
 
-    for folder, nodes in folder_clusters.items():
-        cluster = pydot.Cluster(folder, label=folder, color='grey', style='dashed')
-        for node in nodes:
-            cluster.add_node(node)
-        graph.add_subgraph(cluster)
+    # Process the structure in parts to manage memory usage
+    for file, details in structure.items():
+        add_node_and_edges(file, details)
+        if len(graph.get_node_list()) % 100 == 0:  # Periodically write to file to free up memory
+            try:
+                graph.write_png(output_file)
+                logging.info(f"Intermediate visualization saved to {output_file}")
+                graph.del_node(file_nodes[file])
+                for cls in details['classes']:
+                    graph.del_node(class_nodes[f"{cls['name']} (Class)"])
+                for func in details['functions']:
+                    graph.del_node(function_nodes[f"{func['name']}\nargs: {', '.join(func['args'])}"])
+            except Exception as e:
+                logging.error(f"Failed to generate intermediate graph: {e}")
 
     dot_data = graph.to_string()
     logging.debug(f"DOT file content:\n{dot_data}")
 
     try:
         graph.write_png(output_file)
-        logging.info(f"Visualization saved to {output_file}")
+        logging.info(f"Final visualization saved to {output_file}")
     except Exception as e:
-        logging.error(f"Failed to generate graph: {e}")
-
+        logging.error(f"Failed to generate final graph: {e}")
 
 def visualiserepo(github_link):
     logging.debug(f"Starting visualization for repo: {github_link}")

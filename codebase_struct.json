@@ -478,7 +478,7 @@
                     "defaultdict",
                     "max"
                 ],
-                "loc": 64
+                "loc": 70
             },
             {
                 "name": "visualiserepo",
@@ -556,6 +556,11 @@
                 "loc": 38
             }
         ],
+        "classes": []
+    },
+    "cloned_repo/packages.txt": {
+        "imports": [],
+        "functions": [],
         "classes": []
     },
     "cloned_repo/create_prompt_from_settings.py": {
