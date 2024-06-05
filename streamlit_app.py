@@ -19,31 +19,13 @@ st.set_page_config(
     page_title="Copilot on Steroids",
     page_icon="🧠",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"  # Ensure sidebar is expanded
 )
 
 logging.basicConfig(level=logging.INFO)
 
 # Load environment variables
 load_dotenv()
-
-st.markdown("""
-<style>
-[data-testid="stSidebar"][aria-expanded="true"] {
-    transition: none;
-    display: none;
-}
-[data-testid="stSidebar"][aria-expanded="false"] {
-    transition: none;
-}
-#expand-toggle {
-    position: fixed; 
-    top: 10px; 
-    right: 10px; 
-    z-index: 10000;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # Initialize session states
 if 'theme' not in st.session_state:
@@ -62,7 +44,7 @@ if 'first_load' not in st.session_state:
     st.session_state.first_load = True
 
 def send_message(settings):
-    prompt = st.chat_input("Challenge me")
+    prompt = st.chat_input('"Fix the thing with the stuff"')
     if prompt:
         st.session_state.show_buttons = False  # Ensure the button is hidden
         asyncio.run(handle_streamed_input(prompt, settings))
@@ -90,17 +72,16 @@ def main():
     """
     st.markdown(custom_style, unsafe_allow_html=True)
 
-    left_column, middle_column, right_column = st.columns([1, 4, 1])
+    left_column, middle_column, right_column = st.columns([0.1, 4, 1])
 
     with middle_column: 
-        st.markdown('<div class="custom-text">HEPHAESTA</div>', unsafe_allow_html=True)        
                 
         st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon
         
         text_col, button_col = st.columns([4, 1])
 
         with text_col:
-            github_link = st.text_input("Fingerprint your repo and for code gen with stellar context awareness.", value="", placeholder="url to your github repo")
+            github_link = st.text_input("", value="", placeholder="url to your github repo")
         st.write('Note: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
         # Move button to be directly beneath the text input
         if st.button("Visualize Repo"):

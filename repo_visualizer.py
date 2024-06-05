@@ -66,38 +66,36 @@ def extract_ast_details(tree):
 
     return imports, functions, classes
 
-def extract_codebase_structure(root_dir):
+def extract_codebase_structure(root_dir, temp_file='temp_codebase.json'):
     logging.debug(f"Extracting codebase structure from directory: {root_dir}")
     codebase = defaultdict(lambda: {'imports': [], 'functions': [], 'classes': []})
 
-    for root, _, files in os.walk(root_dir):
-        for file in files:
-            file_path = os.path.join(root, file)
-            if is_text_file(file_path):
-                logging.info(f"Parsing file: {file_path}")
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    try:
-                        tree = ast.parse(f.read(), filename=file_path)
-                        imports, functions, classes = extract_ast_details(tree)
-                        codebase[file_path]['imports'].extend(imports)
-                        codebase[file_path]['functions'].extend(functions)
-                        codebase[file_path]['classes'].extend(classes)
-                    except SyntaxError as se:
-                        logging.warning(f"SyntaxError in file {file_path}: {se}")
-                    except Exception as e:
-                        logging.error(f"Failed to parse {file_path}: {e}")
-    return codebase
+    if os.path.exists(temp_file):
+        os.remove(temp_file)
+    
+    with open(temp_file, 'w') as tempf:
+        for root, _, files in os.walk(root_dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                if is_text_file(file_path):
+                    logging.info(f"Parsing file: {file_path}")
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        try:
+                            tree = ast.parse(f.read(), filename=file_path)
+                            imports, functions, classes = extract_ast_details(tree)
+                            file_details = {
+                                'imports': imports,
+                                'functions': functions,
+                                'classes': classes
+                            }
+                            json.dump({file_path: file_details}, tempf)
+                            tempf.write('\n')  # Separate each entry by a newline
+                        except SyntaxError as se:
+                            logging.warning(f"SyntaxError in file {file_path}: {se}")
+                        except Exception as e:
+                            logging.error(f"Failed to parse {file_path}: {e}")
 
-def save_structure_to_json(structure, filename='codebase_struct.json'):
-    logging.debug(f"Saving structure to JSON file: {filename}")
-    try:
-        with open(filename, 'w') as f:
-            json.dump(structure, f, indent=4)
-        logging.info(f"Codebase structure saved to {filename}")
-    except Exception as e:
-        logging.error(f"Failed to save JSON file: {e}")
-
-def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
+def visualize_codebase_structure(temp_file='temp_codebase.json', output_file='codebase_graph.png'):
     logging.debug("Visualizing codebase structure")
     graph = pydot.Dot(graph_type='digraph', layout='neato', overlap=False, splines=True, resolution=120)
     graph.set_graph_defaults(size="12,12!", dpi="780")
@@ -131,7 +129,7 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
                 graph.add_edge(pydot.Edge(class_nodes[cls_label], method_node, color='green', penwidth=2.0))
 
         for func in details['functions']:
-            func_label = func['name']  # Modified line
+            func_label = func['name']
             size = max(func['loc'] / 10.0, 1.0)
             if func_label not in function_nodes:
                 function_node = pydot.Node(func_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=30, width=size, height=size)
@@ -143,7 +141,7 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
             graph.add_edge(pydot.Edge(file_nodes[file], function_node, color='purple', penwidth=2.0))
 
             for call in func['calls']:
-                call_label = call  # Modified line
+                call_label = call
                 if call_label not in function_nodes:
                     call_node = pydot.Node(call_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=20, width=size, height=size)
                     graph.add_node(call_node)
@@ -151,22 +149,27 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
                 else:
                     call_node = function_nodes[call_label]
 
-                graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))  # Unchanged line
+                graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))
 
-    # Process the structure in parts to manage memory usage
-    for file, details in structure.items():
-        add_node_and_edges(file, details)
-        if len(graph.get_node_list()) % 100 == 0:  # Periodically write to file to free up memory
+    with open(temp_file, 'r') as tempf:
+        for line in tempf:
             try:
-                graph.write_png(output_file)
-                logging.info(f"Intermediate visualization saved to {output_file}")
-                graph.del_node(file_nodes[file])
-                for cls in details['classes']:
-                    graph.del_node(class_nodes[f"{cls['name']} (Class)"])
-                for func in details['functions']:
-                    graph.del_node(function_nodes[f"{func['name']}\nargs: {', '.join(func['args'])}"])
-            except Exception as e:
-                logging.error(f"Failed to generate intermediate graph: {e}")
+                file_details = json.loads(line)
+                for file, details in file_details.items():
+                    add_node_and_edges(file, details)
+                    if len(graph.get_node_list()) % 100 == 0:  # Periodically write to file to free up memory
+                        try:
+                            graph.write_png(output_file)
+                            logging.info(f"Intermediate visualization saved to {output_file}")
+                            graph.del_node(file_nodes[file])
+                            for cls in details['classes']:
+                                graph.del_node(class_nodes[f"{cls['name']} (Class)"])
+                            for func in details['functions']:
+                                graph.del_node(function_nodes[func['name']])
+                        except Exception as e:
+                            logging.error(f"Failed to generate intermediate graph: {e}")
+            except json.JSONDecodeError as e:
+                logging.error(f"Failed to parse JSON line: {e}")
 
     dot_data = graph.to_string()
     logging.debug(f"DOT file content:\n{dot_data}")
@@ -181,9 +184,8 @@ def visualiserepo(github_link):
     logging.debug(f"Starting visualization for repo: {github_link}")
     clone_dir = clone_repo(github_link)
     if clone_dir:
-        codebase_structure = extract_codebase_structure(clone_dir)
-        save_structure_to_json(codebase_structure)
-        visualize_codebase_structure(codebase_structure)
+        extract_codebase_structure(clone_dir)
+        visualize_codebase_structure()
         st.image('codebase_graph.png', caption='Codebase Structure Visualization')
     else:
         logging.error("Cloning failed, skipping visualization.")
