@@ -202,14 +202,15 @@
     "cloned_repo/streamlit_app.py": {
         "imports": [
             "Import(names=[alias(name='streamlit', asname='st')])",
-            "Import(names=[alias(name='openai')])",
             "Import(names=[alias(name='asyncio')])",
+            "Import(names=[alias(name='os')])",
+            "ImportFrom(module='dotenv', names=[alias(name='load_dotenv')], level=0)",
+            "Import(names=[alias(name='logging')])",
+            "ImportFrom(module='repo_visualizer', names=[alias(name='visualiserepo')], level=0)",
             "ImportFrom(module='initialize_session_state', names=[alias(name='initialize_session_state')], level=0)",
             "ImportFrom(module='stream_response', names=[alias(name='stream_response')], level=0)",
             "ImportFrom(module='load_custom_html', names=[alias(name='load_custom_html')], level=0)",
             "ImportFrom(module='gpt_response', names=[alias(name='gpt_response')], level=0)",
-            "Import(names=[alias(name='os')])",
-            "ImportFrom(module='dotenv', names=[alias(name='load_dotenv')], level=0)",
             "ImportFrom(module='settings_to_system_prompt', names=[alias(name='settings_to_system_prompt')], level=0)",
             "ImportFrom(module='create_prompt_from_settings', names=[alias(name='create_prompt_from_settings')], level=0)",
             "ImportFrom(module='render_message', names=[alias(name='render_message')], level=0)",
@@ -250,9 +251,10 @@
                     "load_custom_html",
                     "initialize_session_state",
                     "send_message",
+                    "visualiserepo",
                     "handle_button_click"
                 ],
-                "loc": 40
+                "loc": 57
             }
         ],
         "classes": []
@@ -275,6 +277,11 @@
                 "loc": 22
             }
         ],
+        "classes": []
+    },
+    "cloned_repo/codebase_struct.json": {
+        "imports": [],
+        "functions": [],
         "classes": []
     },
     "cloned_repo/brain.py": {
@@ -384,6 +391,107 @@
                     "button"
                 ],
                 "loc": 34
+            }
+        ],
+        "classes": []
+    },
+    "cloned_repo/repo_visualizer.py": {
+        "imports": [
+            "Import(names=[alias(name='os')])",
+            "Import(names=[alias(name='shutil')])",
+            "Import(names=[alias(name='json')])",
+            "Import(names=[alias(name='ast')])",
+            "Import(names=[alias(name='mimetypes')])",
+            "Import(names=[alias(name='logging')])",
+            "ImportFrom(module='git', names=[alias(name='Repo'), alias(name='GitCommandError')], level=0)",
+            "Import(names=[alias(name='pydot')])",
+            "Import(names=[alias(name='streamlit', asname='st')])",
+            "ImportFrom(module='collections', names=[alias(name='defaultdict')], level=0)"
+        ],
+        "functions": [
+            {
+                "name": "clone_repo",
+                "args": [
+                    "repo_url",
+                    "clone_dir"
+                ],
+                "calls": [],
+                "loc": 15
+            },
+            {
+                "name": "is_text_file",
+                "args": [
+                    "filepath"
+                ],
+                "calls": [],
+                "loc": 7
+            },
+            {
+                "name": "extract_ast_details",
+                "args": [
+                    "tree"
+                ],
+                "calls": [
+                    "isinstance",
+                    "isinstance",
+                    "isinstance",
+                    "max",
+                    "isinstance",
+                    "hasattr",
+                    "isinstance",
+                    "hasattr",
+                    "isinstance"
+                ],
+                "loc": 30
+            },
+            {
+                "name": "extract_codebase_structure",
+                "args": [
+                    "root_dir"
+                ],
+                "calls": [
+                    "defaultdict",
+                    "is_text_file",
+                    "open",
+                    "extract_ast_details"
+                ],
+                "loc": 21
+            },
+            {
+                "name": "save_structure_to_json",
+                "args": [
+                    "structure",
+                    "filename"
+                ],
+                "calls": [
+                    "open"
+                ],
+                "loc": 8
+            },
+            {
+                "name": "visualize_codebase_structure",
+                "args": [
+                    "structure",
+                    "output_file"
+                ],
+                "calls": [
+                    "defaultdict",
+                    "max"
+                ],
+                "loc": 64
+            },
+            {
+                "name": "visualiserepo",
+                "args": [
+                    "github_link"
+                ],
+                "calls": [
+                    "clone_repo",
+                    "extract_codebase_structure",
+                    "save_structure_to_json",
+                    "visualize_codebase_structure"
+                ],
+                "loc": 10
             }
         ],
         "classes": []
