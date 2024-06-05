@@ -131,7 +131,7 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
                 graph.add_edge(pydot.Edge(class_nodes[cls_label], method_node, color='green', penwidth=2.0))
 
         for func in details['functions']:
-            func_label = f"{func['name']}\nargs: {', '.join(func['args'])}"
+            func_label = func['name']  # Modified line
             size = max(func['loc'] / 10.0, 1.0)
             if func_label not in function_nodes:
                 function_node = pydot.Node(func_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=30, width=size, height=size)
@@ -143,7 +143,7 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
             graph.add_edge(pydot.Edge(file_nodes[file], function_node, color='purple', penwidth=2.0))
 
             for call in func['calls']:
-                call_label = f"{call}\nargs: {', '.join(func['args'])}"
+                call_label = call  # Modified line
                 if call_label not in function_nodes:
                     call_node = pydot.Node(call_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=20, width=size, height=size)
                     graph.add_node(call_node)
@@ -151,7 +151,7 @@ def visualize_codebase_structure(structure, output_file='codebase_graph.png'):
                 else:
                     call_node = function_nodes[call_label]
 
-                graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))
+                graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))  # Unchanged line
 
     # Process the structure in parts to manage memory usage
     for file, details in structure.items():
