@@ -91,10 +91,8 @@ def main():
 
     with middle_column: 
         st.markdown('<div class="custom-text">HEPHAESTA</div>', unsafe_allow_html=True)        
-        
-        # the image and st.write below should be 
-        st.image('https://i.imgur.com/gEHSBXK.png', width=40)
-        
+                
+        st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon
         
         text_col, button_col = st.columns([4, 1])
 
@@ -110,8 +108,8 @@ def main():
         if os.path.exists(output_image_path):  # assuming visualiserepo saves output to this file
             st.image(output_image_path)
         else:
-            # Show placeholder image if visualization hasn't been generated yet
-            st.image("https://i.imgur.com/k9YDfOV.png")
+            
+            st.image("https://i.imgur.com/k9YDfOV.png") # vizualisation placeholder png if viz hasn't been generated yet
         st.divider()
         send_message(settings)
 
