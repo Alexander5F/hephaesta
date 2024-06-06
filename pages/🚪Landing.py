@@ -3,7 +3,6 @@ import asyncio
 import os
 from dotenv import load_dotenv
 import logging
-from repo_visualizer import visualiserepo
 from initialize_session_state import initialize_session_state
 from stream_response import stream_response
 from load_custom_html_for_landing_page import load_custom_html_for_landing_page
@@ -74,14 +73,16 @@ def main():
         text_col, button_col = st.columns([4, 1])
 
         with text_col:
-            st.image("https://shorturl.at/BJldr", width=300) # Ron burgundy
+            st.write("# How the app will look")
             github_link = st.text_input("", value="", placeholder="url to your github repo")
         # Move button to be directly beneath the text input
         if st.button("Pull in my repo"):
-            visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
+            st.write('')      
+        st.image("https://shorturl.at/BJldr", width=300) # Ron burgundy        
+        st.divider()            
+                
         st.write('#### Example repo visualisation')
-
-        st.image("https://i.imgur.com/k9YDfOV.png", caption = "Example visualisation") # Visualisation
+        st.image("https://i.imgur.com/k9YDfOV.png") # Visualisation
         st.divider()
 
         st.write('### Tell it what to fix')        
