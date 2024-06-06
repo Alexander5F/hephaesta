@@ -89,7 +89,7 @@ def main():
 
         send_message()
         if st.session_state.show_buttons:
-            if st.button("Let's goooooo  🚀"):
+            if st.button("... and let's goooooo  🚀"):
                 handle_button_click("Write a web crawler")
         
         st.image("https://shorturl.at/OYSRU", width=300) # Let's go gif  
