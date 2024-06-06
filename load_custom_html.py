@@ -35,8 +35,12 @@ def load_custom_html():
         st.divider()    
                           
     with right_column:
-        st.write("")                    
-
+        st.write("")       
+                          
+    with right_column:
+        st.write("") 
+    
+    st.sidebar.write("Let's make this better. Please share your feedback with me: autocoder@yahoo.com.\n\n-Alex")
     with st.sidebar.expander("Benefits", expanded=False):
         st.markdown("""
             - ✍️ Short prompts are enough. It already has the context.
@@ -64,8 +68,5 @@ def load_custom_html():
             "dependency_analysis": st.checkbox("🔗 Save me from dependency hell", value=False),
             "read_documentation": st.checkbox("📚 Read newest repos", value=False),
         }
-
-    with st.sidebar.expander("Feedback", expanded=True):
-        st.write("Let's make this better. Please share your feedback with me: autocoder@yahoo.com.\n\n-Alex")
 
     return settings
