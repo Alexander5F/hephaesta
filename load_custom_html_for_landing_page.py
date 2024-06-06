@@ -24,7 +24,7 @@ def load_custom_html_for_landing_page():
         st.divider()
         
         # Correct path to the page
-        st.page_link("pages/🔔 Be_notified_when_its_ready.py", label="Email me when it's ready")
+        st.page_link("pages/🔔 Be_notified_when_its_ready.py", label="**Be notified when it's ready**")
                                     
         st.write("""
 

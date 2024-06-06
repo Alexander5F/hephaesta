@@ -79,10 +79,12 @@ def main():
         # Move button to be directly beneath the text input
         if st.button("Pull in my repo"):
             visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
-        st.write('#### Note: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
+        st.write('#### Example repo visualisation')
 
         st.image("https://i.imgur.com/k9YDfOV.png", caption = "Example visualisation") # Visualisation
         st.divider()
+
+        st.write('### Tell it what to fix')        
 
         send_message()
         if st.session_state.show_buttons:
