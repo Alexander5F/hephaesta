@@ -35,7 +35,7 @@ def load_custom_html_for_landing_page():
 **What it does**
 
                 🧠 Figures out which files to work on and pulls in the right context.
-    🤖 A team of GPT-4o’s fixes it and criticises each other, without you babysitting
+    🤖 A team of GPT-4o’s fixes it and criticises each other, to deliver better code than chatGPT, and without you babysitting. 
                 """
                 )
         st.divider()    

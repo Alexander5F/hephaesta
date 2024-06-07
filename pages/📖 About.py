@@ -23,18 +23,18 @@ with col2:
     I used GPT-4 and Copilot a ton for coding, and got sick of having to babysit it. I wanted to send-and-forget. That sometimes works if I take 15 minutes to craft a prompt.
 
     Copilot kept giving me BS-code unprompted, hallucinates, and usually doesn't pull in the right context from my codebase.
-
-    It's a one-man show right now.
+    
+    ## **The project**
+    It's a one-man show for the first couple weeks, but intended to become a business.
 
     ## **It's quite fresh**
     I started building this at the beginning of June (2024). I'm working on this day and night. It's starting to perform really well even after the first week, which is getting me really excited!
 
-    ## **Want to contribute?**
+    ## **Contribute**
     [https://github.com/Alexander5F/hephaesta](https://github.com/Alexander5F/hephaesta)
 
     ## **Feedback**
-
-    What do you find useful, are missing, or unhappy with? Feel free to email me with:
+    What do you find useful, are missing, or unhappy with? Feel free to email me at autocoder@yahoo.com with:
 
         "Setup is confusing as hell"
         "I use it all day, thanks!"
