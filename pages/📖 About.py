@@ -13,27 +13,28 @@ with col2:
 
     # Use triple quotes for multi-line strings in markdown
     st.markdown("""
-    ## **Me**
+        ## **🥒 Very fresh, but moving like crazy**
+    I started building this towards the beginning of June (2024), and working on it day and night. It's starting to perform really well even after the first week, which is getting me really excited!
+    
+    ## **👾 Me**
 
     I've been an entrepreneur for 12 years. I've founded startups making 🎛️ predictive controllers for high speed doors, 🛰️ space lasers, 🏭 sensors for quality control in automatic manufacturing lines, B2B platforms, to neural rendering software.
 
     I love to code.
 
-    ## **Why**
+    ## **🎯 Why**
     I used GPT-4 and Copilot a ton for coding, and got sick of having to babysit it. I wanted to send-and-forget. That sometimes works if I take 15 minutes to craft a prompt.
 
     Copilot kept giving me BS-code unprompted, hallucinates, and usually doesn't pull in the right context from my codebase.
     
-    ## **The project**
+    ## **📈 The project**
     It's a one-man show for the first couple weeks, but intended to become a business.
 
-    ## **It's quite fresh**
-    I started building this at the beginning of June (2024). I'm working on this day and night. It's starting to perform really well even after the first week, which is getting me really excited!
 
-    ## **Contribute**
-    [https://github.com/Alexander5F/hephaesta](https://github.com/Alexander5F/hephaesta)
-
-    ## **Feedback**
+    ## **💡 Contribute**
+    [https://github.com/Alexander5F/hephaesta](https://github.com/Alexander5F/hephaesta)        
+    
+    ## **📣 Feedback**
     What do you find useful, are missing, or unhappy with? Feel free to email me at autocoder@yahoo.com with:
 
         "Setup is confusing as hell"

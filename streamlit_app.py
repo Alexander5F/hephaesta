@@ -81,7 +81,7 @@ def main():
         text_col, button_col = st.columns([4, 1])
 
         with text_col:
-            github_link = st.text_input("", value="", placeholder="url to your github repo")
+            github_link = st.text_input("github_link_text_input", value="", placeholder="url to your github repo")
         st.write('Note: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
         # Move button to be directly beneath the text input
         if st.button("Visualize Repo"):
@@ -103,13 +103,6 @@ def main():
 
     with right_column:
         st.write(' ')
-
-    with st.sidebar:
-        st.session_state.expand_all = st.checkbox("Expand all messages", value=True)
-
-    with st.container():
-        st.markdown('<div id="expand-toggle"></div>', unsafe_allow_html=True)
-        st.sidebar.button("Expand all outputs", on_click=toggle_expand_all)
 
 if __name__ == "__main__":
     main()
