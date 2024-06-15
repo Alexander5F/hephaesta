@@ -6,7 +6,7 @@ import mimetypes
 import logging
 from git import Repo, GitCommandError
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 def clone_repo(repo_url, clone_dir='cloned_repo'):
     logging.debug(f"Attempting to clone repository: {repo_url}")
@@ -133,10 +133,16 @@ def extract_codebase_structure_v2(root_dir, temp_file='temp_codebase_v2.json'):
 def analyze_repo(github_repo_url):
     logging.debug(f"Starting analysis for repo: {github_repo_url}")
     clone_dir = clone_repo(github_repo_url)
+    temp_file = 'temp_codebase_v2.json'
     if clone_dir:
-        repo_json = extract_codebase_structure_v2(clone_dir)
-        with open('enhanced_repo_data.json', 'w') as f:
+        repo_json = extract_codebase_structure_v2(clone_dir, temp_file=temp_file)
+        with open('repo_json_for_LLM.json', 'w') as f:
             json.dump(repo_json, f, indent=4)
+        logging.info(f"Cleaning up: removing cloned repository directory {clone_dir}")
+        shutil.rmtree(clone_dir)
+        if os.path.exists(temp_file):
+            logging.info(f"Cleaning up: removing temporary file {temp_file}")
+            os.remove(temp_file)
         return repo_json
     else:
         logging.error("Cloning failed, skipping analysis.")
@@ -163,4 +169,7 @@ def read_code(repo_json_for_LLM, filename, github_repo_url):
         code_string = f.read()
         nLOC = len(code_string.splitlines())
     
+    logging.info(f"Cleaning up: removing cloned repository directory {clone_dir}")
+    shutil.rmtree(clone_dir)
+
     return nLOC, code_string

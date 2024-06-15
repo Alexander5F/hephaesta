@@ -528,6 +528,12 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/temp_codebase_v2.json",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/streamlit_app.py",
             "imports": [
                 {
@@ -584,6 +590,10 @@
                 },
                 {
                     "module": "check_and_delete_file_on_first_load",
+                    "alias": null
+                },
+                {
+                    "module": "analyze_repo",
                     "alias": null
                 }
             ],
@@ -653,12 +663,32 @@
                             "args_passed": []
                         },
                         {
-                            "function": "visualiserepo",
+                            "function": "analyze_repo",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "read_code",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "str",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
                         }
                     ],
-                    "loc": 46
+                    "loc": 51
                 }
             ],
             "classes": []
@@ -700,12 +730,6 @@
                     "loc": 22
                 }
             ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/codebase_struct.json",
-            "imports": [],
-            "functions": [],
             "classes": []
         },
         {
@@ -1441,6 +1465,12 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/enhanced_repo_data.json",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/packages.txt",
             "imports": [],
             "functions": [],
@@ -1478,6 +1508,278 @@
             "file_path": "cloned_repo/temp_codebase.json",
             "imports": [],
             "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/analyze_repo.py",
+            "imports": [
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "shutil",
+                    "alias": null
+                },
+                {
+                    "module": "json",
+                    "alias": null
+                },
+                {
+                    "module": "ast",
+                    "alias": null
+                },
+                {
+                    "module": "mimetypes",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "Repo",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "clone_repo",
+                    "args": [
+                        "repo_url",
+                        "clone_dir"
+                    ],
+                    "calls": [],
+                    "loc": 15
+                },
+                {
+                    "name": "is_text_file",
+                    "args": [
+                        "filepath"
+                    ],
+                    "calls": [],
+                    "loc": 7
+                },
+                {
+                    "name": "extract_ast_details",
+                    "args": [
+                        "tree"
+                    ],
+                    "calls": [
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "max",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "max",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        }
+                    ],
+                    "loc": 41
+                },
+                {
+                    "name": "extract_codebase_structure_v2",
+                    "args": [
+                        "root_dir",
+                        "temp_file"
+                    ],
+                    "calls": [
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "is_text_file",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "extract_ast_details",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        }
+                    ],
+                    "loc": 55
+                },
+                {
+                    "name": "analyze_repo",
+                    "args": [
+                        "github_repo_url"
+                    ],
+                    "calls": [
+                        {
+                            "function": "clone_repo",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "github_repo_url"
+                            ]
+                        },
+                        {
+                            "function": "extract_codebase_structure_v2",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "github_repo_url"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "github_repo_url"
+                            ]
+                        }
+                    ],
+                    "loc": 11
+                },
+                {
+                    "name": "read_code",
+                    "args": [
+                        "repo_json_for_LLM",
+                        "filename",
+                        "github_repo_url"
+                    ],
+                    "calls": [
+                        {
+                            "function": "next",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "repo_json_for_LLM",
+                                "filename",
+                                "github_repo_url"
+                            ]
+                        },
+                        {
+                            "function": "clone_repo",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "repo_json_for_LLM",
+                                "filename",
+                                "github_repo_url"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "repo_json_for_LLM",
+                                "filename",
+                                "github_repo_url"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/analyze_repo.py",
+                            "args_passed": [
+                                "repo_json_for_LLM",
+                                "filename",
+                                "github_repo_url"
+                            ]
+                        }
+                    ],
+                    "loc": 22
+                }
+            ],
             "classes": []
         },
         {
