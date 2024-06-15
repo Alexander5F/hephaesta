@@ -13,6 +13,7 @@ from create_prompt_from_settings import create_prompt_from_settings
 from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
+from analyze_repo import analyze_repo, read_code
 
 # Set the page configuration first
 st.set_page_config(
@@ -78,9 +79,14 @@ def main():
         #st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon        
         github_link = st.chat_input('url to your github repo')
         if github_link: 
-            png_filename = visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
-            st.image('png_filename', caption='Codebase Structure Visualization')
-                        
+            #png_filename = visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
+            #st.image('png_filename', caption='Codebase Structure Visualization')
+            
+            repo_json_for_LLM = analyze_repo(github_link)
+            nLOC, code_string = read_code(repo_json_for_LLM, "load_custom_html_for_landing_page.py", github_link)
+            print('\n\n\n nLOC:' + str(nLOC))
+            print('\n\n\n code string:' + code_string)
+                                    
         send_message(settings)
 
         # Display the output image from the visualiserepo function if exists

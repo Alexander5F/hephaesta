@@ -1,0 +1,1667 @@
+{
+    "repo_name": "cloned_repo",
+    "files": [
+        {
+            "file_path": "cloned_repo/load_custom_html_for_landing_page.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "visualiserepo",
+                    "alias": null
+                },
+                {
+                    "module": "initialize_session_state",
+                    "alias": null
+                },
+                {
+                    "module": "stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "settings_to_system_prompt",
+                    "alias": null
+                },
+                {
+                    "module": "create_prompt_from_settings",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "handle_streamed_input",
+                    "alias": null
+                },
+                {
+                    "module": "check_and_delete_file_on_first_load",
+                    "alias": null
+                },
+                {
+                    "module": "streamlit.components.v1",
+                    "alias": "components"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "load_custom_html_for_landing_page",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "button",
+                            "file": "cloned_repo/load_custom_html_for_landing_page.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 59
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/get_text_between_tags.py",
+            "imports": [],
+            "functions": [
+                {
+                    "name": "get_text_between_tags",
+                    "args": [
+                        "stream",
+                        "start_tag",
+                        "end_tag"
+                    ],
+                    "calls": [
+                        {
+                            "function": "extract_content",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "extract_content",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "stream",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        }
+                    ],
+                    "loc": 36
+                },
+                {
+                    "name": "extract_content",
+                    "args": [
+                        "buffer",
+                        "start_tag",
+                        "end_tag"
+                    ],
+                    "calls": [
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "buffer",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "buffer",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "buffer",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "buffer",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/get_text_between_tags.py",
+                            "args_passed": [
+                                "buffer",
+                                "start_tag",
+                                "end_tag"
+                            ]
+                        }
+                    ],
+                    "loc": 19
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/stream_assistant_response.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "call_stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "stream_assistant_response",
+                    "args": [
+                        "messages",
+                        "placeholder",
+                        "theme",
+                        "no_expander",
+                        "expanded"
+                    ],
+                    "calls": [
+                        {
+                            "function": "call_stream_response",
+                            "file": "cloned_repo/stream_assistant_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander",
+                                "expanded"
+                            ]
+                        },
+                        {
+                            "function": "render_message",
+                            "file": "cloned_repo/stream_assistant_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander",
+                                "expanded"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/stream_assistant_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander",
+                                "expanded"
+                            ]
+                        }
+                    ],
+                    "loc": 8
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/initialize_session_states.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "initialize_session_states",
+                    "args": [],
+                    "calls": [],
+                    "loc": 11
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/messages_to_string.py",
+            "imports": [],
+            "functions": [
+                {
+                    "name": "messages_to_string",
+                    "args": [
+                        "messages"
+                    ],
+                    "calls": [],
+                    "loc": 5
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/call_stream_response.py",
+            "imports": [
+                {
+                    "module": "stream_response",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "call_stream_response",
+                    "args": [
+                        "messages"
+                    ],
+                    "calls": [
+                        {
+                            "function": "stream_response",
+                            "file": "cloned_repo/call_stream_response.py",
+                            "args_passed": [
+                                "messages"
+                            ]
+                        }
+                    ],
+                    "loc": 3
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/stream_response.py",
+            "imports": [
+                {
+                    "module": "openai",
+                    "alias": null
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "stream_response",
+                    "args": [
+                        "messages"
+                    ],
+                    "calls": [
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/stream_response.py",
+                            "args_passed": [
+                                "messages"
+                            ]
+                        }
+                    ],
+                    "loc": 17
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/handle_streamed_input.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "create_prompt_from_settings",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "stream_assistant_response",
+                    "alias": null
+                },
+                {
+                    "module": "stream_instructor_response",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "handle_streamed_input",
+                    "args": [
+                        "user_input",
+                        "settings",
+                        "iterations"
+                    ],
+                    "calls": [
+                        {
+                            "function": "render_message",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        },
+                        {
+                            "function": "render_message",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        },
+                        {
+                            "function": "stream_assistant_response",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        },
+                        {
+                            "function": "stream_assistant_response",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        },
+                        {
+                            "function": "stream_instructor_response",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
+                                "iterations"
+                            ]
+                        }
+                    ],
+                    "loc": 44
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/render_message.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "render_message",
+                    "args": [
+                        "placeholder",
+                        "role",
+                        "new_content",
+                        "theme",
+                        "expanded",
+                        "no_expander"
+                    ],
+                    "calls": [],
+                    "loc": 59
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/show_image_popup.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "show_image_popup",
+                    "args": [
+                        "image_url"
+                    ],
+                    "calls": [],
+                    "loc": 17
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/streamlit_app.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "visualiserepo",
+                    "alias": null
+                },
+                {
+                    "module": "initialize_session_state",
+                    "alias": null
+                },
+                {
+                    "module": "stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "load_custom_html",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "create_prompt_from_settings",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "handle_streamed_input",
+                    "alias": null
+                },
+                {
+                    "module": "check_and_delete_file_on_first_load",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "send_message",
+                    "args": [
+                        "settings"
+                    ],
+                    "calls": [
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "settings"
+                            ]
+                        }
+                    ],
+                    "loc": 5
+                },
+                {
+                    "name": "handle_button_click",
+                    "args": [
+                        "prompt",
+                        "settings"
+                    ],
+                    "calls": [
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "prompt",
+                                "settings"
+                            ]
+                        }
+                    ],
+                    "loc": 3
+                },
+                {
+                    "name": "toggle_expand_all",
+                    "args": [],
+                    "calls": [],
+                    "loc": 2
+                },
+                {
+                    "name": "main",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "initialize_session_state",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "load_custom_html",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "send_message",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "check_and_delete_file_on_first_load",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "visualiserepo",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 46
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/coder.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "coder",
+                    "args": [
+                        "user_message"
+                    ],
+                    "calls": [
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/coder.py",
+                            "args_passed": [
+                                "user_message"
+                            ]
+                        },
+                        {
+                            "function": "gpt_response",
+                            "file": "cloned_repo/coder.py",
+                            "args_passed": [
+                                "user_message"
+                            ]
+                        }
+                    ],
+                    "loc": 22
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/codebase_struct.json",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/brain.py",
+            "imports": [
+                {
+                    "module": "openai",
+                    "alias": null
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "settings_to_system_prompt",
+                    "alias": null
+                },
+                {
+                    "module": "display_messages",
+                    "alias": null
+                },
+                {
+                    "module": "messages_to_string",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "brain",
+                    "args": [
+                        "messages",
+                        "settings",
+                        "max_iterations",
+                        "current_iteration"
+                    ],
+                    "calls": [
+                        {
+                            "function": "messages_to_string",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "settings_to_system_prompt",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "stream_response",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "stream_response",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "brain",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/brain.py",
+                            "args_passed": [
+                                "messages",
+                                "settings",
+                                "max_iterations",
+                                "current_iteration"
+                            ]
+                        }
+                    ],
+                    "loc": 66
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/bullets_of_improvements.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "call_stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "messages_to_string",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "bullets_of_improvements",
+                    "args": [
+                        "messages",
+                        "placeholder"
+                    ],
+                    "calls": [
+                        {
+                            "function": "messages_to_string",
+                            "file": "cloned_repo/bullets_of_improvements.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder"
+                            ]
+                        },
+                        {
+                            "function": "call_stream_response",
+                            "file": "cloned_repo/bullets_of_improvements.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/bullets_of_improvements.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder"
+                            ]
+                        }
+                    ],
+                    "loc": 29
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/gpt_response.py",
+            "imports": [
+                {
+                    "module": "time",
+                    "alias": null
+                },
+                {
+                    "module": "openai",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "gpt_response",
+                    "args": [
+                        "prompt"
+                    ],
+                    "calls": [
+                        {
+                            "function": "load_dotenv",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "type",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        },
+                        {
+                            "function": "str",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": [
+                                "prompt"
+                            ]
+                        }
+                    ],
+                    "loc": 41
+                },
+                {
+                    "name": "test",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "gpt_response",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/gpt_response.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 4
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/load_custom_html.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "load_custom_html",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "button",
+                            "file": "cloned_repo/load_custom_html.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 60
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/repo_visualizer.py",
+            "imports": [
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "shutil",
+                    "alias": null
+                },
+                {
+                    "module": "json",
+                    "alias": null
+                },
+                {
+                    "module": "ast",
+                    "alias": null
+                },
+                {
+                    "module": "mimetypes",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "Repo",
+                    "alias": null
+                },
+                {
+                    "module": "pydot",
+                    "alias": null
+                },
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "defaultdict",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "clone_repo",
+                    "args": [
+                        "repo_url",
+                        "clone_dir"
+                    ],
+                    "calls": [],
+                    "loc": 15
+                },
+                {
+                    "name": "is_text_file",
+                    "args": [
+                        "filepath"
+                    ],
+                    "calls": [],
+                    "loc": 7
+                },
+                {
+                    "name": "extract_ast_details",
+                    "args": [
+                        "tree"
+                    ],
+                    "calls": [
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "max",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "hasattr",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        },
+                        {
+                            "function": "isinstance",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "tree"
+                            ]
+                        }
+                    ],
+                    "loc": 30
+                },
+                {
+                    "name": "extract_codebase_structure",
+                    "args": [
+                        "root_dir",
+                        "temp_file"
+                    ],
+                    "calls": [
+                        {
+                            "function": "defaultdict",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "is_text_file",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        },
+                        {
+                            "function": "extract_ast_details",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "root_dir",
+                                "temp_file"
+                            ]
+                        }
+                    ],
+                    "loc": 28
+                },
+                {
+                    "name": "visualize_codebase_structure",
+                    "args": [
+                        "temp_file",
+                        "output_file"
+                    ],
+                    "calls": [
+                        {
+                            "function": "defaultdict",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "temp_file",
+                                "output_file"
+                            ]
+                        },
+                        {
+                            "function": "open",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "temp_file",
+                                "output_file"
+                            ]
+                        },
+                        {
+                            "function": "max",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "temp_file",
+                                "output_file"
+                            ]
+                        },
+                        {
+                            "function": "add_node_and_edges",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "temp_file",
+                                "output_file"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "temp_file",
+                                "output_file"
+                            ]
+                        }
+                    ],
+                    "loc": 84
+                },
+                {
+                    "name": "visualiserepo",
+                    "args": [
+                        "github_link"
+                    ],
+                    "calls": [
+                        {
+                            "function": "clone_repo",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "extract_codebase_structure",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "visualize_codebase_structure",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "github_link"
+                            ]
+                        }
+                    ],
+                    "loc": 11
+                },
+                {
+                    "name": "add_node_and_edges",
+                    "args": [
+                        "file",
+                        "details"
+                    ],
+                    "calls": [
+                        {
+                            "function": "max",
+                            "file": "cloned_repo/repo_visualizer.py",
+                            "args_passed": [
+                                "file",
+                                "details"
+                            ]
+                        }
+                    ],
+                    "loc": 45
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/display_messages.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "display_messages",
+                    "args": [
+                        "messages"
+                    ],
+                    "calls": [
+                        {
+                            "function": "enumerate",
+                            "file": "cloned_repo/display_messages.py",
+                            "args_passed": [
+                                "messages"
+                            ]
+                        }
+                    ],
+                    "loc": 18
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/settings_to_system_prompt.py",
+            "imports": [],
+            "functions": [
+                {
+                    "name": "settings_to_system_prompt",
+                    "args": [
+                        "settings"
+                    ],
+                    "calls": [],
+                    "loc": 44
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/stream_instructor_response.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "call_stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "messages_to_string",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "call_stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "messages_to_string",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "stream_instructor_response",
+                    "args": [
+                        "messages",
+                        "placeholder",
+                        "theme",
+                        "no_expander"
+                    ],
+                    "calls": [
+                        {
+                            "function": "messages_to_string",
+                            "file": "cloned_repo/stream_instructor_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander"
+                            ]
+                        },
+                        {
+                            "function": "call_stream_response",
+                            "file": "cloned_repo/stream_instructor_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander"
+                            ]
+                        },
+                        {
+                            "function": "render_message",
+                            "file": "cloned_repo/stream_instructor_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/stream_instructor_response.py",
+                            "args_passed": [
+                                "messages",
+                                "placeholder",
+                                "theme",
+                                "no_expander"
+                            ]
+                        }
+                    ],
+                    "loc": 38
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/packages.txt",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/create_prompt_from_settings.py",
+            "imports": [
+                {
+                    "module": "settings_to_system_prompt",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "create_prompt_from_settings",
+                    "args": [
+                        "settings"
+                    ],
+                    "calls": [
+                        {
+                            "function": "settings_to_system_prompt",
+                            "file": "cloned_repo/create_prompt_from_settings.py",
+                            "args_passed": [
+                                "settings"
+                            ]
+                        }
+                    ],
+                    "loc": 10
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/temp_codebase.json",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/initialize_session_state.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "initialize_session_state",
+                    "args": [],
+                    "calls": [],
+                    "loc": 3
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/check_and_delete_file_on_first_load.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "check_and_delete_file_on_first_load",
+                    "args": [],
+                    "calls": [],
+                    "loc": 9
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/pages/\ud83d\udd14 Be_notified_when_its_ready.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "streamlit.components.v1",
+                    "alias": "components"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                }
+            ],
+            "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/pages/\ud83d\udcd6 About.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "streamlit.components.v1",
+                    "alias": "components"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                }
+            ],
+            "functions": [],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "initialize_session_state",
+                    "alias": null
+                },
+                {
+                    "module": "stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "load_custom_html_for_landing_page",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "settings_to_system_prompt",
+                    "alias": null
+                },
+                {
+                    "module": "create_prompt_from_settings",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "handle_streamed_input",
+                    "alias": null
+                },
+                {
+                    "module": "check_and_delete_file_on_first_load",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "send_message",
+                    "args": [],
+                    "calls": [],
+                    "loc": 4
+                },
+                {
+                    "name": "handle_button_click",
+                    "args": [
+                        "prompt"
+                    ],
+                    "calls": [],
+                    "loc": 3
+                },
+                {
+                    "name": "main",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "load_custom_html_for_landing_page",
+                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "initialize_session_state",
+                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "send_message",
+                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "handle_button_click",
+                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 45
+                }
+            ],
+            "classes": []
+        }
+    ]
+}
