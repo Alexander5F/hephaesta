@@ -10,8 +10,8 @@ async def handle_streamed_input(user_input, settings, iterations=1):
     st.session_state.run = True
 
     # Append settings as system prompt
-    settings_prompt = create_prompt_from_settings(settings)
-    st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
+    #settings_prompt = create_prompt_from_settings(settings)
+    #st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
 
     # Display user message
     user_input_placeholder = st.empty()
