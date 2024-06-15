@@ -16,7 +16,7 @@ def load_custom_html():
 
     with left_column:
             st.image('https://i.imgur.com/gEHSBXK.png', width=100) # icon
-            st.write('# **HEPHAESTA** | *Jira ticket to pull request*')
+            st.write('# **HEPHAESTA** | *Shorter prompts. Better code.*')
             st.divider()
             
             # Correct path to the page                                    
