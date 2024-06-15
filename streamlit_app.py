@@ -17,7 +17,7 @@ from check_and_delete_file_on_first_load import check_and_delete_file_on_first_l
 # Set the page configuration first
 st.set_page_config(
     page_title="Copilot on Steroids",
-    page_icon="🧠",
+    page_icon='https://i.imgur.com/gEHSBXK.png',
     layout="wide",
     initial_sidebar_state="expanded"  # Ensure sidebar is expanded
 )
@@ -44,7 +44,7 @@ if 'first_load' not in st.session_state:
     st.session_state.first_load = True
 
 def send_message(settings):
-    prompt = st.chat_input('"Fix the thing with the stuff"')
+    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
     if prompt:
         st.session_state.show_buttons = False  # Ensure the button is hidden
         asyncio.run(handle_streamed_input(prompt, settings))
@@ -57,7 +57,6 @@ def toggle_expand_all():
     st.session_state.expand_all = not st.session_state.expand_all
 
 def main():
-    settings = load_custom_html()
     initialize_session_state()
 
     custom_style = """
@@ -72,35 +71,33 @@ def main():
     """
     st.markdown(custom_style, unsafe_allow_html=True)
 
-    left_column, middle_column, right_column = st.columns([0.1, 4, 1])
+    left_column, middle_column, right_column = st.columns([1, 4, 1])
 
     with middle_column: 
-                
-        st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon
+        settings = load_custom_html()
         
-        text_col, button_col = st.columns([4, 1])
-
-        with text_col:
-            github_link = st.text_input("github_link_text_input", value="", placeholder="url to your github repo")
-        st.write('Note: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
-        # Move button to be directly beneath the text input
-        if st.button("Visualize Repo"):
-            visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
+        st.write('### **Give it a try**')
+        #st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon        
+        github_link = st.chat_input('url to your github repo')
+        if github_link: 
+            visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")        
+        send_message(settings)
 
         # Display the output image from the visualiserepo function if exists
-        check_and_delete_file_on_first_load()
+        check_and_delete_file_on_first_load()        
         output_image_path = "codebase_graph.png"
         if os.path.exists(output_image_path):  # assuming visualiserepo saves output to this file
             st.image(output_image_path)
         else:            
             st.image("https://i.imgur.com/k9YDfOV.png") # vizualisation placeholder png if viz hasn't been generated yet
+            st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
+
         st.divider()
-        send_message(settings)
-
-        if st.session_state.show_buttons:
-            if st.button("Write a web crawler"):
-                handle_button_click("Write a web crawler", settings)
-
+        
+        #if st.session_state.show_buttons:
+            #if st.button("Write a web crawler"):
+                #handle_button_click("Write a web crawler", settings)
+        
     with right_column:
         st.write(' ')
 

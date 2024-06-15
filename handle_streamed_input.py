@@ -48,3 +48,5 @@ async def handle_streamed_input(user_input, settings, iterations=1):
     
     st.session_state.run = False
     st.session_state.show_buttons = False
+    
+    
