@@ -13,36 +13,11 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import analyze_repo, read_code
-from modules_for_main import 
+from module_for_main import *
 
 # Set the page configuration first
 
-
-st.set_page_config(
-    page_title="Copilot on Steroids",
-    page_icon='https://i.imgur.com/gEHSBXK.png',
-    layout="wide",
-    initial_sidebar_state="expanded"  # Ensure sidebar is expanded
-)
-
 load_dotenv()
-
-# Initialize session states
-def call_initialisation(): 
-    if 'theme' not in st.session_state:
-        st.session_state.theme = 'light'
-    if 'messages' not in st.session_state:
-        st.session_state.messages = []
-    if 'run' not in st.session_state:
-        st.session_state.run = False        
-    if 'counter' not in st.session_state:
-        st.session_state.counter = 0
-    if 'show_buttons' not in st.session_state:
-        st.session_state.show_buttons = True
-    if 'expand_all' not in st.session_state:
-        st.session_state.expand_all = True
-    if 'first_load' not in st.session_state:
-        st.session_state.first_load = True
 
 def send_message(settings):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
@@ -51,11 +26,11 @@ def send_message(settings):
         st.toast('🙈 Relax your eyes for a few seconds')
         asyncio.run(handle_streamed_input(prompt, settings))
 
-def github_link_input():    
+def github_link_input():
     github_link = st.chat_input('url to your github repo')
     if github_link: 
         st.toast('🥳 Pulling repo')
-        st.toast('👾 Analysing relationships')        
+        st.toast('👾 Analyzing relationships')        
         #png_filename = visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
         #st.image('png_filename', caption='Codebase Structure Visualization')
         
@@ -71,17 +46,9 @@ def handle_button_click(prompt, settings):
 
 def main():
     call_initialisation()
+    set_page_config()
 
-    custom_style = """
-    <style>
-        .custom-text {
-            font-family: 'Helvetica', sans-serif;
-            font-size: 48px;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-        }
-    </style>
-    """
+    custom_style = create_custom_style()
     st.markdown(custom_style, unsafe_allow_html=True)
 
     left_column, middle_column, right_column = st.columns([1, 4, 1])
@@ -102,9 +69,9 @@ def main():
         else:            
             st.image("https://i.imgur.com/k9YDfOV.png") # vizualisation placeholder png if viz hasn't been generated yet
             st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
-
         st.divider()
         
+        #clickable prompt
         #if st.session_state.show_buttons:
             #if st.button("Write a web crawler"):
                 #handle_button_click("Write a web crawler", settings)

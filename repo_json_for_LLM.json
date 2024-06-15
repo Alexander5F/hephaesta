@@ -528,163 +528,9 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/streamlit_app.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "visualiserepo",
-                    "alias": null
-                },
-                {
-                    "module": "initialize_session_state",
-                    "alias": null
-                },
-                {
-                    "module": "stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "load_custom_html",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                },
-                {
-                    "module": "create_prompt_from_settings",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "handle_streamed_input",
-                    "alias": null
-                },
-                {
-                    "module": "check_and_delete_file_on_first_load",
-                    "alias": null
-                },
-                {
-                    "module": "analyze_repo",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "send_message",
-                    "args": [
-                        "settings"
-                    ],
-                    "calls": [
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings"
-                            ]
-                        }
-                    ],
-                    "loc": 5
-                },
-                {
-                    "name": "handle_button_click",
-                    "args": [
-                        "prompt",
-                        "settings"
-                    ],
-                    "calls": [
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "prompt",
-                                "settings"
-                            ]
-                        }
-                    ],
-                    "loc": 3
-                },
-                {
-                    "name": "toggle_expand_all",
-                    "args": [],
-                    "calls": [],
-                    "loc": 2
-                },
-                {
-                    "name": "main",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "initialize_session_state",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "load_custom_html",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "send_message",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "check_and_delete_file_on_first_load",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "analyze_repo",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "read_code",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "str",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 51
-                }
-            ],
+            "file_path": "cloned_repo/module_for_main.py",
+            "imports": [],
+            "functions": [],
             "classes": []
         },
         {
@@ -1037,7 +883,7 @@
                             "args_passed": []
                         }
                     ],
-                    "loc": 60
+                    "loc": 54
                 }
             ],
             "classes": []
@@ -1766,24 +1612,6 @@
                         }
                     ],
                     "loc": 25
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/initialize_session_state.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "initialize_session_state",
-                    "args": [],
-                    "calls": [],
-                    "loc": 3
                 }
             ],
             "classes": []
