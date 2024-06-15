@@ -22,8 +22,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Ensure sidebar is expanded
 )
 
-logging.basicConfig(level=logging.INFO)
-
 # Load environment variables
 load_dotenv()
 
@@ -80,7 +78,9 @@ def main():
         #st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon        
         github_link = st.chat_input('url to your github repo')
         if github_link: 
-            visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")        
+            png_filename = visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
+            st.image('png_filename', caption='Codebase Structure Visualization')
+                        
         send_message(settings)
 
         # Display the output image from the visualiserepo function if exists

@@ -184,8 +184,10 @@ def visualiserepo(github_link):
     logging.debug(f"Starting visualization for repo: {github_link}")
     clone_dir = clone_repo(github_link)
     if clone_dir:
-        extract_codebase_structure(clone_dir)
-        visualize_codebase_structure()
-        st.image('codebase_graph.png', caption='Codebase Structure Visualization')
+        extract_codebase_structure(clone_dir)        
+        running_locally = not 'STREAMLIT_SERVER' in os.environ
+        if running_locally:
+            visualize_codebase_structure()        
+        return 'codebase_graph.png'
     else:
         logging.error("Cloning failed, skipping visualization.")
