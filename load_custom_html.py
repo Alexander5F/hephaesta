@@ -8,15 +8,9 @@ def load_custom_html():
     button(username="alexmhayes", floating=True, width=221)    
     left_column, right_column = st.columns([7, 0.1])
 
-
-
-
-
-
-
     with left_column:
             st.image('https://i.imgur.com/gEHSBXK.png', width=100) # icon
-            st.write('# **HEPHAESTA** | *Shorter prompts. Better code.*')
+            st.write('# **HEPHAESTA** | *Shorter prompts, better code.*')
             st.divider()
             
             # Correct path to the page                                    

@@ -528,12 +528,6 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/temp_codebase_v2.json",
-            "imports": [],
-            "functions": [],
-            "classes": []
-        },
-        {
             "file_path": "cloned_repo/streamlit_app.py",
             "imports": [
                 {
@@ -1465,12 +1459,6 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/enhanced_repo_data.json",
-            "imports": [],
-            "functions": [],
-            "classes": []
-        },
-        {
             "file_path": "cloned_repo/packages.txt",
             "imports": [],
             "functions": [],
@@ -1505,7 +1493,7 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/temp_codebase.json",
+            "file_path": "cloned_repo/repo_json_for_LLM.json",
             "imports": [],
             "functions": [],
             "classes": []
@@ -1730,7 +1718,7 @@
                             ]
                         }
                     ],
-                    "loc": 11
+                    "loc": 17
                 },
                 {
                     "name": "read_code",
@@ -1777,7 +1765,7 @@
                             ]
                         }
                     ],
-                    "loc": 22
+                    "loc": 25
                 }
             ],
             "classes": []
