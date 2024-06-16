@@ -529,8 +529,208 @@
         },
         {
             "file_path": "cloned_repo/module_for_main.py",
-            "imports": [],
-            "functions": [],
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "call_initialisation",
+                    "args": [],
+                    "calls": [],
+                    "loc": 15
+                },
+                {
+                    "name": "set_page_config",
+                    "args": [],
+                    "calls": [],
+                    "loc": 6
+                },
+                {
+                    "name": "create_custom_style",
+                    "args": [],
+                    "calls": [],
+                    "loc": 12
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/streamlit_app.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "os",
+                    "alias": null
+                },
+                {
+                    "module": "load_dotenv",
+                    "alias": null
+                },
+                {
+                    "module": "logging",
+                    "alias": null
+                },
+                {
+                    "module": "visualiserepo",
+                    "alias": null
+                },
+                {
+                    "module": "stream_response",
+                    "alias": null
+                },
+                {
+                    "module": "load_custom_html",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "create_prompt_from_settings",
+                    "alias": null
+                },
+                {
+                    "module": "render_message",
+                    "alias": null
+                },
+                {
+                    "module": "handle_streamed_input",
+                    "alias": null
+                },
+                {
+                    "module": "check_and_delete_file_on_first_load",
+                    "alias": null
+                },
+                {
+                    "module": "analyze_repo",
+                    "alias": null
+                },
+                {
+                    "module": "*",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "send_message",
+                    "args": [
+                        "settings"
+                    ],
+                    "calls": [
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "settings"
+                            ]
+                        }
+                    ],
+                    "loc": 6
+                },
+                {
+                    "name": "github_link_input",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "analyze_repo",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "read_code",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "str",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 13
+                },
+                {
+                    "name": "handle_button_click",
+                    "args": [
+                        "prompt",
+                        "settings"
+                    ],
+                    "calls": [
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "prompt",
+                                "settings"
+                            ]
+                        }
+                    ],
+                    "loc": 3
+                },
+                {
+                    "name": "main",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "call_initialisation",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "set_page_config",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "create_custom_style",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "load_custom_html",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "github_link_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "send_message",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "check_and_delete_file_on_first_load",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 34
+                }
+            ],
             "classes": []
         },
         {
