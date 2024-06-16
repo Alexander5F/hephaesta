@@ -3,7 +3,6 @@ import asyncio
 import os
 from dotenv import load_dotenv
 import logging
-from initialize_session_state import initialize_session_state
 from stream_response import stream_response
 from load_custom_html_for_landing_page import load_custom_html_for_landing_page
 from gpt_response import gpt_response
@@ -27,20 +26,21 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 # Initialize session states
-if 'theme' not in st.session_state:
-    st.session_state.theme = 'light'
-if 'messages' not in st.session_state:
-    st.session_state.messages = []
-if 'run' not in st.session_state:
-    st.session_state.run = False
-if 'counter' not in st.session_state:
-    st.session_state.counter = 0
-if 'show_buttons' not in st.session_state:
-    st.session_state.show_buttons = True
-if 'expand_all' not in st.session_state:
-    st.session_state.expand_all = True
-if 'first_load' not in st.session_state:
-    st.session_state.first_load = True
+def initialize_session_state(): 
+    if 'theme' not in st.session_state:
+        st.session_state.theme = 'light'
+    if 'messages' not in st.session_state:
+        st.session_state.messages = []
+    if 'run' not in st.session_state:
+        st.session_state.run = False
+    if 'counter' not in st.session_state:
+        st.session_state.counter = 0
+    if 'show_buttons' not in st.session_state:
+        st.session_state.show_buttons = True
+    if 'expand_all' not in st.session_state:
+        st.session_state.expand_all = True
+    if 'first_load' not in st.session_state:
+        st.session_state.first_load = True
 
 def send_message():
     prompt = st.chat_input('"Fix the thing with the stuff"')

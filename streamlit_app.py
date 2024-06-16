@@ -41,7 +41,7 @@ def github_link_input():
             nLOC, code_string = read_code(repo_json_for_LLM, "load_custom_html_for_landing_page.py", github_link)
             print('\n\n\n nLOC:' + str(nLOC))
             print('\n\n\n code string:' + code_string)
-            st.toast(f'nLOC: {nLOC}\ncode string: {code_string}')            
+            st.toast(f'nLOC: {nLOC}\ncode string: {code_string}')
         
 def handle_button_click(prompt, settings):
     st.session_state.show_buttons = False  # Ensure the button is hidden
@@ -60,7 +60,7 @@ def main():
         settings = load_custom_html()    
         st.write('### **Give it a try**')
         #st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon        
-        github_link_input() #
+        github_link_input()
         send_message(settings)
 
         # Display the output image from the visualiserepo function if exists

@@ -5,7 +5,6 @@ import os
 from dotenv import load_dotenv
 import logging
 from repo_visualizer import visualiserepo
-from initialize_session_state import initialize_session_state
 from stream_response import stream_response
 from gpt_response import gpt_response
 from settings_to_system_prompt import settings_to_system_prompt
