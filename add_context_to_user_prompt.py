@@ -18,8 +18,7 @@ def create_instructions_for_LLM(json_str, user_prompt):
         
     instructions_for_LLM += ''' 
     
-    
-    
+
 
     ________________________
     Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to 3 files that you'd like me to show to another LLm that will then be tasked with solving my task.
@@ -46,6 +45,7 @@ def create_list_of_filenames(input_string):
     start_tag = "<f>"
     end_tag = "</f>"
     list_of_filenames = []
+    seen_filenames = set()
     start_index = 0
 
     while True:
@@ -55,7 +55,10 @@ def create_list_of_filenames(input_string):
         end_loc = input_string.find(end_tag, start_loc + len(start_tag))
         if end_loc == -1:
             break
-        list_of_filenames.append(input_string[start_loc + len(start_tag):end_loc])
+        filename = input_string[start_loc + len(start_tag):end_loc]
+        if filename not in seen_filenames:
+            list_of_filenames.append(filename)
+            seen_filenames.add(filename)
         start_index = end_loc + len(end_tag)
     
     return list_of_filenames
