@@ -130,7 +130,7 @@ def extract_codebase_structure_v2(root_dir, temp_file='temp_codebase_v2.json'):
     
     return codebase
 
-def analyze_repo(github_repo_url):
+def create_json_of_interactions(github_repo_url):
     logging.debug(f"Starting analysis for repo: {github_repo_url}")
     clone_dir = clone_repo(github_repo_url)
     temp_file = 'temp_codebase_v2.json'

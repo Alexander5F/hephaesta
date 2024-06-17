@@ -7,42 +7,45 @@ from repo_visualizer import visualiserepo
 from stream_response import stream_response
 from load_custom_html import load_custom_html
 from gpt_response import gpt_response
-#from settings_to_system_prompt import settings_to_system_prompt
 from create_prompt_from_settings import create_prompt_from_settings
 from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
-from analyze_repo import analyze_repo, read_code
+from analyze_repo import create_json_of_interactions, read_code
 from module_for_main import *
+from add_context_to_user_prompt import add_context_to_user_prompt
+import time
 
 # Set the page configuration first
 
 load_dotenv()
 
-def send_message(settings):
+def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
-    if prompt:
-        st.toast('🐝 **Already got started**')
-        st.toast('🙈 **Relax your eyes for a few seconds**')
+    # check whether repo_json exists
+    if prompt and repo_json is not None:                       
+        st.toast('📖**Reading through all of your code**')
+        time.sleep(1)
+        st.toast('**Figuring out what\'s relevant**', icon="🥒")
+        augmented_prompt = add_context_to_user_prompt(repo_json, github_link, prompt)                        
+        st.toast('**Relax your eyes for a few seconds**', icon="🙈")
+        asyncio.run(handle_streamed_input(prompt, settings))
+    elif prompt and repo_json is None:        
+        st.toast('**Already got started.**', icon="🥷")
+        st.toast('**If you add your repo link, I\'ll save you even more time.**', icon="🐠")
         asyncio.run(handle_streamed_input(prompt, settings))
 
-def github_link_input():
-    github_link = st.chat_input('url to your github repo')
-    if github_link: 
-        st.toast('👾 **Pulling repo**') 
-        #png_filename = visualiserepo(github_link or "https://github.com/Alexander5F/hephaesta")
-        #st.image('png_filename', caption='Codebase Structure Visualization')
-        
-        repo_json_for_LLM = analyze_repo(github_link)
-        if repo_json_for_LLM is None:
-            st.toast('🐔 **Is the link correct?**')
-        else:    
-            st.toast('🛰️ **Analyzing relationships**')
-            nLOC, code_string = read_code(repo_json_for_LLM, "load_custom_html_for_landing_page.py", github_link)
-            print('\n\n\n nLOC:' + str(nLOC))
-            print('\n\n\n code string:' + code_string)
-            st.toast(f'nLOC: {nLOC}\ncode string: {code_string}')
-        
+# Analyse repo relationships
+def get_json_of_interactions(github_link, repo_json=None):
+    if repo_json is None:
+        st.toast('**Analyzing your codebase**', icon="🛰️")
+        repo_json = create_json_of_interactions(github_link)
+        if repo_json is None:
+            st.toast('**Is the link correct?**', icon="🐔")
+        else:             
+            st.toast('**Finished! Tell me what to do.**', icon="🥒")                 
+    return repo_json
+
 def handle_button_click(prompt, settings):
     st.session_state.show_buttons = False  # Ensure the button is hidden
     asyncio.run(handle_streamed_input(prompt, settings))
@@ -55,29 +58,31 @@ def main():
 
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
-    with middle_column: 
-        st.toast('🦑 **AI is ready**')
-        settings = load_custom_html()    
+    with middle_column:
+        settings = load_custom_html()
         st.write('### **Give it a try**')
-        #st.image('https://i.imgur.com/gEHSBXK.png', width=40) # icon        
-        github_link_input()
-        send_message(settings)
 
-        # Display the output image from the visualiserepo function if exists
-        check_and_delete_file_on_first_load()        
+        if 'github_link' not in st.session_state:
+            st.session_state.github_link = None
+        if 'repo_json' not in st.session_state:
+            st.session_state.repo_json = None
+
+        github_link = st.chat_input('url to your github repo')
+        if github_link:
+            st.session_state.github_link = github_link
+            st.session_state.repo_json = get_json_of_interactions(github_link)
+        
+        send_message(settings, st.session_state.github_link, st.session_state.repo_json)
+        
+        check_and_delete_file_on_first_load()
         output_image_path = "codebase_graph.png"
-        if os.path.exists(output_image_path):  # assuming visualiserepo saves output to this file
+        if os.path.exists(output_image_path):
             st.image(output_image_path)
-        else:            
-            st.image("https://i.imgur.com/k9YDfOV.png") # vizualisation placeholder png if viz hasn't been generated yet
+        else:
+            st.image("https://i.imgur.com/k9YDfOV.png")
             st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
         st.divider()
-        
-        #clickable prompt
-        #if st.session_state.show_buttons:
-            #if st.button("Write a web crawler"):
-                #handle_button_click("Write a web crawler", settings)
-        
+
     with right_column:
         st.write(' ')
 

@@ -33,10 +33,6 @@
                     "alias": null
                 },
                 {
-                    "module": "initialize_session_state",
-                    "alias": null
-                },
-                {
                     "module": "stream_response",
                     "alias": null
                 },
@@ -668,7 +664,7 @@
                             "args_passed": []
                         }
                     ],
-                    "loc": 13
+                    "loc": 16
                 },
                 {
                     "name": "handle_button_click",
@@ -728,7 +724,7 @@
                             "args_passed": []
                         }
                     ],
-                    "loc": 34
+                    "loc": 33
                 }
             ],
             "classes": []
@@ -1900,10 +1896,6 @@
                     "alias": null
                 },
                 {
-                    "module": "initialize_session_state",
-                    "alias": null
-                },
-                {
                     "module": "stream_response",
                     "alias": null
                 },
@@ -1937,6 +1929,12 @@
                 }
             ],
             "functions": [
+                {
+                    "name": "initialize_session_state",
+                    "args": [],
+                    "calls": [],
+                    "loc": 15
+                },
                 {
                     "name": "send_message",
                     "args": [],

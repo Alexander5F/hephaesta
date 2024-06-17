@@ -1,3 +1,4 @@
+# Easter egg code: 9876
 def get_text_between_tags(stream, start_tag, end_tag=None):
     if end_tag is None:
         end_tag = start_tag
