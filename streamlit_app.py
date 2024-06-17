@@ -20,17 +20,29 @@ import time
 
 load_dotenv()
 
+logging.getLogger('asyncio').setLevel(logging.WARNING)
+logging.getLogger('httpx').setLevel(logging.WARNING)
+logging.getLogger('openai').setLevel(logging.WARNING)
+logging.getLogger('httpcore').setLevel(logging.WARNING)
+logging.getLogger('fsevents').setLevel(logging.WARNING)
+
 def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
     # check whether repo_json exists
-    if prompt and repo_json is not None:                       
-        st.toast('📖**Reading through all of your code**')
+    if prompt and repo_json is not None and github_link is not None:
+        st.toast('**Reading through all of your code**', icon = "📖")
         time.sleep(1)
         st.toast('**Figuring out what\'s relevant**', icon="🥒")
-        augmented_prompt = add_context_to_user_prompt(repo_json, github_link, prompt)                        
+        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')        
+        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)    
+        print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        with open('augmented_prompt.txt', 'w') as file:
+            file.write(prompt + prompt_augmentation)
+        print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
         st.toast('**Relax your eyes for a few seconds**', icon="🙈")
         asyncio.run(handle_streamed_input(prompt, settings))
-    elif prompt and repo_json is None:        
+        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
+    elif prompt and repo_json is None:  
         st.toast('**Already got started.**', icon="🥷")
         st.toast('**If you add your repo link, I\'ll save you even more time.**', icon="🐠")
         asyncio.run(handle_streamed_input(prompt, settings))

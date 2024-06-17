@@ -1,5 +1,5 @@
 # Easter egg code: 9876
-def get_text_between_tags(stream, start_tag, end_tag=None):
+def get_text_between_tags(stream, start_tag, end_tag=None): #stream can also just be one static string
     if end_tag is None:
         end_tag = start_tag
     start_tag = "<" + start_tag + ">"

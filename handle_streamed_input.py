@@ -4,7 +4,7 @@ from render_message import render_message
 from stream_assistant_response import stream_assistant_response
 from stream_instructor_response import stream_instructor_response
 
-async def handle_streamed_input(user_input, settings, iterations=0):
+async def handle_streamed_input(user_input, settings, prompt_augmentation=None, iterations=0):
     # Append user input
     st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
     st.session_state.run = True
@@ -12,6 +12,8 @@ async def handle_streamed_input(user_input, settings, iterations=0):
     # Append settings as system prompt
     #settings_prompt = create_prompt_from_settings(settings)
     #st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
+    if prompt_augmentation is not None:
+        st.session_state.messages.append({"role": "system", "content": prompt_augmentation, "displayed": False})
 
     # Display user message
     user_input_placeholder = st.empty()

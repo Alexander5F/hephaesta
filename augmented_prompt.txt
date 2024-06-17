@@ -1,0 +1,280 @@
+My github file called get_text_between_tags.py contains an easter egg code. What is the code?  Here's source code from parts of the user's code repo that like are helpful: 
+
+
+ 
+
+__________________________Source code for get_text_between_tags.py: 
+
+ # Easter egg code: 9876
+def get_text_between_tags(stream, start_tag, end_tag=None):
+    if end_tag is None:
+        end_tag = start_tag
+    start_tag = "<" + start_tag + ">"
+    end_tag = "</" + end_tag + ">"
+    content = []
+    buffer = ""
+    
+    def extract_content(buffer, start_tag, end_tag):
+        start_index = 0
+        while True:
+            start_loc = buffer.find(start_tag, start_index)
+            if start_loc == -1:
+                break
+            if end_tag:
+                end_loc = buffer.find(end_tag, start_loc + len(start_tag))
+                if end_loc == -1:
+                    break
+                content.append(buffer[start_loc + len(start_tag):end_loc])
+                start_index = end_loc + len(end_tag)
+            else:
+                end_loc = buffer.find('<', start_loc + len(start_tag))
+                if end_loc == -1:
+                    break
+                content.append(buffer[start_loc + len(start_tag):end_loc])
+                start_index = end_loc
+        return buffer[start_index:]
+    
+    for chunk in stream:
+        buffer += chunk
+        buffer = extract_content(buffer, start_tag, end_tag)
+    
+    # Process any remaining content in the buffer
+    extract_content(buffer, start_tag, end_tag)
+    
+    return ''.join(content)
+ 
+
+
+
+_____________________________Source code for gpt_response.py: 
+
+ import time
+import openai
+import os
+from dotenv import load_dotenv
+
+
+def gpt_response(prompt):        
+    load_dotenv() 
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    
+    max_retry = 3
+    retry_counter = 0
+    modelversion = 'gpt-4o'
+                    
+    message_history = []
+
+    if isinstance(prompt, str):        
+        message_history.append({"role": "user", "content": prompt})
+
+    elif isinstance(prompt, list):
+        for message in prompt:
+            if "content" in message:                                
+                message_history.append(message)
+
+    else:
+        print(f"Data: {prompt}")
+        print(f"Type : {type(prompt)}")
+        print("Invalid prompt type. It must be a string or list of message objects.")
+        return None
+                    
+    while retry_counter <= max_retry:
+        try:
+            response = openai.chat.completions.create( # "chat.completions" needs to stay this way
+                model=modelversion,
+                messages=message_history,
+                stream=False,
+            )
+            return response.choices[0].message.content
+        
+        except Exception as e:
+            if retry_counter < max_retry:
+                print(f"   *** An error occurred ({str(e)}). Trying again in 300ms. ***")
+                time.sleep(0.3)
+                retry_counter += 1
+            else:
+                print("   *** Retry limit reached. Ending execution. ***")
+                return None
+
+# Test function
+def test():
+    prompt = 'How are ya?'
+    response = gpt_response(prompt)
+    print(response)
+
+if __name__ == "__main__":
+    test()
+ 
+
+
+
+_____________________________Source code for messages_to_string.py: 
+
+ def messages_to_string(messages):
+    messages_as_string = ''
+    for message in messages:
+        messages_as_string += f"{message['role']}:\n\n + {message['content']} ______________________\n\n\n\n"
+    return messages_as_string 
+
+
+
+_____________________________Source code for streamlit_app.py: 
+
+ import streamlit as st
+import asyncio
+import os
+from dotenv import load_dotenv
+import logging
+from repo_visualizer import visualiserepo
+from stream_response import stream_response
+from load_custom_html import load_custom_html
+from gpt_response import gpt_response
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from handle_streamed_input import handle_streamed_input
+from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
+from analyze_repo import create_json_of_interactions, read_code
+from module_for_main import *
+from add_context_to_user_prompt import add_context_to_user_prompt
+import time
+
+# Set the page configuration first
+
+load_dotenv()
+
+def send_message(settings, github_link=None, repo_json=None):
+    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
+    # check whether repo_json exists
+    if prompt and repo_json is not None:                       
+        st.toast('📖**Reading through all of your code**')
+        time.sleep(1)
+        st.toast('**Figuring out what\'s relevant**', icon="🥒")
+        augmented_prompt = add_context_to_user_prompt(repo_json, github_link, prompt)                        
+        st.toast('**Relax your eyes for a few seconds**', icon="🙈")
+        asyncio.run(handle_streamed_input(prompt, settings))
+    elif prompt and repo_json is None:        
+        st.toast('**Already got started.**', icon="🥷")
+        st.toast('**If you add your repo link, I\'ll save you even more time.**', icon="🐠")
+        asyncio.run(handle_streamed_input(prompt, settings))
+
+# Analyse repo relationships
+def get_json_of_interactions(github_link, repo_json=None):
+    if repo_json is None:
+        st.toast('**Analyzing your codebase**', icon="🛰️")
+        repo_json = create_json_of_interactions(github_link)
+        if repo_json is None:
+            st.toast('**Is the link correct?**', icon="🐔")
+        else:             
+            st.toast('**Finished! Tell me what to do.**', icon="🥒")                 
+    return repo_json
+
+def handle_button_click(prompt, settings):
+    st.session_state.show_buttons = False  # Ensure the button is hidden
+    asyncio.run(handle_streamed_input(prompt, settings))
+
+def main():
+    call_initialisation()
+    set_page_config()
+    custom_style = create_custom_style()
+    st.markdown(custom_style, unsafe_allow_html=True)
+
+    left_column, middle_column, right_column = st.columns([1, 4, 1])
+
+    with middle_column:
+        settings = load_custom_html()
+        st.write('### **Give it a try**')
+
+        if 'github_link' not in st.session_state:
+            st.session_state.github_link = None
+        if 'repo_json' not in st.session_state:
+            st.session_state.repo_json = None
+
+        github_link = st.chat_input('url to your github repo')
+        if github_link:
+            st.session_state.github_link = github_link
+            st.session_state.repo_json = get_json_of_interactions(github_link)
+        
+        send_message(settings, st.session_state.github_link, st.session_state.repo_json)
+        
+        check_and_delete_file_on_first_load()
+        output_image_path = "codebase_graph.png"
+        if os.path.exists(output_image_path):
+            st.image(output_image_path)
+        else:
+            st.image("https://i.imgur.com/k9YDfOV.png")
+            st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
+        st.divider()
+
+    with right_column:
+        st.write(' ')
+
+if __name__ == "__main__":
+    main()
+ 
+
+
+
+_____________________________Source code for handle_streamed_input.py: 
+
+ import streamlit as st
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from stream_assistant_response import stream_assistant_response
+from stream_instructor_response import stream_instructor_response
+
+async def handle_streamed_input(user_input, settings, iterations=0):
+    # Append user input
+    st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
+    st.session_state.run = True
+
+    # Append settings as system prompt
+    #settings_prompt = create_prompt_from_settings(settings)
+    #st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
+
+    # Display user message
+    user_input_placeholder = st.empty()
+    render_message(user_input_placeholder, "You", user_input, no_expander=True)
+
+    # Placeholders for responses
+    assistant_placeholders = []
+    instructor_placeholders = []
+    progress_placeholders = []
+    
+    for _ in range(iterations):
+        # Add placeholders for responses
+        assistant_placeholder = st.empty()
+        assistant_placeholders.append(assistant_placeholder)
+
+        progress_placeholder = st.empty()
+        progress_placeholders.append(progress_placeholder)
+
+        instructor_placeholder = st.empty()
+        instructor_placeholders.append(instructor_placeholder)
+
+        # Get assistant response
+        await stream_assistant_response(st.session_state.messages, assistant_placeholder)
+        
+        doing_message = "🔁 🤖 Improving my code"
+        render_message(progress_placeholder, "Doing", doing_message, no_expander=True)
+
+        # Get instructor response
+        await stream_instructor_response(st.session_state.messages, instructor_placeholder)
+
+    # final response
+    final_response_placeholder = st.empty()
+    await stream_assistant_response(st.session_state.messages, final_response_placeholder, no_expander=True)
+    
+    st.session_state.run = False
+    st.session_state.show_buttons = False
+    
+     
+
+
+
+_____________________________
+
+
+—————————————————————Some tips: 
+
+
+ Focus on the 'get_text_between_tags.py' file as it contains the function we're interested in. The other files involve streamlining data flows and interacting with the GPT model, which may provide context and dependencies relevant to your search. Pay attention to function calls that might be involved in retrieving or processing the text between tags, as the easter egg code likely resides within or is closely related to these functions..

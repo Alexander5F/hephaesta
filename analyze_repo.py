@@ -136,7 +136,7 @@ def create_json_of_interactions(github_repo_url):
     temp_file = 'temp_codebase_v2.json'
     if clone_dir:
         repo_json = extract_codebase_structure_v2(clone_dir, temp_file=temp_file)
-        with open('repo_json_for_LLM.json', 'w') as f:
+        with open('repo.json', 'w') as f:
             json.dump(repo_json, f, indent=4)
         logging.info(f"Cleaning up: removing cloned repository directory {clone_dir}")
         shutil.rmtree(clone_dir)

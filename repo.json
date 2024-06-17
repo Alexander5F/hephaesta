@@ -386,6 +386,90 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/add_context_to_user_prompt.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "read_code",
+                    "alias": null
+                },
+                {
+                    "module": "json",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "get_text_between_tags",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "create_instructions_for_LLM",
+                    "args": [
+                        "json_str",
+                        "user_prompt"
+                    ],
+                    "calls": [],
+                    "loc": 31
+                },
+                {
+                    "name": "add_context_to_user_prompt",
+                    "args": [
+                        "repo_json",
+                        "github_link",
+                        "user_prompt"
+                    ],
+                    "calls": [
+                        {
+                            "function": "create_instructions_for_LLM",
+                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link",
+                                "user_prompt"
+                            ]
+                        },
+                        {
+                            "function": "gpt_response",
+                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link",
+                                "user_prompt"
+                            ]
+                        },
+                        {
+                            "function": "get_text_between_tags",
+                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link",
+                                "user_prompt"
+                            ]
+                        },
+                        {
+                            "function": "read_code",
+                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link",
+                                "user_prompt"
+                            ]
+                        }
+                    ],
+                    "loc": 23
+                }
+            ],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/handle_streamed_input.py",
             "imports": [
                 {
@@ -609,11 +693,19 @@
                     "alias": null
                 },
                 {
-                    "module": "analyze_repo",
+                    "module": "create_json_of_interactions",
                     "alias": null
                 },
                 {
                     "module": "*",
+                    "alias": null
+                },
+                {
+                    "module": "add_context_to_user_prompt",
+                    "alias": null
+                },
+                {
+                    "module": "time",
                     "alias": null
                 }
             ],
@@ -621,50 +713,58 @@
                 {
                     "name": "send_message",
                     "args": [
-                        "settings"
+                        "settings",
+                        "github_link",
+                        "repo_json"
                     ],
                     "calls": [
+                        {
+                            "function": "add_context_to_user_prompt",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "settings",
+                                "github_link",
+                                "repo_json"
+                            ]
+                        },
                         {
                             "function": "handle_streamed_input",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": [
-                                "settings"
+                                "settings",
+                                "github_link",
+                                "repo_json"
+                            ]
+                        },
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": [
+                                "settings",
+                                "github_link",
+                                "repo_json"
                             ]
                         }
                     ],
-                    "loc": 6
+                    "loc": 14
                 },
                 {
-                    "name": "github_link_input",
-                    "args": [],
+                    "name": "get_json_of_interactions",
+                    "args": [
+                        "github_link",
+                        "repo_json"
+                    ],
                     "calls": [
                         {
-                            "function": "analyze_repo",
+                            "function": "create_json_of_interactions",
                             "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "read_code",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "str",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
+                            "args_passed": [
+                                "github_link",
+                                "repo_json"
+                            ]
                         }
                     ],
-                    "loc": 16
+                    "loc": 9
                 },
                 {
                     "name": "handle_button_click",
@@ -709,11 +809,6 @@
                             "args_passed": []
                         },
                         {
-                            "function": "github_link_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
                             "function": "send_message",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
@@ -722,9 +817,14 @@
                             "function": "check_and_delete_file_on_first_load",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
+                        },
+                        {
+                            "function": "get_json_of_interactions",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
                         }
                     ],
-                    "loc": 33
+                    "loc": 35
                 }
             ],
             "classes": []
@@ -1541,6 +1641,64 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "read_code",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "augment_repo_json_with_comments_from_LLM",
+                    "args": [
+                        "repo_json",
+                        "github_link"
+                    ],
+                    "calls": [
+                        {
+                            "function": "read_code",
+                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "str",
+                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        }
+                    ],
+                    "loc": 10
+                }
+            ],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/analyze_repo.py",
             "imports": [
                 {
@@ -1733,7 +1891,7 @@
                     "loc": 55
                 },
                 {
-                    "name": "analyze_repo",
+                    "name": "create_json_of_interactions",
                     "args": [
                         "github_repo_url"
                     ],
