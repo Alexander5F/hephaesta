@@ -39,8 +39,7 @@ def send_message(settings, github_link=None, repo_json=None):
         with open('augmented_prompt.txt', 'w') as file:
             file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
-        st.toast('**Relax your eyes for a few seconds**', icon="🙈")
-        asyncio.run(handle_streamed_input(prompt, settings))
+        st.toast('**Relax your eyes for a few seconds**', icon="🙈")        
         asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
     elif prompt and repo_json is None:  
         st.toast('**Already got started.**', icon="🥷")
