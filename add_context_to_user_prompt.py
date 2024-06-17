@@ -22,7 +22,7 @@ def create_instructions_for_LLM(json_str, user_prompt):
     
 
     ________________________
-    Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to five files that you'd like me to show to another LLm that will then be tasked with solving my task.
+    Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to 3 files that you'd like me to show to another LLm that will then be tasked with solving my task.
     I'll immediately and without looking run your answer through a string processing algorithm that will look for filenames, and return their source code to you. 
     
     For this to work, it's important to stick with a convention:
