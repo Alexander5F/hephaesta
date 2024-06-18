@@ -17,7 +17,6 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 import time
 
 # Set the page configuration first
-
 load_dotenv()
 
 logging.getLogger('asyncio').setLevel(logging.WARNING)
@@ -30,35 +29,34 @@ def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
     # check whether repo_json exists
     if prompt and repo_json is not None and github_link is not None:
-        st.toast('**Reading through all of your code**', icon = "📖")
+        st.toast('Reading through all of your code', icon="📖")
         time.sleep(1)
-        st.toast('**Figuring out what\'s relevant**', icon="🥒")
-        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')        
-        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)    
+        st.toast('Figuring out what\'s relevant', icon="🥒")
+        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
         print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
         with open('augmented_prompt.txt', 'w') as file:
             file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
-        st.toast('**Relax your eyes for a few seconds**', icon="🙈")        
+        st.toast('Relax your eyes for a few seconds', icon="🙈")
         asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
-    elif prompt and repo_json is None:  
-        st.toast('**Already got started.**', icon="🥷")
-        st.toast('**If you add your repo link, I\'ll save you even more time.**', icon="🐠")
+    elif prompt and repo_json is None:
+        st.toast('Already got started.', icon="🥷")
+        st.toast('If you add your repo link, I\'ll save you even more time.', icon="🐠")
         asyncio.run(handle_streamed_input(prompt, settings))
 
-# Analyse repo relationships
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:
-        st.toast('**Analyzing your codebase**', icon="🛰️")
+        st.toast('Analyzing your codebase', icon="🛰️")
         repo_json = create_json_of_interactions(github_link)
         if repo_json is None:
-            st.toast('**Is the link correct?**', icon="🐔")
-        else:             
-            st.toast('**Finished! Tell me what to do.**', icon="🥒")                 
+            st.toast('Is the link correct?', icon="🐔")
+        else:
+            st.toast('Finished! Tell me what to do.', icon="🥒")
     return repo_json
 
 def handle_button_click(prompt, settings):
-    st.session_state.show_buttons = False  # Ensure the button is hidden
+    st.session_state.show_buttons = False # Ensure the button is hidden
     asyncio.run(handle_streamed_input(prompt, settings))
 
 def main():

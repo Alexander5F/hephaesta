@@ -5,17 +5,24 @@ import ast
 import mimetypes
 import logging
 from git import Repo, GitCommandError
+import streamlit as st
 
 logging.basicConfig(level=logging.INFO)
 
 def clone_repo(repo_url, clone_dir='cloned_repo'):
     logging.debug(f"Attempting to clone repository: {repo_url}")
     try:
+        if 'clone_dir' in st.session_state:
+            logging.info(f"Using existing repository directory {st.session_state.clone_dir}")
+            return st.session_state.clone_dir
+
         if os.path.exists(clone_dir):
-            logging.warning(f"Directory {clone_dir} already exists, deleting...")
+            logging.info(f"Directory {clone_dir} already exists, clearing it.")
             shutil.rmtree(clone_dir)
+        
         logging.info(f"Cloning repository {repo_url} into {clone_dir}")
         Repo.clone_from(repo_url, clone_dir)
+        st.session_state.clone_dir = clone_dir
         return clone_dir
     except GitCommandError as e:
         logging.error(f"Failed to clone repository: {e}")
@@ -78,9 +85,6 @@ def extract_codebase_structure_v2(root_dir, temp_file='temp_codebase_v2.json'):
     logging.debug(f"Extracting codebase structure from directory: {root_dir}")
     codebase = {"repo_name": os.path.basename(root_dir), "files": []}
 
-    if os.path.exists(temp_file):
-        os.remove(temp_file)
-    
     for root, _, files in os.walk(root_dir):
         for file in files:
             file_path = os.path.join(root, file)
@@ -127,22 +131,22 @@ def extract_codebase_structure_v2(root_dir, temp_file='temp_codebase_v2.json'):
 
     with open(temp_file, 'w') as tempf:
         json.dump(codebase, tempf, indent=4)
-    
+
+    st.session_state.repo_json = codebase
     return codebase
 
 def create_json_of_interactions(github_repo_url):
     logging.debug(f"Starting analysis for repo: {github_repo_url}")
-    clone_dir = clone_repo(github_repo_url)
+    if 'clone_dir' not in st.session_state:
+        clone_dir = clone_repo(github_repo_url)
+    else:
+        clone_dir = st.session_state.clone_dir
+        
     temp_file = 'temp_codebase_v2.json'
     if clone_dir:
         repo_json = extract_codebase_structure_v2(clone_dir, temp_file=temp_file)
         with open('repo.json', 'w') as f:
             json.dump(repo_json, f, indent=4)
-        logging.info(f"Cleaning up: removing cloned repository directory {clone_dir}")
-        shutil.rmtree(clone_dir)
-        if os.path.exists(temp_file):
-            logging.info(f"Cleaning up: removing temporary file {temp_file}")
-            os.remove(temp_file)
         return repo_json
     else:
         logging.error("Cloning failed, skipping analysis.")
@@ -155,7 +159,10 @@ def read_code(repo_json_for_LLM, filename, github_repo_url):
         logging.error(f"File {filename} not found in the repo JSON.")
         return None, None
 
-    clone_dir = clone_repo(github_repo_url)
+    if 'clone_dir' not in st.session_state:
+        st.session_state.clone_dir = clone_repo(github_repo_url)
+    clone_dir = st.session_state.clone_dir
+
     if not clone_dir:
         logging.error("Failed to clone the repository to read the code.")
         return None, None
@@ -168,8 +175,5 @@ def read_code(repo_json_for_LLM, filename, github_repo_url):
     with open(file_path, 'r', encoding='utf-8') as f:
         code_string = f.read()
         nLOC = len(code_string.splitlines())
-    
-    logging.info(f"Cleaning up: removing cloned repository directory {clone_dir}")
-    shutil.rmtree(clone_dir)
 
     return nLOC, code_string
