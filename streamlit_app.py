@@ -84,8 +84,8 @@ def main():
             
         on = st.toggle("Though problem? **Boost.**")
         if on:
-            st.session_state.iterations = 2
-            st.toast("**Boost activated.** Superior problem solving, but 5-10 s slower", icon = "🪼")
+            st.session_state.iterations = 1
+            st.toast("**Boost activated** for superior problem solving", icon = "🪼")
             
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         

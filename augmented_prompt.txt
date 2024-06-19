@@ -74,7 +74,6 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 # get_json_of_interactions
 # handle_button_click
 
-
 def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
     # check whether repo_json exists
@@ -89,8 +88,8 @@ def send_message(settings, github_link=None, repo_json=None):
             file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
         st.toast('Done', icon="🛎️")
-        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
-    elif prompt and repo_json is None:        
+        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation))
+    elif prompt and repo_json is None:
         st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
         asyncio.run(handle_streamed_input(prompt, settings))
 
@@ -114,25 +113,30 @@ def main():
     set_page_config()
     set_loggers()
     custom_style = create_custom_style()
-    st.markdown(custom_style, unsafe_allow_html=True)
-    st.toast('Welcome to the party', icon = "🥳")
-
+    st.markdown(custom_style, unsafe_allow_html=True)    
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
     with middle_column:
         settings = load_custom_html()
         st.write('### **Give it a try**')
-
+    
         if 'github_link' not in st.session_state:
             st.session_state.github_link = None
         if 'repo_json' not in st.session_state:
             st.session_state.repo_json = None
-
+            
         github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
             st.session_state.github_link = github_link
-            st.session_state.repo_json = get_json_of_interactions(github_link)
-        
+            if st.session_state.repo_json is None:
+                st.session_state.repo_json = get_json_of_interactions(github_link)
+            st.write(f'GitHub Link: {st.session_state.github_link}')
+            
+        on = st.toggle("Though problem? **Boost.**")
+        if on:
+            st.session_state.iterations = 2
+            st.toast("**Boost activated.** Superior problem solving, but 5-10 s slower", icon = "🪼")
+            
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
         check_and_delete_file_on_first_load()
@@ -152,70 +156,62 @@ if __name__ == "__main__":
 
 
 
-_____________________________Source code for render_message.py: 
+_____________________________Source code for handle_streamed_input.py: 
 
  import streamlit as st
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from stream_assistant_response import stream_assistant_response
+from stream_instructor_response import stream_instructor_response
 
-def render_message(placeholder, role, new_content, theme='light', expanded=False, no_expander=False):
-    role_styles = {        
-        "Agent": {
-            "light": {
-                "background_color": "#ffffff",
-                "text_color": "#000000"
-            },            
-            "dark": {
-                "background_color": "#302c2c",
-                "text_color": "#ffffff"
-            }
-        },
-        "Instructor": {
-            "light": {
-                "background_color": "#f8f4f4",
-                "text_color": "#000000"
-            },
-            "dark": {
-                "background_color": "#302c2c",
-                "text_color": "#ffffff"
-            }
-        },
-        "Doing": {
-            "light": {
-                "background_color": "#7100a7",
-                "text_color": "#ffffff"
-            },
-            "dark": {
-                "background_color": "#7100a7",
-                "text_color": "#ffffff"
-            }
-        },
-        "You": {
-            "light": {
-                "background_color": "#00678c",
-                "text_color": "#ffffff"
-            },
-            "dark": {
-                "background_color": "#00678c",
-                "text_color": "#ffffff"
-            }
-        }
-    }
+async def handle_streamed_input(user_input, settings, prompt_augmentation=None):
+    # Append user input
+    st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
+    st.session_state.run = True
 
-    styles = role_styles.get(role, {}).get(theme, {"background_color": "#ffffff", "text_color": "#000000"})
+    # Append settings as system prompt
+    #settings_prompt = create_prompt_from_settings(settings)
+    #st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
+    if prompt_augmentation is not None:
+        st.session_state.messages.append({"role": "system", "content": prompt_augmentation, "displayed": False})
 
-    if no_expander:
-        placeholder.markdown(f"""
-        <div style='text-align: left; background-color: {styles["background_color"]}; color: {styles["text_color"]}; border-radius: 10px; padding: 10px; margin: 10px;'>
-            <strong>{role}:</strong> {new_content}
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        with placeholder.expander(f"{role}: ", expanded=expanded):
-            st.markdown(f"""
-            <div style='text-align: left; background-color: {styles["background_color"]}; color: {styles["text_color"]}; border-radius: 10px; padding: 10px; margin: 10px;'>
-                {new_content}
-            </div>
-            """, unsafe_allow_html=True)
- 
+    # Display user message
+    user_input_placeholder = st.empty()
+    render_message(user_input_placeholder, "You", user_input, no_expander=True)
+
+    # Placeholders for responses
+    assistant_placeholders = []
+    instructor_placeholders = []
+    progress_placeholders = []
+    
+    for _ in range(st.session_state.iterations):
+        # Add placeholders for responses
+        assistant_placeholder = st.empty()
+        assistant_placeholders.append(assistant_placeholder)
+
+        progress_placeholder = st.empty()
+        progress_placeholders.append(progress_placeholder)
+
+        instructor_placeholder = st.empty()
+        instructor_placeholders.append(instructor_placeholder)
+
+        # Get assistant response
+        await stream_assistant_response(st.session_state.messages, assistant_placeholder)
+        
+        doing_message = "🔁 🤖 Improving my code"
+        render_message(progress_placeholder, "Doing", doing_message, no_expander=True)
+
+        # Get instructor response
+        await stream_instructor_response(st.session_state.messages, instructor_placeholder)
+
+    # final response
+    final_response_placeholder = st.empty()
+    await stream_assistant_response(st.session_state.messages, final_response_placeholder, no_expander=True)
+    
+    st.session_state.run = False
+    st.session_state.show_buttons = False
+    
+     
 
 
 
@@ -225,6 +221,4 @@ _____________________________
 —————————————————————Some tips: 
 
 
- 
-The codebase appears to heavily leverage Streamlit for its UI components and has several utility functions to handle responses, messages, and repositories. The `get_text_between_tags.py` file likely contains the easter egg as suggested. Look for any unusual code, comments, or hardcoded values that don't seem to align with the primary functionality of the file. The `streamlit_app.py` might instantiate or call functionality from `get_text_between_tags.py`, which could help in identifying the context of the easter egg. The `render_message.py` is included as it seems to handle messages, which might display or log the easter egg content.
-.
+ Hey LLM, in this codebase, you need to find the "easter egg" in the get_text_between_tags.py file. Note that the get_text_between_tags.py file likely contains functions that manipulate or extract content between specific tags; the other files provided might help you understand how different parts of the system interact with this function, especially when handling input and streaming responses. Pay close attention to any unusual or out-of-place code in get_text_between_tags.py, as this might be where the easter egg is hidden..
