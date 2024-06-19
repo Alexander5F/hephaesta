@@ -38,11 +38,10 @@ def send_message(settings, github_link=None, repo_json=None):
         with open('augmented_prompt.txt', 'w') as file:
             file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
-        st.toast('Relax your eyes for a few seconds', icon="🙈")
+        st.toast('Done', icon="🛎️")
         asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
-    elif prompt and repo_json is None:
-        st.toast('Already got started.', icon="🥷")
-        st.toast('If you add your repo link, I\'ll save you even more time.', icon="🐠")
+    elif prompt and repo_json is None:        
+        st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
         asyncio.run(handle_streamed_input(prompt, settings))
 
 def get_json_of_interactions(github_link, repo_json=None):
@@ -66,6 +65,7 @@ def main():
     set_loggers()
     custom_style = create_custom_style()
     st.markdown(custom_style, unsafe_allow_html=True)
+    st.toast('Welcome to the party', icon = "🥳")
 
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
@@ -78,7 +78,7 @@ def main():
         if 'repo_json' not in st.session_state:
             st.session_state.repo_json = None
 
-        github_link = st.chat_input('url to your github repo')
+        github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
             st.session_state.github_link = github_link
             st.session_state.repo_json = get_json_of_interactions(github_link)
