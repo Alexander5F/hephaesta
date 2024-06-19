@@ -46,70 +46,175 @@ def get_text_between_tags(stream, start_tag, end_tag=None): #stream can also jus
 
 
 
-_____________________________Source code for extract_content.py: 
+_____________________________Source code for streamlit_app.py: 
 
- None 
-
-
-
-_____________________________Source code for gpt_response.py: 
-
- import time
-import openai
+ import streamlit as st
+import asyncio
 import os
+import time
 from dotenv import load_dotenv
 
+# Custom functions 
+from repo_visualizer import visualiserepo
+from stream_response import stream_response
+from load_custom_html import load_custom_html
+from gpt_response import gpt_response
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from handle_streamed_input import handle_streamed_input
+from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
+from analyze_repo import create_json_of_interactions, read_code
+from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
+from add_context_to_user_prompt import add_context_to_user_prompt
 
-def gpt_response(prompt):        
-    load_dotenv() 
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    
-    max_retry = 3
-    retry_counter = 0
-    modelversion = 'gpt-4o'
-                    
-    message_history = []
+# FUNCTIONS IN THIS FILE:
+# main
+# send_message
+# call_initialisation
+# get_json_of_interactions
+# handle_button_click
 
-    if isinstance(prompt, str):        
-        message_history.append({"role": "user", "content": prompt})
 
-    elif isinstance(prompt, list):
-        for message in prompt:
-            if "content" in message:                                
-                message_history.append(message)
+def send_message(settings, github_link=None, repo_json=None):
+    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
+    # check whether repo_json exists
+    if prompt and repo_json is not None and github_link is not None:
+        st.toast('Reading through all of your code', icon="📖")
+        time.sleep(1)
+        st.toast('Figuring out what\'s relevant', icon="🥒")
+        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
+        print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        with open('augmented_prompt.txt', 'w') as file:
+            file.write(prompt + prompt_augmentation)
+        print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
+        st.toast('Done', icon="🛎️")
+        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
+    elif prompt and repo_json is None:        
+        st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
+        asyncio.run(handle_streamed_input(prompt, settings))
 
-    else:
-        print(f"Data: {prompt}")
-        print(f"Type : {type(prompt)}")
-        print("Invalid prompt type. It must be a string or list of message objects.")
-        return None
-                    
-    while retry_counter <= max_retry:
-        try:
-            response = openai.chat.completions.create( # "chat.completions" needs to stay this way
-                model=modelversion,
-                messages=message_history,
-                stream=False,
-            )
-            return response.choices[0].message.content
+def get_json_of_interactions(github_link, repo_json=None):
+    if repo_json is None:
+        st.toast('Analyzing your codebase', icon="🛰️")
+        repo_json = create_json_of_interactions(github_link)
+        if repo_json is None:
+            st.toast('Is the link correct?', icon="🐔")
+        else:
+            st.toast('Finished! Tell me what to do.', icon="🥒")
+    return repo_json
+
+def handle_button_click(prompt, settings):
+    st.session_state.show_buttons = False # Ensure the button is hidden
+    asyncio.run(handle_streamed_input(prompt, settings))
+
+def main():    
+    load_dotenv()
+    call_initialisation()    
+    set_page_config()
+    set_loggers()
+    custom_style = create_custom_style()
+    st.markdown(custom_style, unsafe_allow_html=True)
+    st.toast('Welcome to the party', icon = "🥳")
+
+    left_column, middle_column, right_column = st.columns([1, 4, 1])
+
+    with middle_column:
+        settings = load_custom_html()
+        st.write('### **Give it a try**')
+
+        if 'github_link' not in st.session_state:
+            st.session_state.github_link = None
+        if 'repo_json' not in st.session_state:
+            st.session_state.repo_json = None
+
+        github_link = st.chat_input('url to your github repo (optional)')
+        if github_link:
+            st.session_state.github_link = github_link
+            st.session_state.repo_json = get_json_of_interactions(github_link)
         
-        except Exception as e:
-            if retry_counter < max_retry:
-                print(f"   *** An error occurred ({str(e)}). Trying again in 300ms. ***")
-                time.sleep(0.3)
-                retry_counter += 1
-            else:
-                print("   *** Retry limit reached. Ending execution. ***")
-                return None
+        send_message(settings, st.session_state.github_link, st.session_state.repo_json)
+        
+        check_and_delete_file_on_first_load()
+        output_image_path = "codebase_graph.png"
+        if os.path.exists(output_image_path):
+            st.image(output_image_path)
+        else:
+            st.image("https://i.imgur.com/k9YDfOV.png")
+            st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
+        st.divider()
 
-# Test function
-def test():
-    prompt = 'How are ya?'
-    response = gpt_response(prompt)
-    print(response)
+    with right_column:
+        st.write(' ')
 
 if __name__ == "__main__":
-    test()
+    main() 
+
+
+
+_____________________________Source code for render_message.py: 
+
+ import streamlit as st
+
+def render_message(placeholder, role, new_content, theme='light', expanded=False, no_expander=False):
+    role_styles = {        
+        "Agent": {
+            "light": {
+                "background_color": "#ffffff",
+                "text_color": "#000000"
+            },            
+            "dark": {
+                "background_color": "#302c2c",
+                "text_color": "#ffffff"
+            }
+        },
+        "Instructor": {
+            "light": {
+                "background_color": "#f8f4f4",
+                "text_color": "#000000"
+            },
+            "dark": {
+                "background_color": "#302c2c",
+                "text_color": "#ffffff"
+            }
+        },
+        "Doing": {
+            "light": {
+                "background_color": "#7100a7",
+                "text_color": "#ffffff"
+            },
+            "dark": {
+                "background_color": "#7100a7",
+                "text_color": "#ffffff"
+            }
+        },
+        "You": {
+            "light": {
+                "background_color": "#00678c",
+                "text_color": "#ffffff"
+            },
+            "dark": {
+                "background_color": "#00678c",
+                "text_color": "#ffffff"
+            }
+        }
+    }
+
+    styles = role_styles.get(role, {}).get(theme, {"background_color": "#ffffff", "text_color": "#000000"})
+
+    if no_expander:
+        placeholder.markdown(f"""
+        <div style='text-align: left; background-color: {styles["background_color"]}; color: {styles["text_color"]}; border-radius: 10px; padding: 10px; margin: 10px;'>
+            <strong>{role}:</strong> {new_content}
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        with placeholder.expander(f"{role}: ", expanded=expanded):
+            st.markdown(f"""
+            <div style='text-align: left; background-color: {styles["background_color"]}; color: {styles["text_color"]}; border-radius: 10px; padding: 10px; margin: 10px;'>
+                {new_content}
+            </div>
+            """, unsafe_allow_html=True)
  
 
 
@@ -121,5 +226,5 @@ _____________________________
 
 
  
-The file `get_text_between_tags.py` appears to be central to the task, as it contains the function that might have the easter egg code. The `extract_content` function, which is called multiple times within `get_text_between_tags`, could be relevant and might be defined in the same file. Furthermore, the `gpt_response.py` file might help in understanding any contextual clues or dependencies since it is utilized in multiple scripts and may influence the behavior of the code in `get_text_between_tags.py`. Focus on identifying any unusual or out-of-context lines of code within these files that could serve as easter eggs.
+The codebase appears to heavily leverage Streamlit for its UI components and has several utility functions to handle responses, messages, and repositories. The `get_text_between_tags.py` file likely contains the easter egg as suggested. Look for any unusual code, comments, or hardcoded values that don't seem to align with the primary functionality of the file. The `streamlit_app.py` might instantiate or call functionality from `get_text_between_tags.py`, which could help in identifying the context of the easter egg. The `render_message.py` is included as it seems to handle messages, which might display or log the easter egg content.
 .

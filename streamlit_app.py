@@ -39,8 +39,8 @@ def send_message(settings, github_link=None, repo_json=None):
             file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
         st.toast('Done', icon="🛎️")
-        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation, iterations=0))
-    elif prompt and repo_json is None:        
+        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation))
+    elif prompt and repo_json is None:
         st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
         asyncio.run(handle_streamed_input(prompt, settings))
 
@@ -64,25 +64,30 @@ def main():
     set_page_config()
     set_loggers()
     custom_style = create_custom_style()
-    st.markdown(custom_style, unsafe_allow_html=True)
-    st.toast('Welcome to the party', icon = "🥳")
-
+    st.markdown(custom_style, unsafe_allow_html=True)    
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
     with middle_column:
+                   
         settings = load_custom_html()
         st.write('### **Give it a try**')
-
+    
         if 'github_link' not in st.session_state:
             st.session_state.github_link = None
         if 'repo_json' not in st.session_state:
             st.session_state.repo_json = None
-
+            
         github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
+            st.write(github_link)
             st.session_state.github_link = github_link
             st.session_state.repo_json = get_json_of_interactions(github_link)
-        
+            
+                
+        on = st.toggle("Though problem? **Boost.**")
+        if on:
+            st.session_state.iterations = 2
+            st.toast("**Boost activated.** Superior problem solving, but 5-10 s slower", icon = "🪼")    
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
         check_and_delete_file_on_first_load()

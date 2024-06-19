@@ -73,6 +73,8 @@ def add_context_to_user_prompt(repo_json, github_link, user_prompt):
     response = gpt_response(instructions_for_LLM)
     response = response.replace("cloned_repo/", "") # removes "cloned_repo/"
     list_of_filenames = create_list_of_filenames(response)
+    for filename in list_of_filenames:
+        st.toast("Highly pertinent | " + filename, icon = "🪼")
 
     pertinent_source_code = '\n\n__________________________'
     # Loop over the list and append the code for the chosen files and iteratively append them to context

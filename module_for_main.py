@@ -9,8 +9,10 @@ import logging
 
 # Initialize session states
 def call_initialisation(): 
+    if 'iterations' not in st.session_state:
+        st.session_state.iterations = 0  
     if 'theme' not in st.session_state:
-        st.session_state.theme = 'light'
+        st.session_state.theme = 'light'    
     if 'messages' not in st.session_state:
         st.session_state.messages = []
     if 'run' not in st.session_state:

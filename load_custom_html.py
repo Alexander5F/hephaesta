@@ -4,6 +4,9 @@ from streamlit_extras.buy_me_a_coffee import button
 # Initialize session state for sidebar state
 
 def load_custom_html():
+    if st.session_state.first_load:
+        st.toast('Welcome to the party', icon = "🍰")
+        st.session_state.first_load = False
 
     button(username="alexmhayes", floating=True, width=221)    
     left_column, right_column = st.columns([7, 0.1])
@@ -42,29 +45,19 @@ def load_custom_html():
             🔍 Doesn't break existing functionality 
                     """                
                     )                                        
-            st.divider()
+            st.divider()    
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    st.sidebar.write("📣 Feedback | autocoder@yahoo.com")
-    
-    """
     with st.sidebar.expander("Settings", expanded=True): 
         settings = {            
-            "find_mistakes": st.checkbox("🔧 Fix your own mistakes", value=True),
-            "iterate_on_code": st.checkbox("🔁 Improve code iteratively", value=True),            
-            "no_placeholders": st.checkbox("✍️ Write full code", value=True), 
-            "optimise_speed": st.checkbox("🚀 Make code run faster", value=False),
-            "dependency_analysis": st.checkbox("🔗 Save me from dependency hell", value=False),
-            "read_documentation": st.checkbox("📚 Read newest repos", value=False),
+            "find_mistakes": st.checkbox("🍩 Fix your own mistakes", value=True),
+            "iterate_on_code": st.checkbox("🐙 Improve code iteratively", value=True),            
+            "no_placeholders": st.checkbox("🪼 No placeholders", value=True), 
+            "optimise_speed": st.checkbox("🚀 Speed up my code", value=False),
+            "dependency_analysis": st.checkbox("🔥 Save me from dependency hell", value=False),
+            "read_documentation": st.checkbox("🥒 Retrieve fresh documentation", value=False),
         }
+        
+    st.sidebar.write("📣 Feedback | autocoder@yahoo.com")
+    
     return settings
-    """
