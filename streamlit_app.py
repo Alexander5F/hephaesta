@@ -1,8 +1,10 @@
 import streamlit as st
 import asyncio
 import os
+import time
 from dotenv import load_dotenv
-import logging
+
+# Custom functions 
 from repo_visualizer import visualiserepo
 from stream_response import stream_response
 from load_custom_html import load_custom_html
@@ -12,18 +14,16 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import create_json_of_interactions, read_code
-from module_for_main import *
+from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
 from add_context_to_user_prompt import add_context_to_user_prompt
-import time
 
-# Set the page configuration first
-load_dotenv()
+# FUNCTIONS IN THIS FILE:
+# main
+# send_message
+# call_initialisation
+# get_json_of_interactions
+# handle_button_click
 
-logging.getLogger('asyncio').setLevel(logging.WARNING)
-logging.getLogger('httpx').setLevel(logging.WARNING)
-logging.getLogger('openai').setLevel(logging.WARNING)
-logging.getLogger('httpcore').setLevel(logging.WARNING)
-logging.getLogger('fsevents').setLevel(logging.WARNING)
 
 def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
@@ -59,9 +59,11 @@ def handle_button_click(prompt, settings):
     st.session_state.show_buttons = False # Ensure the button is hidden
     asyncio.run(handle_streamed_input(prompt, settings))
 
-def main():
-    call_initialisation()
+def main():    
+    load_dotenv()
+    call_initialisation()    
     set_page_config()
+    set_loggers()
     custom_style = create_custom_style()
     st.markdown(custom_style, unsafe_allow_html=True)
 

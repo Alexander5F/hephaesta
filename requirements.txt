@@ -10,3 +10,4 @@ python-dotenv
 streamlit-float
 graphviz
 pydot
+weaviate-client

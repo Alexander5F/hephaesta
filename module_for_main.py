@@ -1,4 +1,11 @@
 import streamlit as st
+import logging
+
+# call_initialisation()
+# set_page_config()
+# create_custom_style()
+# set_loggers()
+
 
 # Initialize session states
 def call_initialisation(): 
@@ -37,3 +44,10 @@ def create_custom_style():
         </style>
     """
     return custom_style
+
+def set_loggers():
+    logging.getLogger('asyncio').setLevel(logging.WARNING)
+    logging.getLogger('httpx').setLevel(logging.WARNING)
+    logging.getLogger('openai').setLevel(logging.WARNING)
+    logging.getLogger('httpcore').setLevel(logging.WARNING)
+    logging.getLogger('fsevents').setLevel(logging.WARNING)        

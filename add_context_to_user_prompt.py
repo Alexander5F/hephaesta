@@ -37,7 +37,7 @@ def create_instructions_for_LLM(json_str, user_prompt):
     Additionally, since you know the bigger picture of my codebase a little, give tips to the LLM pertaining to that, and place it inside of brackets:
     <tips> TIPS </tips>. 
     
-    Your tips should only be a couple paragraphs long.    
+    Your tips should only be a couple paragraphs long.
     '''
     return instructions_for_LLM
 

@@ -751,6 +751,12 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/temp_codebase_v2.json",
+            "imports": [],
+            "functions": [],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/streamlit_app.py",
             "imports": [
                 {
@@ -1871,6 +1877,10 @@
                 {
                     "module": "Repo",
                     "alias": null
+                },
+                {
+                    "module": "streamlit",
+                    "alias": "st"
                 }
             ],
             "functions": [
@@ -1881,7 +1891,7 @@
                         "clone_dir"
                     ],
                     "calls": [],
-                    "loc": 15
+                    "loc": 21
                 },
                 {
                     "name": "is_text_file",
@@ -2031,7 +2041,7 @@
                             ]
                         }
                     ],
-                    "loc": 55
+                    "loc": 53
                 },
                 {
                     "name": "create_json_of_interactions",
@@ -2061,7 +2071,7 @@
                             ]
                         }
                     ],
-                    "loc": 17
+                    "loc": 16
                 },
                 {
                     "name": "read_code",

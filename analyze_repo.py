@@ -7,6 +7,14 @@ import logging
 from git import Repo, GitCommandError
 import streamlit as st
 
+# FUNCTIONS IN THIS FILE:
+# clone_repo
+# is_text_file
+# extract_ast_details
+# extract_codebase_structure_v2
+# create_json_of_interactions
+# read_code
+
 logging.basicConfig(level=logging.INFO)
 
 def clone_repo(repo_url, clone_dir='cloned_repo'):
