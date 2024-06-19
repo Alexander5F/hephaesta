@@ -10,7 +10,7 @@ async def stream_instructor_response(messages, placeholder, theme='light', no_ex
     conversation_history = messages_to_string(messages)
 
     prompt = f"""
-    I developed a software called Kratio Code that edits code for users. Unlike GitHub Copilot, which often produces subpar results:
+    I developed a software called Hephaesta that edits code for users. Unlike GitHub Copilot, which often produces subpar results:
 
     - Generates unrealistic code (hallucinates) 🤯
     - Hallucinates object methods that don't exist

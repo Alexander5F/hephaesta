@@ -24,7 +24,6 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 # get_json_of_interactions
 # handle_button_click
 
-
 def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
     # check whether repo_json exists
@@ -68,7 +67,6 @@ def main():
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
     with middle_column:
-                   
         settings = load_custom_html()
         st.write('### **Give it a try**')
     
@@ -79,15 +77,16 @@ def main():
             
         github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
-            st.write(github_link)
             st.session_state.github_link = github_link
-            st.session_state.repo_json = get_json_of_interactions(github_link)
+            if st.session_state.repo_json is None:
+                st.session_state.repo_json = get_json_of_interactions(github_link)
+            st.write(f'GitHub Link: {st.session_state.github_link}')
             
-                
         on = st.toggle("Though problem? **Boost.**")
         if on:
             st.session_state.iterations = 2
-            st.toast("**Boost activated.** Superior problem solving, but 5-10 s slower", icon = "🪼")    
+            st.toast("**Boost activated.** Superior problem solving, but 5-10 s slower", icon = "🪼")
+            
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
         check_and_delete_file_on_first_load()
