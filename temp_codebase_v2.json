@@ -2,1028 +2,1011 @@
     "repo_name": "cloned_repo",
     "files": [
         {
-            "file_path": "cloned_repo/load_custom_html_for_landing_page.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "button",
-                    "alias": null
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "visualiserepo",
-                    "alias": null
-                },
-                {
-                    "module": "stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                },
-                {
-                    "module": "settings_to_system_prompt",
-                    "alias": null
-                },
-                {
-                    "module": "create_prompt_from_settings",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "handle_streamed_input",
-                    "alias": null
-                },
-                {
-                    "module": "check_and_delete_file_on_first_load",
-                    "alias": null
-                },
-                {
-                    "module": "streamlit.components.v1",
-                    "alias": "components"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "load_custom_html_for_landing_page",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "button",
-                            "file": "cloned_repo/load_custom_html_for_landing_page.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 59
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/get_text_between_tags.py",
+            "file_path": "cloned_repo/quantum/__init__.py",
             "imports": [],
-            "functions": [
-                {
-                    "name": "get_text_between_tags",
-                    "args": [
-                        "stream",
-                        "start_tag",
-                        "end_tag"
-                    ],
-                    "calls": [
-                        {
-                            "function": "extract_content",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "extract_content",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "stream",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        }
-                    ],
-                    "loc": 36
-                },
-                {
-                    "name": "extract_content",
-                    "args": [
-                        "buffer",
-                        "start_tag",
-                        "end_tag"
-                    ],
-                    "calls": [
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "buffer",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "buffer",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "buffer",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "buffer",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/get_text_between_tags.py",
-                            "args_passed": [
-                                "buffer",
-                                "start_tag",
-                                "end_tag"
-                            ]
-                        }
-                    ],
-                    "loc": 19
-                }
-            ],
+            "functions": [],
             "classes": []
         },
         {
-            "file_path": "cloned_repo/stream_assistant_response.py",
+            "file_path": "cloned_repo/quantum/network.py",
             "imports": [
                 {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "call_stream_response",
+                    "module": "operator",
                     "alias": null
                 },
                 {
-                    "module": "render_message",
+                    "module": "pickle",
+                    "alias": null
+                },
+                {
+                    "module": "Pool",
+                    "alias": null
+                },
+                {
+                    "module": "matplotlib.pyplot",
+                    "alias": "plt"
+                },
+                {
+                    "module": "numpy",
+                    "alias": "np"
+                },
+                {
+                    "module": "argparse",
+                    "alias": null
+                },
+                {
+                    "module": "data_utils",
                     "alias": null
                 }
             ],
             "functions": [
                 {
-                    "name": "stream_assistant_response",
+                    "name": "__init__",
                     "args": [
-                        "messages",
-                        "placeholder",
-                        "theme",
-                        "no_expander",
-                        "expanded"
-                    ],
-                    "calls": [
-                        {
-                            "function": "call_stream_response",
-                            "file": "cloned_repo/stream_assistant_response.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander",
-                                "expanded"
-                            ]
-                        },
-                        {
-                            "function": "render_message",
-                            "file": "cloned_repo/stream_assistant_response.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander",
-                                "expanded"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/stream_assistant_response.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander",
-                                "expanded"
-                            ]
-                        }
-                    ],
-                    "loc": 8
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/initialize_session_states.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "initialize_session_states",
-                    "args": [],
-                    "calls": [],
-                    "loc": 11
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/messages_to_string.py",
-            "imports": [],
-            "functions": [
-                {
-                    "name": "messages_to_string",
-                    "args": [
-                        "messages"
+                        "self",
+                        "dimension",
+                        "labels",
+                        "shots",
+                        "unitary_dim",
+                        "efficient",
+                        "tensor"
                     ],
                     "calls": [],
-                    "loc": 5
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/call_stream_response.py",
-            "imports": [
+                    "loc": 44
+                },
                 {
-                    "module": "stream_response",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "call_stream_response",
+                    "name": "set_spsa_hyperparameters",
                     "args": [
-                        "messages"
-                    ],
-                    "calls": [
-                        {
-                            "function": "stream_response",
-                            "file": "cloned_repo/call_stream_response.py",
-                            "args_passed": [
-                                "messages"
-                            ]
-                        }
-                    ],
-                    "loc": 3
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/stream_response.py",
-            "imports": [
-                {
-                    "module": "openai",
-                    "alias": null
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "stream_response",
-                    "args": [
-                        "messages"
-                    ],
-                    "calls": [
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/stream_response.py",
-                            "args_passed": [
-                                "messages"
-                            ]
-                        }
-                    ],
-                    "loc": 17
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/add_context_to_user_prompt.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "read_code",
-                    "alias": null
-                },
-                {
-                    "module": "json",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                },
-                {
-                    "module": "get_text_between_tags",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "create_instructions_for_LLM",
-                    "args": [
-                        "json_str",
-                        "user_prompt"
+                        "self",
+                        "spsa_a",
+                        "spsa_b",
+                        "spsa_A",
+                        "spsa_s",
+                        "spsa_t",
+                        "spsa_gamma",
+                        "spsa_eta",
+                        "spsa_lambda_"
                     ],
                     "calls": [],
-                    "loc": 36
+                    "loc": 29
                 },
                 {
-                    "name": "create_list_of_filenames",
+                    "name": "spsa_loss",
                     "args": [
-                        "input_string"
+                        "self",
+                        "prediction",
+                        "label",
+                        "track"
                     ],
                     "calls": [
                         {
-                            "function": "set",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "max",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "input_string"
+                                "self",
+                                "prediction",
+                                "label",
+                                "track"
                             ]
                         },
                         {
-                            "function": "len",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "max",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "input_string"
+                                "self",
+                                "prediction",
+                                "label",
+                                "track"
                             ]
                         },
                         {
-                            "function": "len",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "max",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "input_string"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "input_string"
+                                "self",
+                                "prediction",
+                                "label",
+                                "track"
                             ]
                         }
                     ],
-                    "loc": 21
+                    "loc": 16
                 },
                 {
-                    "name": "add_context_to_user_prompt",
+                    "name": "spsa_batch_loss",
                     "args": [
-                        "repo_json",
-                        "github_link",
-                        "user_prompt"
+                        "self",
+                        "batch",
+                        "pertubation",
+                        "track"
                     ],
                     "calls": [
                         {
-                            "function": "create_instructions_for_LLM",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "zip",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
+                                "self",
+                                "batch",
+                                "pertubation",
+                                "track"
                             ]
                         },
                         {
-                            "function": "gpt_response",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "len",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
+                                "self",
+                                "batch",
+                                "pertubation",
+                                "track"
                             ]
-                        },
+                        }
+                    ],
+                    "loc": 23
+                },
+                {
+                    "name": "train_epochs",
+                    "args": [
+                        "self",
+                        "x_train",
+                        "y_train",
+                        "batchsize",
+                        "epochs"
+                    ],
+                    "calls": [
                         {
-                            "function": "create_list_of_filenames",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "function": "range",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "get_text_between_tags",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
+                                "self",
+                                "x_train",
+                                "y_train",
+                                "batchsize",
+                                "epochs"
                             ]
                         },
                         {
                             "function": "print",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "read_code",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
-                            ]
-                        },
-                        {
-                            "function": "str",
-                            "file": "cloned_repo/add_context_to_user_prompt.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link",
-                                "user_prompt"
+                                "self",
+                                "x_train",
+                                "y_train",
+                                "batchsize",
+                                "epochs"
                             ]
                         }
                     ],
                     "loc": 31
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/handle_streamed_input.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
                 },
                 {
-                    "module": "create_prompt_from_settings",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "stream_assistant_response",
-                    "alias": null
-                },
-                {
-                    "module": "stream_instructor_response",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "handle_streamed_input",
+                    "name": "predict",
                     "args": [
-                        "user_input",
-                        "settings",
-                        "prompt_augmentation"
+                        "self",
+                        "image"
                     ],
                     "calls": [
                         {
-                            "function": "render_message",
-                            "file": "cloned_repo/handle_streamed_input.py",
+                            "function": "max",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
+                                "self",
+                                "image"
                             ]
                         },
                         {
-                            "function": "range",
-                            "file": "cloned_repo/handle_streamed_input.py",
+                            "function": "list",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
+                                "self",
+                                "image"
                             ]
                         },
                         {
-                            "function": "render_message",
-                            "file": "cloned_repo/handle_streamed_input.py",
+                            "function": "list",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
+                                "self",
+                                "image"
                             ]
                         },
                         {
-                            "function": "stream_assistant_response",
-                            "file": "cloned_repo/handle_streamed_input.py",
+                            "function": "list",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
-                            ]
-                        },
-                        {
-                            "function": "stream_assistant_response",
-                            "file": "cloned_repo/handle_streamed_input.py",
-                            "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
-                            ]
-                        },
-                        {
-                            "function": "stream_instructor_response",
-                            "file": "cloned_repo/handle_streamed_input.py",
-                            "args_passed": [
-                                "user_input",
-                                "settings",
-                                "prompt_augmentation"
+                                "self",
+                                "image"
                             ]
                         }
                     ],
-                    "loc": 46
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/render_message.py",
-            "imports": [
+                    "loc": 26
+                },
                 {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "render_message",
+                    "name": "print_stats",
                     "args": [
-                        "placeholder",
-                        "role",
-                        "new_content",
-                        "theme",
-                        "expanded",
-                        "no_expander"
+                        "self"
                     ],
                     "calls": [],
-                    "loc": 59
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/show_image_popup.py",
-            "imports": [
+                    "loc": 14
+                },
                 {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "show_image_popup",
+                    "name": "save_model",
                     "args": [
-                        "image_url"
-                    ],
-                    "calls": [],
-                    "loc": 17
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/repo.json",
-            "imports": [],
-            "functions": [],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/module_for_main.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "call_initialisation",
-                    "args": [],
-                    "calls": [],
-                    "loc": 17
-                },
-                {
-                    "name": "set_page_config",
-                    "args": [],
-                    "calls": [],
-                    "loc": 6
-                },
-                {
-                    "name": "create_custom_style",
-                    "args": [],
-                    "calls": [],
-                    "loc": 12
-                },
-                {
-                    "name": "set_loggers",
-                    "args": [],
-                    "calls": [],
-                    "loc": 6
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/temp_codebase_v2.json",
-            "imports": [],
-            "functions": [],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/streamlit_app.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "time",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                },
-                {
-                    "module": "visualiserepo",
-                    "alias": null
-                },
-                {
-                    "module": "stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "load_custom_html",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                },
-                {
-                    "module": "create_prompt_from_settings",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "handle_streamed_input",
-                    "alias": null
-                },
-                {
-                    "module": "check_and_delete_file_on_first_load",
-                    "alias": null
-                },
-                {
-                    "module": "create_json_of_interactions",
-                    "alias": null
-                },
-                {
-                    "module": "call_initialisation",
-                    "alias": null
-                },
-                {
-                    "module": "add_context_to_user_prompt",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "send_message",
-                    "args": [
-                        "settings",
-                        "github_link",
-                        "repo_json"
+                        "self",
+                        "filename"
                     ],
                     "calls": [
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "add_context_to_user_prompt",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
                         {
                             "function": "open",
-                            "file": "cloned_repo/streamlit_app.py",
+                            "file": "cloned_repo/quantum/network.py",
                             "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        }
-                    ],
-                    "loc": 18
-                },
-                {
-                    "name": "get_json_of_interactions",
-                    "args": [
-                        "github_link",
-                        "repo_json"
-                    ],
-                    "calls": [
-                        {
-                            "function": "create_json_of_interactions",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "github_link",
-                                "repo_json"
-                            ]
-                        }
-                    ],
-                    "loc": 9
-                },
-                {
-                    "name": "handle_button_click",
-                    "args": [
-                        "prompt",
-                        "settings"
-                    ],
-                    "calls": [
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "prompt",
-                                "settings"
+                                "self",
+                                "filename"
                             ]
                         }
                     ],
                     "loc": 3
                 },
                 {
-                    "name": "main",
-                    "args": [],
+                    "name": "load_model",
+                    "args": [
+                        "filename"
+                    ],
                     "calls": [
                         {
-                            "function": "load_dotenv",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "call_initialisation",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "set_page_config",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "set_loggers",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "create_custom_style",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "load_custom_html",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "send_message",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "check_and_delete_file_on_first_load",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "get_json_of_interactions",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
+                            "function": "open",
+                            "file": "cloned_repo/quantum/network.py",
+                            "args_passed": [
+                                "filename"
+                            ]
                         }
                     ],
-                    "loc": 43
+                    "loc": 4
                 }
             ],
+            "classes": [
+                {
+                    "name": "QuantumNetwork",
+                    "methods": [
+                        {
+                            "name": "__init__",
+                            "args": [
+                                "self",
+                                "dimension",
+                                "labels",
+                                "shots",
+                                "unitary_dim",
+                                "efficient",
+                                "tensor"
+                            ],
+                            "calls": [],
+                            "loc": 44
+                        },
+                        {
+                            "name": "set_spsa_hyperparameters",
+                            "args": [
+                                "self",
+                                "spsa_a",
+                                "spsa_b",
+                                "spsa_A",
+                                "spsa_s",
+                                "spsa_t",
+                                "spsa_gamma",
+                                "spsa_eta",
+                                "spsa_lambda_"
+                            ],
+                            "calls": [],
+                            "loc": 29
+                        },
+                        {
+                            "name": "spsa_loss",
+                            "args": [
+                                "self",
+                                "prediction",
+                                "label",
+                                "track"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "max",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "prediction",
+                                        "label",
+                                        "track"
+                                    ]
+                                },
+                                {
+                                    "function": "max",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "prediction",
+                                        "label",
+                                        "track"
+                                    ]
+                                },
+                                {
+                                    "function": "max",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "prediction",
+                                        "label",
+                                        "track"
+                                    ]
+                                }
+                            ],
+                            "loc": 16
+                        },
+                        {
+                            "name": "spsa_batch_loss",
+                            "args": [
+                                "self",
+                                "batch",
+                                "pertubation",
+                                "track"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "zip",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "batch",
+                                        "pertubation",
+                                        "track"
+                                    ]
+                                },
+                                {
+                                    "function": "len",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "batch",
+                                        "pertubation",
+                                        "track"
+                                    ]
+                                }
+                            ],
+                            "loc": 23
+                        },
+                        {
+                            "name": "train_epochs",
+                            "args": [
+                                "self",
+                                "x_train",
+                                "y_train",
+                                "batchsize",
+                                "epochs"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "range",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "x_train",
+                                        "y_train",
+                                        "batchsize",
+                                        "epochs"
+                                    ]
+                                },
+                                {
+                                    "function": "print",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "x_train",
+                                        "y_train",
+                                        "batchsize",
+                                        "epochs"
+                                    ]
+                                }
+                            ],
+                            "loc": 31
+                        },
+                        {
+                            "name": "predict",
+                            "args": [
+                                "self",
+                                "image"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "max",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "image"
+                                    ]
+                                },
+                                {
+                                    "function": "list",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "image"
+                                    ]
+                                },
+                                {
+                                    "function": "list",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "image"
+                                    ]
+                                },
+                                {
+                                    "function": "list",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "image"
+                                    ]
+                                }
+                            ],
+                            "loc": 26
+                        },
+                        {
+                            "name": "print_stats",
+                            "args": [
+                                "self"
+                            ],
+                            "calls": [],
+                            "loc": 14
+                        },
+                        {
+                            "name": "save_model",
+                            "args": [
+                                "self",
+                                "filename"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "open",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "self",
+                                        "filename"
+                                    ]
+                                }
+                            ],
+                            "loc": 3
+                        },
+                        {
+                            "name": "load_model",
+                            "args": [
+                                "filename"
+                            ],
+                            "calls": [
+                                {
+                                    "function": "open",
+                                    "file": "cloned_repo/quantum/network.py",
+                                    "args_passed": [
+                                        "filename"
+                                    ]
+                                }
+                            ],
+                            "loc": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "file_path": "cloned_repo/quantum/utils/__init__.py",
+            "imports": [],
+            "functions": [],
             "classes": []
         },
         {
-            "file_path": "cloned_repo/coder.py",
+            "file_path": "cloned_repo/quantum/utils/tensor_utils.py",
             "imports": [
                 {
-                    "module": "streamlit",
-                    "alias": "st"
+                    "module": "tensornetwork",
+                    "alias": "tn"
                 },
                 {
-                    "module": "gpt_response",
+                    "module": "unitaries_from_weights",
+                    "alias": null
+                },
+                {
+                    "module": "numpy",
+                    "alias": "np"
+                },
+                {
+                    "module": "List",
                     "alias": null
                 }
             ],
             "functions": [
                 {
-                    "name": "coder",
+                    "name": "trigonometric_embedding",
                     "args": [
-                        "user_message"
+                        "data",
+                        "v"
                     ],
                     "calls": [
                         {
-                            "function": "print",
-                            "file": "cloned_repo/coder.py",
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
                             "args_passed": [
-                                "user_message"
+                                "data",
+                                "v"
                             ]
                         },
                         {
-                            "function": "gpt_response",
-                            "file": "cloned_repo/coder.py",
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
                             "args_passed": [
-                                "user_message"
+                                "data",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "data",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "data",
+                                "v"
+                            ]
+                        }
+                    ],
+                    "loc": 29
+                },
+                {
+                    "name": "labeling",
+                    "args": [
+                        "rho"
+                    ],
+                    "calls": [],
+                    "loc": 15
+                },
+                {
+                    "name": "build_tensor",
+                    "args": [
+                        "tensor_data",
+                        "unitaries"
+                    ],
+                    "calls": [
+                        {
+                            "function": "int",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "enumerate",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "int",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        },
+                        {
+                            "function": "int",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "unitaries"
+                            ]
+                        }
+                    ],
+                    "loc": 81
+                },
+                {
+                    "name": "contract",
+                    "args": [
+                        "tensor_data",
+                        "tensor_network"
+                    ],
+                    "calls": [
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "tensor_network"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "tensor_network"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "tensor_network"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "tensor_network"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "tensor_data",
+                                "tensor_network"
+                            ]
+                        }
+                    ],
+                    "loc": 44
+                },
+                {
+                    "name": "evaluate_tensor",
+                    "args": [
+                        "image",
+                        "weights",
+                        "v"
+                    ],
+                    "calls": [
+                        {
+                            "function": "unitaries_from_weights",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "trigonometric_embedding",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "build_tensor",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "contract",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "v"
+                            ]
+                        },
+                        {
+                            "function": "labeling",
+                            "file": "cloned_repo/quantum/utils/tensor_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "v"
+                            ]
+                        }
+                    ],
+                    "loc": 17
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/quantum/utils/data_utils.py",
+            "imports": [
+                {
+                    "module": "collections",
+                    "alias": null
+                },
+                {
+                    "module": "numpy",
+                    "alias": "np"
+                },
+                {
+                    "module": "tensorflow",
+                    "alias": "tf"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "generate_dataset",
+                    "args": [
+                        "size",
+                        "filter_contradicting",
+                        "filter_values",
+                        "value_true",
+                        "value_false"
+                    ],
+                    "calls": [
+                        {
+                            "function": "filter_dataset",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "size",
+                                "filter_contradicting",
+                                "filter_values",
+                                "value_true",
+                                "value_false"
+                            ]
+                        },
+                        {
+                            "function": "filter_dataset",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "size",
+                                "filter_contradicting",
+                                "filter_values",
+                                "value_true",
+                                "value_false"
+                            ]
+                        },
+                        {
+                            "function": "filter_contradicting",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "size",
+                                "filter_contradicting",
+                                "filter_values",
+                                "value_true",
+                                "value_false"
+                            ]
+                        },
+                        {
+                            "function": "filter_contradicting",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "size",
+                                "filter_contradicting",
+                                "filter_values",
+                                "value_true",
+                                "value_false"
+                            ]
+                        }
+                    ],
+                    "loc": 34
+                },
+                {
+                    "name": "filter_dataset",
+                    "args": [
+                        "x_data",
+                        "y_data",
+                        "value_true",
+                        "value_false"
+                    ],
+                    "calls": [],
+                    "loc": 17
+                },
+                {
+                    "name": "remove_contradicting",
+                    "args": [
+                        "x_data",
+                        "y_data"
+                    ],
+                    "calls": [
+                        {
+                            "function": "zip",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        },
+                        {
+                            "function": "zip",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        },
+                        {
+                            "function": "tuple",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        },
+                        {
+                            "function": "tuple",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        },
+                        {
+                            "function": "list",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data"
+                            ]
+                        }
+                    ],
+                    "loc": 25
+                },
+                {
+                    "name": "iterate_minibatches",
+                    "args": [
+                        "x_data",
+                        "y_data",
+                        "batchsize",
+                        "shuffle"
+                    ],
+                    "calls": [
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data",
+                                "batchsize",
+                                "shuffle"
+                            ]
+                        },
+                        {
+                            "function": "min",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data",
+                                "batchsize",
+                                "shuffle"
+                            ]
+                        },
+                        {
+                            "function": "slice",
+                            "file": "cloned_repo/quantum/utils/data_utils.py",
+                            "args_passed": [
+                                "x_data",
+                                "y_data",
+                                "batchsize",
+                                "shuffle"
                             ]
                         }
                     ],
@@ -1033,1555 +1016,297 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/brain.py",
+            "file_path": "cloned_repo/quantum/utils/quantum_utils.py",
             "imports": [
                 {
-                    "module": "openai",
+                    "module": "numpy",
+                    "alias": "np"
+                },
+                {
+                    "module": "expm",
                     "alias": null
                 },
                 {
-                    "module": "asyncio",
+                    "module": "qiskit",
                     "alias": null
                 },
                 {
-                    "module": "stream_response",
+                    "module": "Aer",
                     "alias": null
                 },
                 {
-                    "module": "settings_to_system_prompt",
-                    "alias": null
-                },
-                {
-                    "module": "display_messages",
-                    "alias": null
-                },
-                {
-                    "module": "messages_to_string",
+                    "module": "is_hermitian_matrix",
                     "alias": null
                 }
             ],
             "functions": [
                 {
-                    "name": "brain",
+                    "name": "transform",
                     "args": [
-                        "messages",
-                        "settings",
-                        "max_iterations",
-                        "current_iteration"
-                    ],
-                    "calls": [
-                        {
-                            "function": "messages_to_string",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "settings_to_system_prompt",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "stream_response",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "stream_response",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "brain",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        }
-                    ],
-                    "loc": 66
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/bullets_of_improvements.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "call_stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "messages_to_string",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "bullets_of_improvements",
-                    "args": [
-                        "messages",
-                        "placeholder"
-                    ],
-                    "calls": [
-                        {
-                            "function": "messages_to_string",
-                            "file": "cloned_repo/bullets_of_improvements.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder"
-                            ]
-                        },
-                        {
-                            "function": "call_stream_response",
-                            "file": "cloned_repo/bullets_of_improvements.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/bullets_of_improvements.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder"
-                            ]
-                        }
-                    ],
-                    "loc": 29
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/gpt_response.py",
-            "imports": [
-                {
-                    "module": "time",
-                    "alias": null
-                },
-                {
-                    "module": "openai",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "gpt_response",
-                    "args": [
-                        "prompt"
-                    ],
-                    "calls": [
-                        {
-                            "function": "load_dotenv",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "type",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        },
-                        {
-                            "function": "str",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": [
-                                "prompt"
-                            ]
-                        }
-                    ],
-                    "loc": 41
-                },
-                {
-                    "name": "test",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "gpt_response",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/gpt_response.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 4
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/load_custom_html.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "button",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "load_custom_html",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "button",
-                            "file": "cloned_repo/load_custom_html.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 58
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/repo_visualizer.py",
-            "imports": [
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "shutil",
-                    "alias": null
-                },
-                {
-                    "module": "json",
-                    "alias": null
-                },
-                {
-                    "module": "ast",
-                    "alias": null
-                },
-                {
-                    "module": "mimetypes",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "Repo",
-                    "alias": null
-                },
-                {
-                    "module": "pydot",
-                    "alias": null
-                },
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "defaultdict",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "clone_repo",
-                    "args": [
-                        "repo_url",
-                        "clone_dir"
-                    ],
-                    "calls": [],
-                    "loc": 15
-                },
-                {
-                    "name": "is_text_file",
-                    "args": [
-                        "filepath"
-                    ],
-                    "calls": [],
-                    "loc": 7
-                },
-                {
-                    "name": "extract_ast_details",
-                    "args": [
-                        "tree"
-                    ],
-                    "calls": [
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        }
-                    ],
-                    "loc": 30
-                },
-                {
-                    "name": "extract_codebase_structure",
-                    "args": [
-                        "root_dir",
-                        "temp_file"
-                    ],
-                    "calls": [
-                        {
-                            "function": "defaultdict",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "is_text_file",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "extract_ast_details",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        }
-                    ],
-                    "loc": 28
-                },
-                {
-                    "name": "visualize_codebase_structure",
-                    "args": [
-                        "temp_file",
-                        "output_file"
-                    ],
-                    "calls": [
-                        {
-                            "function": "defaultdict",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "temp_file",
-                                "output_file"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "temp_file",
-                                "output_file"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "temp_file",
-                                "output_file"
-                            ]
-                        },
-                        {
-                            "function": "add_node_and_edges",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "temp_file",
-                                "output_file"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "temp_file",
-                                "output_file"
-                            ]
-                        }
-                    ],
-                    "loc": 84
-                },
-                {
-                    "name": "visualiserepo",
-                    "args": [
-                        "github_link"
-                    ],
-                    "calls": [
-                        {
-                            "function": "clone_repo",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "github_link"
-                            ]
-                        },
-                        {
-                            "function": "extract_codebase_structure",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "github_link"
-                            ]
-                        },
-                        {
-                            "function": "visualize_codebase_structure",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "github_link"
-                            ]
-                        }
-                    ],
-                    "loc": 11
-                },
-                {
-                    "name": "add_node_and_edges",
-                    "args": [
-                        "file",
-                        "details"
-                    ],
-                    "calls": [
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/repo_visualizer.py",
-                            "args_passed": [
-                                "file",
-                                "details"
-                            ]
-                        }
-                    ],
-                    "loc": 45
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/display_messages.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "display_messages",
-                    "args": [
-                        "messages"
+                        "input_"
                     ],
                     "calls": [
                         {
                             "function": "enumerate",
-                            "file": "cloned_repo/display_messages.py",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "messages"
+                                "input_"
                             ]
                         }
                     ],
-                    "loc": 18
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/settings_to_system_prompt.py",
-            "imports": [],
-            "functions": [
+                    "loc": 15
+                },
                 {
-                    "name": "settings_to_system_prompt",
+                    "name": "unitary_from_hermitian",
                     "args": [
-                        "settings"
-                    ],
-                    "calls": [],
-                    "loc": 44
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/stream_instructor_response.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "call_stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "messages_to_string",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "call_stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "messages_to_string",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "stream_instructor_response",
-                    "args": [
-                        "messages",
-                        "placeholder",
-                        "theme",
-                        "no_expander"
+                        "hermitian"
                     ],
                     "calls": [
                         {
-                            "function": "messages_to_string",
-                            "file": "cloned_repo/stream_instructor_response.py",
+                            "function": "is_unitary_matrix",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander"
+                                "hermitian"
                             ]
                         },
                         {
-                            "function": "call_stream_response",
-                            "file": "cloned_repo/stream_instructor_response.py",
+                            "function": "expm",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander"
-                            ]
-                        },
-                        {
-                            "function": "render_message",
-                            "file": "cloned_repo/stream_instructor_response.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/stream_instructor_response.py",
-                            "args_passed": [
-                                "messages",
-                                "placeholder",
-                                "theme",
-                                "no_expander"
-                            ]
-                        }
-                    ],
-                    "loc": 38
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/packages.txt",
-            "imports": [],
-            "functions": [],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/create_prompt_from_settings.py",
-            "imports": [
-                {
-                    "module": "settings_to_system_prompt",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "create_prompt_from_settings",
-                    "args": [
-                        "settings"
-                    ],
-                    "calls": [
-                        {
-                            "function": "settings_to_system_prompt",
-                            "file": "cloned_repo/create_prompt_from_settings.py",
-                            "args_passed": [
-                                "settings"
-                            ]
-                        }
-                    ],
-                    "loc": 10
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "read_code",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "augment_repo_json_with_comments_from_LLM",
-                    "args": [
-                        "repo_json",
-                        "github_link"
-                    ],
-                    "calls": [
-                        {
-                            "function": "read_code",
-                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link"
-                            ]
-                        },
-                        {
-                            "function": "str",
-                            "file": "cloned_repo/augment_repo_json_with_comments_from_LLM.py",
-                            "args_passed": [
-                                "repo_json",
-                                "github_link"
-                            ]
-                        }
-                    ],
-                    "loc": 10
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/analyze_repo.py",
-            "imports": [
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "shutil",
-                    "alias": null
-                },
-                {
-                    "module": "json",
-                    "alias": null
-                },
-                {
-                    "module": "ast",
-                    "alias": null
-                },
-                {
-                    "module": "mimetypes",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "Repo",
-                    "alias": null
-                },
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                }
-            ],
-            "functions": [
-                {
-                    "name": "clone_repo",
-                    "args": [
-                        "repo_url",
-                        "clone_dir"
-                    ],
-                    "calls": [],
-                    "loc": 21
-                },
-                {
-                    "name": "is_text_file",
-                    "args": [
-                        "filepath"
-                    ],
-                    "calls": [],
-                    "loc": 7
-                },
-                {
-                    "name": "extract_ast_details",
-                    "args": [
-                        "tree"
-                    ],
-                    "calls": [
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        }
-                    ],
-                    "loc": 41
-                },
-                {
-                    "name": "extract_codebase_structure_v2",
-                    "args": [
-                        "root_dir",
-                        "temp_file"
-                    ],
-                    "calls": [
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "is_text_file",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        },
-                        {
-                            "function": "extract_ast_details",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "root_dir",
-                                "temp_file"
-                            ]
-                        }
-                    ],
-                    "loc": 53
-                },
-                {
-                    "name": "create_json_of_interactions",
-                    "args": [
-                        "github_repo_url"
-                    ],
-                    "calls": [
-                        {
-                            "function": "clone_repo",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "github_repo_url"
-                            ]
-                        },
-                        {
-                            "function": "extract_codebase_structure_v2",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "github_repo_url"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "github_repo_url"
+                                "hermitian"
                             ]
                         }
                     ],
                     "loc": 16
                 },
                 {
-                    "name": "read_code",
+                    "name": "hermitian_from_weights",
                     "args": [
-                        "repo_json_for_LLM",
-                        "filename",
-                        "github_repo_url"
+                        "weights",
+                        "dimension"
                     ],
                     "calls": [
                         {
-                            "function": "next",
-                            "file": "cloned_repo/analyze_repo.py",
+                            "function": "is_hermitian_matrix",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "repo_json_for_LLM",
-                                "filename",
-                                "github_repo_url"
+                                "weights",
+                                "dimension"
                             ]
                         },
                         {
-                            "function": "clone_repo",
-                            "file": "cloned_repo/analyze_repo.py",
+                            "function": "complex",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "repo_json_for_LLM",
-                                "filename",
-                                "github_repo_url"
+                                "weights",
+                                "dimension"
                             ]
                         },
                         {
-                            "function": "open",
-                            "file": "cloned_repo/analyze_repo.py",
+                            "function": "zip",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "repo_json_for_LLM",
-                                "filename",
-                                "github_repo_url"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/analyze_repo.py",
-                            "args_passed": [
-                                "repo_json_for_LLM",
-                                "filename",
-                                "github_repo_url"
+                                "weights",
+                                "dimension"
                             ]
                         }
                     ],
-                    "loc": 25
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/vector_search_codebase.py",
-            "imports": [
-                {
-                    "module": "os",
-                    "alias": null
+                    "loc": 29
                 },
                 {
-                    "module": "shutil",
-                    "alias": null
-                },
-                {
-                    "module": "json",
-                    "alias": null
-                },
-                {
-                    "module": "ast",
-                    "alias": null
-                },
-                {
-                    "module": "mimetypes",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "Repo",
-                    "alias": null
-                },
-                {
-                    "module": "weaviate",
-                    "alias": null
-                },
-                {
-                    "module": "OpenAI",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "clone_repo",
+                    "name": "unitaries_from_weights",
                     "args": [
-                        "repo_url",
-                        "clone_dir"
-                    ],
-                    "calls": [],
-                    "loc": 16
-                },
-                {
-                    "name": "is_text_file",
-                    "args": [
-                        "filepath"
-                    ],
-                    "calls": [],
-                    "loc": 7
-                },
-                {
-                    "name": "extract_ast_details",
-                    "args": [
-                        "tree"
+                        "weights",
+                        "dimension"
                     ],
                     "calls": [
                         {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
+                            "function": "unitary_from_hermitian",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "tree"
+                                "weights",
+                                "dimension"
                             ]
                         },
                         {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
+                            "function": "hermitian_from_weights",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "max",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "isinstance",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        },
-                        {
-                            "function": "hasattr",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "tree"
-                            ]
-                        }
-                    ],
-                    "loc": 41
-                },
-                {
-                    "name": "extract_codebase_structure_v2_and_store",
-                    "args": [
-                        "root_dir",
-                        "client"
-                    ],
-                    "calls": [
-                        {
-                            "function": "is_text_file",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "root_dir",
-                                "client"
-                            ]
-                        },
-                        {
-                            "function": "open",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "root_dir",
-                                "client"
-                            ]
-                        },
-                        {
-                            "function": "extract_ast_details",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "root_dir",
-                                "client"
-                            ]
-                        }
-                    ],
-                    "loc": 28
-                },
-                {
-                    "name": "search_codebase",
-                    "args": [
-                        "prompt"
-                    ],
-                    "calls": [
-                        {
-                            "function": "gpt_response",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": [
-                                "prompt"
+                                "weights",
+                                "dimension"
                             ]
                         }
                     ],
                     "loc": 14
                 },
                 {
-                    "name": "create_schema",
+                    "name": "run_circuit",
                     "args": [
-                        "client"
+                        "image",
+                        "weights",
+                        "backend",
+                        "draw",
+                        "shots"
                     ],
                     "calls": [
                         {
-                            "function": "str",
-                            "file": "cloned_repo/vector_search_codebase.py",
+                            "function": "len",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
                             "args_passed": [
-                                "client"
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "transform",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "unitaries_from_weights",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "enumerate",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "int",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        }
+                    ],
+                    "loc": 47
+                },
+                {
+                    "name": "run_efficient_circuit",
+                    "args": [
+                        "image",
+                        "weights",
+                        "backend",
+                        "draw",
+                        "shots"
+                    ],
+                    "calls": [
+                        {
+                            "function": "transform",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "unitaries_from_weights",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "range",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "enumerate",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/quantum/utils/quantum_utils.py",
+                            "args_passed": [
+                                "image",
+                                "weights",
+                                "backend",
+                                "draw",
+                                "shots"
                             ]
                         }
                     ],
                     "loc": 38
-                },
-                {
-                    "name": "main",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "create_schema",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "clone_repo",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "extract_codebase_structure_v2_and_store",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "search_codebase",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/vector_search_codebase.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 29
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/check_and_delete_file_on_first_load.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "check_and_delete_file_on_first_load",
-                    "args": [],
-                    "calls": [],
-                    "loc": 9
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/pages/\ud83d\udd14 Be_notified_when_its_ready.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "streamlit.components.v1",
-                    "alias": "components"
-                },
-                {
-                    "module": "button",
-                    "alias": null
-                }
-            ],
-            "functions": [],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/pages/\ud83d\udcd6 About.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "streamlit.components.v1",
-                    "alias": "components"
-                },
-                {
-                    "module": "button",
-                    "alias": null
-                }
-            ],
-            "functions": [],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "os",
-                    "alias": null
-                },
-                {
-                    "module": "load_dotenv",
-                    "alias": null
-                },
-                {
-                    "module": "logging",
-                    "alias": null
-                },
-                {
-                    "module": "stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "load_custom_html_for_landing_page",
-                    "alias": null
-                },
-                {
-                    "module": "gpt_response",
-                    "alias": null
-                },
-                {
-                    "module": "settings_to_system_prompt",
-                    "alias": null
-                },
-                {
-                    "module": "create_prompt_from_settings",
-                    "alias": null
-                },
-                {
-                    "module": "render_message",
-                    "alias": null
-                },
-                {
-                    "module": "handle_streamed_input",
-                    "alias": null
-                },
-                {
-                    "module": "check_and_delete_file_on_first_load",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "initialize_session_state",
-                    "args": [],
-                    "calls": [],
-                    "loc": 15
-                },
-                {
-                    "name": "send_message",
-                    "args": [],
-                    "calls": [],
-                    "loc": 4
-                },
-                {
-                    "name": "handle_button_click",
-                    "args": [
-                        "prompt"
-                    ],
-                    "calls": [],
-                    "loc": 3
-                },
-                {
-                    "name": "main",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "load_custom_html_for_landing_page",
-                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "initialize_session_state",
-                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "send_message",
-                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "handle_button_click",
-                            "file": "cloned_repo/pages/\ud83d\udeaaQuickstart.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 45
                 }
             ],
             "classes": []

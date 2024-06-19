@@ -10,10 +10,7 @@ async def handle_streamed_input(user_input, settings, prompt_augmentation=None, 
     st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
     st.session_state.run = True
 
-    # Append settings as system prompt
-    #settings_prompt = create_prompt_from_settings(settings)
-    #st.session_state.messages.append({"role": "system", "content": settings_prompt, "displayed": False})
-
+    # Generate and append the augmented prompt if not already done
     if repo_json is not None and github_link is not None:
         # Generate and append the augmented prompt
         prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, user_input)
