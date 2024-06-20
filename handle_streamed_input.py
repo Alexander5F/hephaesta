@@ -8,7 +8,7 @@ from stream_instructor_response import stream_instructor_response
 from add_context_to_user_prompt import add_context_to_user_prompt  # Import the function here
 
 
-async def handle_streamed_input(user_input, settings, prompt_augmentation=None, repo_json=None, github_link=None):
+async def handle_streamed_input(user_input, settings, repo_json=None, github_link=None):
     # Display user message
     user_input_placeholder = st.empty()
     render_message(user_input_placeholder, "You", user_input, no_expander=True)
@@ -38,8 +38,7 @@ async def handle_streamed_input(user_input, settings, prompt_augmentation=None, 
         #instructor_placeholders.append(instructor_placeholder)
 
         # Get assistant response
-        await stream_assistant_response(assistant_placeholder)
-        st.session_state.messages.append({"role": "assistant", "content": prompt_augmentation, "displayed": False})
+        await stream_assistant_response(assistant_placeholder)        
 
         doing_message = "🪼 Deep in thought"
         render_message(progress_placeholder, "Doing", doing_message, no_expander=True)

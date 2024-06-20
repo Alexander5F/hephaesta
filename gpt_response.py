@@ -3,7 +3,6 @@ import openai
 import os
 from dotenv import load_dotenv
 
-
 def gpt_response(prompt):        
     load_dotenv() 
     openai.api_key = os.getenv("OPENAI_API_KEY")
