@@ -24,14 +24,14 @@ Hephaesta is a web-based application built using Streamlit. It enables developer
 - **Visual Representation**: Presents graphical visualizations of the codebase for better comprehension.
 
 ## Example uses
-- "Create a comprehensive readme" (That's how most of this readme was created)
-- "Fix all my dependencies "
-- "Add an input field for a private repo key, and amend the backend where needed" (Much of this app was built by itself)
-- "Find vulnerabilities in my codebase"
-- "List functions that aren't in use and can be deleted"
-- "Make my code run 3x faster. Only touch the biggest time-wasters"
-- "This repo has horrible documentation. Explain in 3 sentences."
-- "This repo has horrible documentation. Walk me through running it."
+- **"Create a comprehensive readme"** (That's how most of this readme was created)
+- **"Fix all my dependencies "**
+- **"Add an input field for a private repo key, and amend the backend where needed"** (Much of this app was built by itself)
+- **"Find vulnerabilities in my codebase"**
+- **"List functions that aren't in use and can be deleted"**
+- **"Make my code run 3x faster. Only touch the biggest time-wasters"**
+- **"This repo has horrible documentation. Explain in 3 sentences."**
+- **"This repo has horrible documentation. Walk me through running it."**
 
 
 ## Installation
