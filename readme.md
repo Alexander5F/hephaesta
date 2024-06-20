@@ -1,7 +1,5 @@
 # Hephaesta
 
-# This was auto-generated with Hephaesta
-
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
@@ -18,6 +16,16 @@
 
 ## Overview
 Hephaesta is a web-based application built using Streamlit. It enables developers to analyze their GitHub repositories for insights into their codebase. The app helps improve coding practices and provides contextual assistance for various tasks, such as writing web crawlers and optimizing code performance. Additionally, it includes visual representations of the codebase and features an advanced problem-solving mode called "Boost".
+
+## Example uses
+"Create a comprehensive readme" (That's how most of this readme was created)
+"Fix all my dependencies"
+"Add an input field for a private repo key, and amend the backend where needed" (Much of this app was built by itself)
+"Find vulnerabilities in my codebase"
+"List functions that aren't in use and can be deleted"
+"Make my code run 3x faster. Only touch the biggest time-wasters"
+"This repo has horrible documentation. Explain in 3 sentences."
+"This repo has horrible documentation. Walk me through running it."
 
 ## Features
 - **Read and Analyze GitHub Repos**: Input your GitHub repository link, and the app will analyze the codebase.
@@ -36,7 +44,7 @@ Hephaesta is a web-based application built using Streamlit. It enables developer
 
     ```bash
     git clone https://github.com/Alexander5F/hephaesta    
-    
+
     gitlink
     cd repo-analyzer
     ```
