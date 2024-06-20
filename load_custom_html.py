@@ -12,8 +12,14 @@ def load_custom_html():
     left_column, right_column = st.columns([7, 0.1])
 
     with left_column:
-            st.image('https://i.imgur.com/gEHSBXK.png', width=100) # icon
-            st.write('# **HEPHAESTA** | *Shorter prompts, better code.*')
+            #st.markdown("<h1 style='font-size: 200px;'>🍩</h1>", unsafe_allow_html=True)
+            #st.image('https://i.imgur.com/kgqe1GO.png', width=200) # Doughnut
+            st.image('https://i.imgur.com/gEHSBXK.png', width=100) # Fingerprint
+            #st.image('https://i.imgur.com/VcPyudU.jpeg', width=200) # Peanut
+            #st.image('https://i.imgur.com/zN8Jn5X.png', width=400) # Peanut                        
+            
+            st.write('# HEPHAESTA | *Shorter prompts, better code.*')            
+            #st.write('#### Understands the nuts and bolts of your code')
             st.divider()
             
             # Correct path to the page                                    

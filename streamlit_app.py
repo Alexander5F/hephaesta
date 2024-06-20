@@ -83,7 +83,7 @@ def main():
                 st.session_state.repo_json = get_json_of_interactions(github_link)
             st.write(f'GitHub Link: {st.session_state.github_link}')
             
-        on = st.toggle("Though problem? **Boost.**")
+        on = st.toggle("Tough problem? **Boost.**")
         if on:
             st.session_state.iterations = 1
             st.toast("**Boost activated** for superior problem solving", icon = "🪼")
