@@ -1,4 +1,4 @@
-# Hephaesta
+# Hephaesta 🪼
 
 ## Table of Contents
 - [Overview](#overview)
