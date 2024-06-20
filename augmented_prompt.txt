@@ -1,581 +1,538 @@
-explain what this does in 3 sentnces Here's source code from parts of the user's code repo that like are helpful: 
+how about now? Here's source code from parts of the user's code repo that like are helpful: 
 
 
  
 
-__________________________Source code for quantum/network.py: 
+__________________________Source code for streamlit_app.py: 
 
- """This module provides the neural network part of the implementation.
-    Todos:
-        * TODO: Hyperparameter tuning
-        * TODO: Check Metrics
-        * TODO: check matrix generation
-"""
-import operator
-import pickle
-from multiprocessing import Pool
+ import streamlit as st
+import asyncio
+import os
+import time
+from dotenv import load_dotenv
 
-import matplotlib.pyplot as plt
-import numpy as np
-import argparse
+# Custom functions 
+from repo_visualizer import visualiserepo
+from stream_response import stream_response
+from custom_html import custom_html
+from gpt_response import gpt_response
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from handle_streamed_input import handle_streamed_input
+from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
+from analyze_repo import create_json_of_interactions, read_code
+from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
+from add_context_to_user_prompt import add_context_to_user_prompt
 
-from quantum.utils import data_utils, quantum_utils, tensor_utils
+# FUNCTIONS IN THIS FILE:
+# main
+# send_message
+# call_initialisation
+# get_json_of_interactions
+# handle_button_click
 
+def send_message(settings, github_link=None, repo_json=None):
+    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
+    # check whether repo_json exists
+    if prompt and repo_json is not None and github_link is not None:
+        st.toast('Reading through all of your code', icon="📖")
+        time.sleep(1)
+        st.toast('Figuring out what\'s relevant', icon="🥒")
+        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
+        print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        with open('augmented_prompt.txt', 'w') as file:
+            file.write(prompt + prompt_augmentation)
+        print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
+        st.toast('Done', icon="🛎️")
+        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation))
+        st.toast("Done", icon = "🍪")
+    elif prompt and repo_json is None:
+        st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
+        asyncio.run(handle_streamed_input(prompt, settings))    
 
-class QuantumNetwork:
-    """
-    Class representing a Quantum Network.
-    """
-    def __init__(self,
-                 dimension,
-                 labels,
-                 shots=1024,
-                 unitary_dim=4,
-                 efficient=True,
-                 tensor=False):
-        """Initializes the networ parameters. Hyperparameters are set to zero.
-            Weights are initialized randomly.
-
-        Args:
-            dimension (int): The problem size. The network has dimension²-1 unitaries.
-            labels (dict): Assigned labels to quibit states eg. {0: '1', 4: '0'}.
-            shots (int): Parameter for the circuit evaluation.
-            unitary_dim (int): Dimensionality of unitaries: 4x4 -> 2 Qubits
-                                                            8x8 -> 4 Qubits
-            efficient (bool): Switch to use the efficient layout.
-        """
-        self.accuracies = []
-        self.correct = 0
-        self.losses = []
-        self.efficient = efficient
-        self.shots = shots
-        self.labels = labels
-        self.tensor = tensor
-        if efficient:
-            unitary_dim = 16
-            self.qubits = 4
-            self.weights = np.random.normal(size=(dimension**2 - 3,
-                                                  unitary_dim**2))
+def get_json_of_interactions(github_link, repo_json=None):
+    if repo_json is None:
+        st.toast('Analyzing your codebase', icon="🛰️")
+        repo_json = create_json_of_interactions(github_link)
+        if repo_json is None:
+            st.toast('Is the link correct?', icon="🐔")
         else:
-            self.qubits = dimension**2
-            self.weights = np.random.normal(size=(self.qubits - 1,
-                                                  unitary_dim**2))
+            st.toast('Finished! Tell me what to do.', icon="🥒")
+    return repo_json
 
-        #spsa
-        self.spsa_a = 0
-        self.spsa_b = 0
-        self.spsa_A = 0
-        self.spsa_s = 0
-        self.spsa_t = 0
-        self.spsa_gamma = 0
-        self.spsa_eta = 0
-        self.spsa_lambda_ = 0
+def handle_button_click(prompt, settings):
+    st.session_state.show_buttons = False # Ensure the button is hidden
+    asyncio.run(handle_streamed_input(prompt, settings))
 
-    def set_spsa_hyperparameters(self,
-                                 spsa_a=28.0,
-                                 spsa_b=33.0,
-                                 spsa_A=74.1,
-                                 spsa_s=4.13,
-                                 spsa_t=0.658,
-                                 spsa_gamma=0.882,
-                                 spsa_eta=5.59,
-                                 spsa_lambda_=0.234):
-        """Sets params for the spsa algorithm, defaults from the paper.
+def main():    
+    load_dotenv()
+    call_initialisation()    
+    set_page_config()
+    set_loggers()
+    custom_style = create_custom_style()
+    st.markdown(custom_style, unsafe_allow_html=True)    
+    left_column, middle_column, right_column = st.columns([1, 4, 1])
 
-        Args:
-            spsa_a (float): a.
-            spsa_b (float): b.
-            spsa_A (float): A.
-            spsa_s (float): s.
-            spsa_t (float): t.
-            spsa_gamma (float): gamma.
-            spsa_eta (float): eta.
-            spsa_lambda_ (float): lambda.
-        """
-        self.spsa_a = spsa_a
-        self.spsa_b = spsa_b
-        self.spsa_A = spsa_A
-        self.spsa_s = spsa_s
-        self.spsa_t = spsa_t
-        self.spsa_gamma = spsa_gamma
-        self.spsa_eta = spsa_eta
-        self.spsa_lambda_ = spsa_lambda_
+    with middle_column:
+        settings = custom_html()
+        st.write('### **Give it a try**')
+    
+        if 'github_link' not in st.session_state:
+            st.session_state.github_link = None
+        if 'repo_json' not in st.session_state:
+            st.session_state.repo_json = None
 
-    def spsa_loss(self, prediction, label, track=False):
-        """Calculates the individual loss given the prediction and the label.
+        on = st.toggle("Tough problem? **Boost.**")
+        if on:
+            st.session_state.iterations = 1
+            st.toast("**Boost activated** for superior problem solving", icon = "🪼")
+            
+        github_link = st.chat_input('url to your github repo (optional)')
+        if github_link:
+            st.session_state.github_link = github_link
+            if st.session_state.repo_json is None:
+                st.session_state.repo_json = get_json_of_interactions(github_link)
+            st.write(f'GitHub Link: {st.session_state.github_link}')
+            
+        send_message(settings, st.session_state.github_link, st.session_state.repo_json)
+        
+        check_and_delete_file_on_first_load()
+        output_image_path = "codebase_graph.png"
+        if os.path.exists(output_image_path):
+            st.image(output_image_path)
+        else:
+            st.image("https://i.imgur.com/k9YDfOV.png")
+            st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
+        st.divider()
 
-        Args:
-            prediction: The prediction counts.
-            label: Actual class.
-            track (bool): Switch to track loss statistics.
-        Returns:
-            loss (float): the single loss.
-        """
-        p_max = max(prediction.values()) / self.shots
-        p_label = prediction.pop(self.labels[label], None) / self.shots
-        if (p_max == p_label and track):
-            self.correct += 1
-        p_max_not = max(prediction.values()) / self.shots
-        return max(p_max_not - p_label + self.spsa_lambda_, 0)**self.spsa_eta
+    with right_column:
+        st.write(' ')
 
-    def spsa_batch_loss(self, batch, pertubation, track=False):
-        """Calculates the batch loss given the prertubation and weights.
+if __name__ == "__main__":
+    main() 
 
-        Args:
-            batch: The image and label batch.
-            perubation: Pertubation for this batch.
-            track (bool): Switch to track loss statistics.
-        Returns:
-            loss (float): the batch loss.
-        """
-        loss = 0
-        x_batch, y_batch = batch
-        weights_ = self.weights + pertubation
-        for image, label in zip(x_batch, y_batch):
-            if self.efficient:
-                prediction = quantum_utils.run_efficient_circuit(
-                    image.flatten(), weights_, shots=self.shots)
+
+
+_____________________________Source code for repo_visualizer.py: 
+
+ import os
+import shutil
+import json
+import ast
+import mimetypes
+import logging
+from git import Repo, GitCommandError
+import pydot
+import streamlit as st
+from collections import defaultdict
+
+logging.basicConfig(level=logging.DEBUG)
+
+def clone_repo(repo_url, clone_dir='cloned_repo'):
+    logging.debug(f"Attempting to clone repository: {repo_url}")
+    try:
+        if os.path.exists(clone_dir):
+            logging.warning(f"Directory {clone_dir} already exists, deleting...")
+            shutil.rmtree(clone_dir)
+        logging.info(f"Cloning repository {repo_url} into {clone_dir}")
+        Repo.clone_from(repo_url, clone_dir)
+        return clone_dir
+    except GitCommandError as e:
+        logging.error(f"Failed to clone repository: {e}")
+        return None
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return None
+
+def is_text_file(filepath):
+    """Check if the file is a text file or specific recognized type."""
+    mime_type, _ = mimetypes.guess_type(filepath)
+    if mime_type and mime_type.startswith('text'):
+        return True
+    file_ext = os.path.splitext(filepath)[1]
+    return file_ext in ['.py', '.html', '.json', '.md', '.txt', '.yaml', '.yml', '.js', '.css']
+
+def extract_ast_details(tree):
+    logging.debug("Extracting AST details")
+    imports = []
+    functions = []
+    classes = []
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import) or isinstance(node, ast.ImportFrom):
+            imports.append(ast.dump(node))
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            func_start_line = node.lineno
+            func_end_line = max((n.lineno for n in ast.walk(node) if hasattr(n, 'lineno')), default=func_start_line)
+            loc = func_end_line - func_start_line + 1
+
+            functions.append({
+                'name': node.name,
+                'args': [arg.arg for arg in node.args.args],
+                'calls': [
+                    n.func.id for n in ast.walk(node)
+                    if isinstance(n, ast.Call) and hasattr(n.func, 'id')
+                ],
+                'loc': loc
+            })
+        elif isinstance(node, ast.ClassDef):
+            classes.append({
+                'name': node.name,
+                'methods': [n.name for n in node.body if isinstance(n, ast.FunctionDef)]
+            })
+
+    return imports, functions, classes
+
+def extract_codebase_structure(root_dir, temp_file='temp_codebase.json'):
+    logging.debug(f"Extracting codebase structure from directory: {root_dir}")
+    codebase = defaultdict(lambda: {'imports': [], 'functions': [], 'classes': []})
+
+    if os.path.exists(temp_file):
+        os.remove(temp_file)
+    
+    with open(temp_file, 'w') as tempf:
+        for root, _, files in os.walk(root_dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                if is_text_file(file_path):
+                    logging.info(f"Parsing file: {file_path}")
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        try:
+                            tree = ast.parse(f.read(), filename=file_path)
+                            imports, functions, classes = extract_ast_details(tree)
+                            file_details = {
+                                'imports': imports,
+                                'functions': functions,
+                                'classes': classes
+                            }
+                            json.dump({file_path: file_details}, tempf)
+                            tempf.write('\n')  # Separate each entry by a newline
+                        except SyntaxError as se:
+                            logging.warning(f"SyntaxError in file {file_path}: {se}")
+                        except Exception as e:
+                            logging.error(f"Failed to parse {file_path}: {e}")
+
+def visualize_codebase_structure(temp_file='temp_codebase.json', output_file='codebase_graph.png'):
+    logging.debug("Visualizing codebase structure")
+    graph = pydot.Dot(graph_type='digraph', layout='neato', overlap=False, splines=True, resolution=120)
+    graph.set_graph_defaults(size="12,12!", dpi="780")
+
+    file_nodes = {}
+    function_nodes = {}
+    class_nodes = {}
+    folder_clusters = defaultdict(list)
+
+    def add_node_and_edges(file, details):
+        if file not in file_nodes:
+            file_node = pydot.Node(file, shape='box', style='filled', fillcolor='lightgrey', fontsize=16, fontcolor='black', width=3.0, height=0.3)
+            graph.add_node(file_node)
+            file_nodes[file] = file_node
+            folder = os.path.dirname(file)
+            folder_clusters[folder].append(file_node)
+
+        for cls in details['classes']:
+            cls_label = f"{cls['name']} (Class)"
+            if cls_label not in class_nodes:
+                class_node = pydot.Node(cls_label, shape='ellipse', style='filled', fillcolor='blue', fontcolor='white', fontsize=20)
+                graph.add_node(class_node)
+                class_nodes[cls_label] = class_node
+
+            graph.add_edge(pydot.Edge(file_nodes[file], class_nodes[cls_label], color='blue', penwidth=2.0))
+
+            for method in cls['methods']:
+                method_label = f"{cls['name']}.{method} (Method)"
+                method_node = pydot.Node(method_label, shape='ellipse', style='filled', fillcolor='green', fontcolor='white', fontsize=20)
+                graph.add_node(method_node)
+                graph.add_edge(pydot.Edge(class_nodes[cls_label], method_node, color='green', penwidth=2.0))
+
+        for func in details['functions']:
+            func_label = func['name']
+            size = max(func['loc'] / 10.0, 1.0)
+            if func_label not in function_nodes:
+                function_node = pydot.Node(func_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=30, width=size, height=size)
+                graph.add_node(function_node)
+                function_nodes[func_label] = function_node
             else:
-                prediction = quantum_utils.run_circuit(image.flatten(),
-                                                       weights_,
-                                                       shots=self.shots)
-            loss += self.spsa_loss(prediction, label, track)
-        return loss / len(batch[0])
+                function_node = function_nodes[func_label]
 
-    def train_epochs(self, x_train, y_train, batchsize=222, epochs=30):
-        """Trains the network on the imageset according to the SPSA algorithm
-            described in the paper.
+            graph.add_edge(pydot.Edge(file_nodes[file], function_node, color='purple', penwidth=2.0))
 
-        Args:
-            x_train: The training image set.
-            y_train: The training labels.
-            batchsize (int): Number of images per batch.
-            epochs (int): Number of epochs.
-        """
-        spsa_v = np.zeros(self.weights.shape)
-        for epoch in range(epochs):
-            self.correct = 0
-            print(f'Epoch {epoch+1} out of {epochs}')
-            count = 0
-            beta_k = self.spsa_a / (epoch + 1 + self.spsa_A)**self.spsa_s
-            alpha_k = self.spsa_b / (epoch + 1)**self.spsa_t
-            for batch in data_utils.iterate_minibatches(x_train,
-                                                        y_train,
-                                                        batchsize,
-                                                        shuffle=True):
-                count += 1
-                pertubation = np.random.binomial(1, 0.5, self.weights.shape)
-                b_loss_1 = self.spsa_batch_loss(batch, beta_k * pertubation,
-                                                True)
-                b_loss_2 = self.spsa_batch_loss(batch, -beta_k * pertubation)
-                spsa_g = (b_loss_1 - b_loss_2) / (2 * beta_k)
-                self.losses.append(b_loss_1)
-                spsa_v = self.spsa_gamma * spsa_v - spsa_g * alpha_k * pertubation
-                self.weights += spsa_v
-            self.accuracies.append(self.correct / x_train.shape[0])
+            for call in func['calls']:
+                call_label = call
+                if call_label not in function_nodes:
+                    call_node = pydot.Node(call_label, shape='circle', style='filled', fillcolor='black', fontcolor='white', fontsize=20, width=size, height=size)
+                    graph.add_node(call_node)
+                    function_nodes[call_label] = call_node
+                else:
+                    call_node = function_nodes[call_label]
 
-    def predict(self, image):
-        """Predicts the label of an image.
+                graph.add_edge(pydot.Edge(function_node, call_node, label=f"args: {', '.join(func['args'])}", labeldistance=2, labelangle=45, color='purple', penwidth=2.0))
 
-        Args:
-            image: The input image.
+    with open(temp_file, 'r') as tempf:
+        for line in tempf:
+            try:
+                file_details = json.loads(line)
+                for file, details in file_details.items():
+                    add_node_and_edges(file, details)
+                    if len(graph.get_node_list()) % 100 == 0:  # Periodically write to file to free up memory
+                        try:
+                            graph.write_png(output_file)
+                            logging.info(f"Intermediate visualization saved to {output_file}")
+                            graph.del_node(file_nodes[file])
+                            for cls in details['classes']:
+                                graph.del_node(class_nodes[f"{cls['name']} (Class)"])
+                            for func in details['functions']:
+                                graph.del_node(function_nodes[func['name']])
+                        except Exception as e:
+                            logging.error(f"Failed to generate intermediate graph: {e}")
+            except json.JSONDecodeError as e:
+                logging.error(f"Failed to parse JSON line: {e}")
 
-        Returns:
-            prediction_label: The label according to the labels dict.
-        """
-        image = image.flatten()
-        if self.tensor:
-            v = 2  # Set the bond dimension of the tensor network.
-            prediction = tensor_utils.evaluate_tensor(image, self.weights, v)
-            return list(self.labels.keys())[prediction]
+    dot_data = graph.to_string()
+    logging.debug(f"DOT file content:\n{dot_data}")
 
-        if self.efficient:
-            prediction = quantum_utils.run_efficient_circuit(image,
-                                                             self.weights,
-                                                             shots=self.shots)
-        else:
-            prediction = quantum_utils.run_circuit(image,
-                                                   self.weights,
-                                                   shots=self.shots)
-        prediction = max(prediction.items(), key=operator.itemgetter(1))[0]
-        return list(self.labels.keys())[list(
-            self.labels.values()).index(prediction)]
+    try:
+        graph.write_png(output_file)
+        logging.info(f"Final visualization saved to {output_file}")
+    except Exception as e:
+        logging.error(f"Failed to generate final graph: {e}")
 
-    def print_stats(self):
-        """
-        Generates images for network Accuracy and Loss.
-        """
-        plt.subplot(1, 2, 1)
-        plt.plot(self.accuracies)
-        plt.title('Network Stats')
-        plt.xlabel('Epochs')
-        plt.ylabel('Accuracy')
-        plt.subplot(1, 2, 2)
-        plt.plot(self.losses)
-        plt.xlabel('Batches')
-        plt.ylabel('Loss')
-        plt.show()
-
-    def save_model(self, filename='model.pickle'):
-        with open(filename, 'wb+') as file_:
-            pickle.dump(self, file_)
-
-    @staticmethod
-    def load_model(filename='model.pickle'):
-        with open(filename, 'rb') as file_:
-            model = pickle.load(file_)
-        return model
-
-
-if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-t', action='store_true')
-    args = parser.parse_args()
-
-    DIMENSION = 4
-    LABELS = {0: '0', 4: '1'}
-    (X_TRAIN,
-     Y_TRAIN), (X_TEST,
-                Y_TEST) = data_utils.generate_dataset(DIMENSION,
-                                                      filter_values=True,
-                                                      value_true=4,
-                                                      value_false=0)
-    NETWORK = QuantumNetwork(DIMENSION, LABELS, shots=512, tensor=args.t)
-    NETWORK.set_spsa_hyperparameters()
-    NETWORK.train_epochs(X_TRAIN, Y_TRAIN, epochs=5)
-    NETWORK.print_stats()
-    test_count = 0
-
-    for sample, label in zip(X_TEST, Y_TEST):
-        if (NETWORK.predict(sample) == label):
-            test_count += 1
-
-    print(f'Test Accuracy: {test_count/X_TEST.shape[0]}') 
-
-
-
-_____________________________Source code for quantum/utils/data_utils.py: 
-
- """This module provides utility for dataset management."""
-import collections
-
-import numpy as np
-import tensorflow as tf
-
-
-def generate_dataset(size=4,
-                     filter_contradicting=False,
-                     filter_values=False,
-                     value_true=3,
-                     value_false=6):
-    """Generates a customized MNIST dataset.
-
-    Args:
-        size: The dimension of resized images size x size.
-        filter_contradicting: Switch to filter contradicting samples.
-        filter_values: Switch to filter values.
-        value_true: The number to for True labels.
-        value_false: The number to for False labels.
-
-    Returns:
-        (x_train_resized, y_train): The training data.
-        (x_test_resized, y_test): The testing data.
-    """
-    (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
-    x_train, x_test = x_train[...,
-                              np.newaxis] / 255.0, x_test[...,
-                                                          np.newaxis] / 255.0
-    if filter_values:
-        x_train, y_train = filter_dataset(x_train, y_train, value_true,
-                                          value_false)
-        x_test, y_test = filter_dataset(x_test, y_test, value_true,
-                                        value_false)
-    if filter_contradicting:
-        x_train, y_train = filter_contradicting(x_train, y_train)
-        x_test, y_test = filter_contradicting(x_test, y_test)
-
-    x_train_resized = tf.image.resize(x_train, (size, size)).numpy()
-    x_test_resized = tf.image.resize(x_test, (size, size)).numpy()
-    return (x_train_resized, y_train), (x_test_resized, y_test)
-
-
-def filter_dataset(x_data, y_data, value_true, value_false):
-    """Filters examples from MNIST data to binary decision.
-
-    Args:
-        x_data: An array of ground trouth data.
-        y_data: The array of labels.
-        value_true: The number for True labels.
-        value_false: The number for False labels.
-
-    Returns:
-        x_data: The filtered ground trouth array.
-        y_data: The filtered labels.
-    """
-    keep = (y_data == value_true) | (y_data == value_false)
-    x_data, y_data = x_data[keep], y_data[keep]
-    # y_data = y_data == value_true
-    return x_data, y_data
-
-
-def remove_contradicting(x_data, y_data):
-    """Removes contradicting examples from labeled data.
-
-    Args:
-        x_data: An array of ground trouth data.
-        y_data: The array of labels
-
-    Returns:
-        new_x: The new ground trouth array.
-        new_y: The new labels.
-    """
-    mapping = collections.defaultdict(set)
-    for datapoint, label in zip(x_data, y_data):
-        mapping[tuple(datapoint.flatten())].add(label)
-
-    new_x = []
-    new_y = []
-    for datapoint, label in zip(x_data, y_data):
-        labels = mapping[tuple(datapoint.flatten())]
-        if len(labels) == 1:
-            new_x.append(datapoint)
-            new_y.append(list(labels)[0])
-        else:
-            pass
-    return np.array(new_x), np.array(new_y)
-
-
-def iterate_minibatches(x_data, y_data, batchsize, shuffle=False):
-    """Iterator for minibatches from stackoverflow.
-
-    Args:
-        x_data: An array of ground trouth data.
-        y_data: The array of labels
-        batchsize: The desired batchsize.
-        shuffle: Switch for shuffeling batches.
-
-    Yields:
-        A minibatch of the desired size.
-    """
-    if shuffle:
-        indices = np.arange(x_data.shape[0])
-        np.random.shuffle(indices)
-    for start_idx in range(0, x_data.shape[0], batchsize):
-        end_idx = min(start_idx + batchsize, x_data.shape[0])
-        if shuffle:
-            excerpt = indices[start_idx:end_idx]
-        else:
-            excerpt = slice(start_idx, end_idx)
-        yield x_data[excerpt], y_data[excerpt] 
-
-
-
-_____________________________Source code for quantum/utils/tensor_utils.py: 
-
- """This module provides utility to generate and contract a tensor network."""
-
-import tensornetwork as tn
-from .quantum_utils import unitaries_from_weights
-
-import numpy as np
-from typing import List
-
-
-def trigonometric_embedding(data: np.array, v: int) -> List[tn.Node]:
-    """ Takes the data vector of shape 1xN and maps it to tensor_data, a vector of shape
-     2x(2*N) that serves as input for the tensor network.
-
-    The mapping used is:
-
-    y_k = y_( k + 2*v ) = [cos( pi*x_k / 2 ), sin( pi*x_k / 2 )]
-
-    Args:
-        data: Vector of floats contained in the range [0,1]
-        v: Bond dimension of the subtrees connecting the tensor network
-
-    Returns:
-        tensor_data: list of nodes holding the mapped data
-
-    """
-    feature_map = np.zeros((data.shape[0], 2))
-    tensor_data = []
-    for i in range(len(data) // (2 * v)):
-        for k in range(2 * v):
-            l = i * 2 * v + k  # Index in the input data array of length dim**2x1
-            # Index in the array of dual and non-dual vectors of length 2*dim**2x1
-            feature_map[l][0] = np.cos(np.pi / 2 * data[l])
-            feature_map[l][1] = np.sin(np.pi / 2 * data[l])
-            tensor_data.append(tn.Node(feature_map[l], name=f"data_{l}"))
-        for k in range(2 * v):
-            l = i * 2 * v + k
-            tensor_data.append(tn.Node(feature_map[l], name=f"data_h_{l}"))
-    return tensor_data
-
-
-def labeling(rho: np.array):
-    """ Takes a reduced density matrix rho, and returns label 1 if the first diagonal
-    entry (probability of state |0>) is bigger than 0.5, and label 0 otherwise.
-
-    Args:
-        rho: Reduced density matrix of shape 2x2
-
-    Returns:
-        label: Binary label
-
-    """
-    if rho[0][0].real > 0.5:
-        return 1
+def visualiserepo(github_link):
+    logging.debug(f"Starting visualization for repo: {github_link}")
+    clone_dir = clone_repo(github_link)
+    if clone_dir:
+        extract_codebase_structure(clone_dir)        
+        running_locally = not 'STREAMLIT_SERVER' in os.environ
+        if running_locally:
+            visualize_codebase_structure()        
+        return 'codebase_graph.png'
     else:
-        return 0
+        logging.error("Cloning failed, skipping visualization.")
+ 
 
 
-def build_tensor(
-    tensor_data: List[tn.Node], unitaries: List[np.array]
-) -> List[tn.Node]:
-    """ Takes a valid tensor_data vector, a valid list of unitary matrices, and makes
-    the necessary edge connections to construct the network as illustrated in the
-    Huggins et al. paper 'Towards Quantum Machine Learning with Tensor Networks'
 
-    arXiv:1803.11537
+_____________________________Source code for handle_streamed_input.py: 
 
-    Args:
-        tensor_data: List of nodes holding the mapped input data in a valid format
-        unitaries: List of valid unitary matrices
+ import streamlit as st
+from create_prompt_from_settings import create_prompt_from_settings
+from render_message import render_message
+from stream_assistant_response import stream_assistant_response
+from stream_instructor_response import stream_instructor_response
+from add_context_to_user_prompt import add_context_to_user_prompt  # Import the function here
 
-    Returns:
-        tensor_network: List of connected tensors forming the network as explained in
-        the Huggins' paper
+async def handle_streamed_input(user_input, settings, prompt_augmentation=None, repo_json=None, github_link=None):
+    # Append user input
+    st.session_state.messages.append({"role": "user", "content": user_input, "displayed": False})
+    st.session_state.run = True
 
-    """
+    # Generate and append the augmented prompt if not already done
+    if repo_json is not None and github_link is not None:
+        # Generate and append the augmented prompt
+        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, user_input)
+        st.session_state.messages.append({"role": "system", "content": prompt_augmentation, "displayed": False})
 
-    data_length = len(tensor_data) // 2
-    v = int(np.sqrt(unitaries[0].shape[0]) / 2)
+    if prompt_augmentation is not None:
+        st.session_state.messages.append({"role": "system", "content": prompt_augmentation, "displayed": False})
 
-    gates_per_step = []
-    gates_per_step.append(data_length // (2 ** v))
-    steps = int(np.log2(gates_per_step[0])) + 1  # +1 as we added the first step already
-    for i in range(1, steps):
-        gates_per_step.append(gates_per_step[i - 1] // 2)
+    # Display user message
+    user_input_placeholder = st.empty()
+    render_message(user_input_placeholder, "You", user_input, no_expander=True)
 
-    # Cumulative gates in a given step
-    c_gates = [0]
-    sum_ = 0
-    for i in range(len(gates_per_step)):
-        sum_ += 2 * gates_per_step[i]
-        c_gates.append(sum_)
+    # Placeholders for responses
+    assistant_placeholders = []
+    instructor_placeholders = []
+    progress_placeholders = []
 
-    tensor_network = []
+    for _ in range(st.session_state.iterations):
+        # Add placeholders for responses
+        assistant_placeholder = st.empty()
+        assistant_placeholders.append(assistant_placeholder)
 
-    redistribute_indexes = [2 for i in range(int(np.log2(unitaries[0].size)))]
+        progress_placeholder = st.empty()
+        progress_placeholders.append(progress_placeholder)
 
-    for i, unitary in enumerate(unitaries):
-        tensor_network.append(
-            tn.Node(unitary.reshape(redistribute_indexes), name=f"unitary_{i}")
-        )
-        tensor_network.append(
-            tn.Node(
-                unitary.conjugate().reshape(redistribute_indexes), name=f"unitary_h_{i}"
+        instructor_placeholder = st.empty()
+        instructor_placeholders.append(instructor_placeholder)
+
+        # Get assistant response
+        await stream_assistant_response(st.session_state.messages, assistant_placeholder)
+
+        doing_message = "🔁 🤖 Improving my code"
+        render_message(progress_placeholder, "Doing", doing_message, no_expander=True)
+
+        # Get instructor response
+        await stream_instructor_response(st.session_state.messages, instructor_placeholder)
+
+    # Final response
+    final_response_placeholder = st.empty()
+    await stream_assistant_response(st.session_state.messages, final_response_placeholder, no_expander=True)
+
+    st.session_state.run = False
+    st.session_state.show_buttons = False 
+
+
+
+_____________________________Source code for add_context_to_user_prompt.py: 
+
+ import streamlit as st
+from analyze_repo import read_code
+import json
+from gpt_response import gpt_response
+from get_text_between_tags import get_text_between_tags
+
+def create_instructions_for_LLM(json_str, user_prompt):
+    instructions_for_LLM = f"**Here's a Json that represents my codebase.**: \n\n {json_str}"
+    instructions_for_LLM += ''' 
+    
+    
+    
+    
+    _________________________
+    What I want to accomplish:
+    ''' 
+    instructions_for_LLM += f"{user_prompt}"
+        
+    instructions_for_LLM += ''' 
+    
+
+
+    ________________________
+    Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to 5 files that you'd like me to show to another LLm that will then be tasked with solving my task.
+    I'll immediately and without looking run your answer through a string processing algorithm that will look for filenames, and return their source code to you. 
+    
+    For this to work, it's important to stick with a convention:
+    Each filename has to go inside of html tags like this:
+    
+    <f>readme.rtfd</f>
+    <f>main.py</f>
+    <f>transcribe_audio.py</f>
+    
+    (Names from my example above are made up. Make sure to only provide filenames present in the json above). If there's a readme, always look at that.
+        
+    Additionally, since you know the bigger picture of my codebase a little, give tips to the LLM pertaining to that, and place it inside of brackets:
+    <tips> TIPS </tips>. 
+    
+    Your tips should only be a couple paragraphs long.    
+    '''
+    return instructions_for_LLM
+
+def create_list_of_filenames(input_string):
+    start_tag = "<f>"
+    end_tag = "</f>"
+    list_of_filenames = []
+    seen_filenames = set()
+    start_index = 0
+
+    while True:
+        start_loc = input_string.find(start_tag, start_index)
+        if start_loc == -1:
+            break
+        end_loc = input_string.find(end_tag, start_loc + len(start_tag))
+        if end_loc == -1:
+            break
+        filename = input_string[start_loc + len(start_tag):end_loc]
+        if filename not in seen_filenames:
+            list_of_filenames.append(filename)
+            seen_filenames.add(filename)
+        start_index = end_loc + len(end_tag)
+    
+    return list_of_filenames
+
+        
+def add_context_to_user_prompt(repo_json, github_link, user_prompt):	
+    
+    # Have gpt look at the json, and return a list with up to n entries of filanmes.                
+    json_str = json.dumps(repo_json, indent=4)    
+    instructions_for_LLM = create_instructions_for_LLM(json_str, user_prompt)
+        
+    response = gpt_response(instructions_for_LLM)
+    response = response.replace("cloned_repo/", "") # removes "cloned_repo/"
+    list_of_filenames = create_list_of_filenames(response)
+    for filename in list_of_filenames:
+        st.toast("Highly pertinent | " + filename, icon = "🪼")
+
+    pertinent_source_code = '\n\n__________________________'
+    # Loop over the list and append the code for the chosen files and iteratively append them to context
+    tips = get_text_between_tags(response, "tips")
+    
+    for filename in list_of_filenames:
+        nLOC, source_code_for_this_file = read_code(repo_json, filename, github_link)
+        pertinent_source_code += f"Source code for {filename}: \n\n {source_code_for_this_file} \n\n\n\n_____________________________"        
+
+    # Append the codestring to json_str     
+    augmented_prompt = f"Here's source code from parts of the user's code repo that like are helpful: \n\n\n {pertinent_source_code}\n\n\n—————————————————————" 
+    augmented_prompt += f"Some tips: \n\n\n {tips}."
+    
+    print("________________\n\n\n\n\LLM RESPONSE: \n\n\n\n" + response + "\n\n\n\n\n\n\n\n")
+    print("________________\n\n\n\n\INSTRUCTIONS FOR LLM: \n\n\n\n" + instructions_for_LLM + "\n\n\n\n\n\n\n\n")
+    print("________________\n\n\n\n\FILENAMES: \n\n\n\n" + str(list_of_filenames) + "\n\n\n\n\n\n\n\n")
+    print("________________\n\n\n\n\TIPS: \n\n\n\n" + tips + "\n\n\n\n\n\n\n\n")
+        
+    print("________________\n\n\n\n\nAUGMENTED PROMPT: \n\n\n\n" + augmented_prompt + "\n\n\n\n\n\n\n\n")
+    return augmented_prompt 
+
+
+
+_____________________________Source code for gpt_response.py: 
+
+ import time
+import openai
+import os
+from dotenv import load_dotenv
+
+
+def gpt_response(prompt):        
+    load_dotenv() 
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    
+    max_retry = 3
+    retry_counter = 0
+    modelversion = 'gpt-4o'
+                    
+    message_history = []
+
+    if isinstance(prompt, str):        
+        message_history.append({"role": "user", "content": prompt})
+
+    elif isinstance(prompt, list):
+        for message in prompt:
+            if "content" in message:                                
+                message_history.append(message)
+
+    else:
+        print(f"Data: {prompt}")
+        print(f"Type : {type(prompt)}")
+        print("Invalid prompt type. It must be a string or list of message objects.")
+        return None
+                    
+    while retry_counter <= max_retry:
+        try:
+            response = openai.chat.completions.create( # "chat.completions" needs to stay this way
+                model=modelversion,
+                messages=message_history,
+                stream=False,
             )
-        )
+            return response.choices[0].message.content
+        
+        except Exception as e:
+            if retry_counter < max_retry:
+                print(f"   *** An error occurred ({str(e)}). Trying again in 300ms. ***")
+                time.sleep(0.3)
+                retry_counter += 1
+            else:
+                print("   *** Retry limit reached. Ending execution. ***")
+                return None
 
-    for i in range(gates_per_step[0]):
-        for k in range(2 * v):
-            idx = (
-                2 * i * 2 * v + k
-            )  # Index in the array of dual and non-dual vectors of length 2*dim**2x1
-            tensor_network[2 * i][k] ^ tensor_data[idx][0]
-        for k in range(2 * v):
-            idx = 2 * i * 2 * v + k
-            tensor_network[2 * i + 1][k] ^ tensor_data[idx + 2 * v][0]
+# Test function
+def test():
+    prompt = 'How are ya?'
+    response = gpt_response(prompt)
+    print(response)
 
-    for i in range(
-        steps - 1
-    ):  #  Last execution is peeled off, as there's no 'next tensor' to link
-        for j in range(gates_per_step[i]):
-            # Within a given gate
-            gate_idx = 2 * j + c_gates[i]
-            for k in range(v):
-                tensor_network[gate_idx][2 * v + k] ^ tensor_network[gate_idx + 1][
-                    2 * v + k
-                ]
-            for k in range(v):
-                tensor_network[gate_idx][k + 3 * v] ^ tensor_network[
-                    ((gate_idx - c_gates[i]) // 4) * 2 + c_gates[i + 1]
-                ][((gate_idx // 2) % 2) * v + k]
-                tensor_network[gate_idx + 1][k + 3 * v] ^ tensor_network[
-                    ((gate_idx - c_gates[i]) // 4) * 2 + c_gates[i + 1] + 1
-                ][((gate_idx // 2) % 2) * v + k]
-    # Contracting the last tensor in the network
-    gate_idx = c_gates[-2]  #  Remember we appended an offset 0, thus -2 instead of -1
-    for k in range((2 * v) - 1):
-        tensor_network[gate_idx][2 * v + k] ^ tensor_network[gate_idx + 1][2 * v + k]
-    return tensor_network
-
-
-def contract(tensor_data: List[tn.Node], tensor_network: List[tn.Node]) -> np.array:
-    """ Takes the lists tensor_data and tensor_network, and contracts them following
-    a naive algorithm.
-
-    NOTE: This is a fragile implementation - Only works with v = 2 -pending the solution
-    of the issue with the Google/TensorNetwork method
-    tensornetwork.contractors.auto(nodes, …)
-
-    -> The contraction algorithm finding falls in an infinite recursion, that
-    bloats the RAM and kills the Python process.
-
-
-    Args:
-        tensor_data: List of nodes holding the mapped input data in a valid format
-        tensor_network: List of connected tensors forming the network as explained in
-        the Huggins' paper
-
-    Returns:
-        res_tot.tensor: 2x2 reduced density matrix representing the quantum state at the
-        end of the circuit
-    """
-    temp = []
-    v = len(tensor_network[0].tensor.shape) // 4
-    data_length = len(tensor_data) // 2
-
-    for i in range(data_length // (2 * v)):
-        cont1 = [tensor_data[i] for i in range(i * 4 * v, (i + 1) * 4 * v)]
-        cont_1u = [tensor_network[i] for i in range(i * v, (i + 1) * v)]
-        cont = cont1 + cont_1u
-        temp.append(tn.contractors.greedy(cont, ignore_edge_order=True))
-
-    tmp1 = temp[0] @ tensor_network[8]
-    tmp2 = temp[1] @ tensor_network[9]
-    res = tmp1 @ tmp2
-
-    tmp3 = temp[2] @ tensor_network[10]
-    tmp4 = temp[3] @ tensor_network[11]
-    res2 = tmp3 @ tmp4
-
-    tmp5 = res @ tensor_network[12]
-    tmp6 = res2 @ tensor_network[13]
-    res_tot = tmp5 @ tmp6
-
-    return res_tot.tensor
-
-
-def evaluate_tensor(image: np.array, weights: np.array, v: int) -> int:
-    """ Generates a tensor network of bond dimension v and contracts it, resulting in a
-        2x2 reduced density matrix
-    Args:
-        image: The flattened image data that serves as input to the tensor network
-        weights: Parameters for creating the tensors in the network
-        v: Bond dimension of the subtrees that comprise the network
-
-    Returns:
-        rho: 2x2 reduced density matrix representing the quantum state at the end of the
-        circuit
-    """
-    unitaries = unitaries_from_weights(weights, 2 ** (2 * v))
-    tensor_data = trigonometric_embedding(image, v)
-    tensor_network = build_tensor(tensor_data, unitaries)
-    rho = contract(tensor_data, tensor_network)
-    return labeling(rho)
+if __name__ == "__main__":
+    test()
  
 
 
@@ -586,4 +543,6 @@ _____________________________
 —————————————————————Some tips: 
 
 
- Your codebase is focused on implementing and manipulating quantum neural networks. The primary file, <f>quantum/network.py</f>, contains the `QuantumNetwork` class which includes methods for training, predicting, and saving models. The utility files such as <f>quantum/utils/data_utils.py</f> and <f>quantum/utils/tensor_utils.py</f> provide supportive functions for dataset handling, tensor operations, and other mathematical manipulations essential for the quantum operations. Focus on how these utility functions are used within the `QuantumNetwork` class to understand the bigger picture and flow of the project..
+ 
+The `streamlit_app.py` file is likely the main entry point for your application, handling initial setup and user interactions. The `repo_visualizer.py` file contains functionalities related to visualizing the codebase, which might be crucial for understanding the structure. The `handle_streamed_input.py` file deals with processing user inputs and streaming responses, which might interact with multiple modules. The `add_context_to_user_prompt.py` file appears to be important for augmenting user prompts based on the repository's context. Finally, the `gpt_response.py` file handles interactions with the GPT model, which seems central to fetching responses from the AI model.
+.

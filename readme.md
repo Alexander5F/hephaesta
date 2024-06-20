@@ -130,4 +130,9 @@ Please follow the coding standards and write tests for new functionalities. Refe
 
 Known Issues
 Compatibility issues with Python versions below 3.8.
-Boost Mode may not cover every edge case in very large repositories.
+
+## Potential names
+jellyfish.io
+solveth.at
+fixth.at
+codesplo.de

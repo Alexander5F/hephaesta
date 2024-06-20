@@ -417,7 +417,7 @@
                         "user_prompt"
                     ],
                     "calls": [],
-                    "loc": 36
+                    "loc": 35
                 },
                 {
                     "name": "create_list_of_filenames",
@@ -743,6 +743,34 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/custom_html.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "custom_html",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "button",
+                            "file": "cloned_repo/custom_html.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 64
+                }
+            ],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/module_for_main.py",
             "imports": [
                 {
@@ -820,7 +848,7 @@
                     "alias": null
                 },
                 {
-                    "module": "load_custom_html",
+                    "module": "custom_html",
                     "alias": null
                 },
                 {
@@ -997,7 +1025,7 @@
                             "args_passed": []
                         },
                         {
-                            "function": "load_custom_html",
+                            "function": "custom_html",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
                         },
@@ -1057,120 +1085,6 @@
                         }
                     ],
                     "loc": 22
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/brain.py",
-            "imports": [
-                {
-                    "module": "openai",
-                    "alias": null
-                },
-                {
-                    "module": "asyncio",
-                    "alias": null
-                },
-                {
-                    "module": "stream_response",
-                    "alias": null
-                },
-                {
-                    "module": "settings_to_system_prompt",
-                    "alias": null
-                },
-                {
-                    "module": "display_messages",
-                    "alias": null
-                },
-                {
-                    "module": "messages_to_string",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "brain",
-                    "args": [
-                        "messages",
-                        "settings",
-                        "max_iterations",
-                        "current_iteration"
-                    ],
-                    "calls": [
-                        {
-                            "function": "messages_to_string",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "settings_to_system_prompt",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "stream_response",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "stream_response",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "brain",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        },
-                        {
-                            "function": "len",
-                            "file": "cloned_repo/brain.py",
-                            "args_passed": [
-                                "messages",
-                                "settings",
-                                "max_iterations",
-                                "current_iteration"
-                            ]
-                        }
-                    ],
-                    "loc": 66
                 }
             ],
             "classes": []
@@ -1345,34 +1259,6 @@
                         }
                     ],
                     "loc": 4
-                }
-            ],
-            "classes": []
-        },
-        {
-            "file_path": "cloned_repo/load_custom_html.py",
-            "imports": [
-                {
-                    "module": "streamlit",
-                    "alias": "st"
-                },
-                {
-                    "module": "button",
-                    "alias": null
-                }
-            ],
-            "functions": [
-                {
-                    "name": "load_custom_html",
-                    "args": [],
-                    "calls": [
-                        {
-                            "function": "button",
-                            "file": "cloned_repo/load_custom_html.py",
-                            "args_passed": []
-                        }
-                    ],
-                    "loc": 58
                 }
             ],
             "classes": []
@@ -2162,6 +2048,34 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/custom_html_for_only_chat.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "button",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "custom_html_for_only_chat",
+                    "args": [],
+                    "calls": [
+                        {
+                            "function": "button",
+                            "file": "cloned_repo/custom_html_for_only_chat.py",
+                            "args_passed": []
+                        }
+                    ],
+                    "loc": 32
+                }
+            ],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/vector_search_codebase.py",
             "imports": [
                 {
@@ -2490,7 +2404,7 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/pages/Quickstart.py",
+            "file_path": "cloned_repo/pages/Just chat.py",
             "imports": [
                 {
                     "module": "streamlit",
@@ -2521,7 +2435,7 @@
                     "alias": null
                 },
                 {
-                    "module": "load_custom_html",
+                    "module": "custom_html_for_only_chat",
                     "alias": null
                 },
                 {
@@ -2559,6 +2473,12 @@
             ],
             "functions": [
                 {
+                    "name": "set_page_config",
+                    "args": [],
+                    "calls": [],
+                    "loc": 6
+                },
+                {
                     "name": "send_message",
                     "args": [
                         "settings",
@@ -2568,7 +2488,7 @@
                     "calls": [
                         {
                             "function": "print",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2577,7 +2497,7 @@
                         },
                         {
                             "function": "add_context_to_user_prompt",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2586,7 +2506,7 @@
                         },
                         {
                             "function": "print",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2595,7 +2515,7 @@
                         },
                         {
                             "function": "print",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2604,7 +2524,7 @@
                         },
                         {
                             "function": "open",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2613,7 +2533,7 @@
                         },
                         {
                             "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2622,7 +2542,7 @@
                         },
                         {
                             "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
                                 "github_link",
@@ -2641,7 +2561,7 @@
                     "calls": [
                         {
                             "function": "create_json_of_interactions",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "github_link",
                                 "repo_json"
@@ -2659,7 +2579,7 @@
                     "calls": [
                         {
                             "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "prompt",
                                 "settings"
@@ -2674,51 +2594,46 @@
                     "calls": [
                         {
                             "function": "load_dotenv",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "call_initialisation",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "set_page_config",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "set_loggers",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "create_custom_style",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
-                            "function": "load_custom_html",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "function": "custom_html_for_only_chat",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "send_message",
-                            "file": "cloned_repo/pages/Quickstart.py",
-                            "args_passed": []
-                        },
-                        {
-                            "function": "check_and_delete_file_on_first_load",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         },
                         {
                             "function": "get_json_of_interactions",
-                            "file": "cloned_repo/pages/Quickstart.py",
+                            "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": []
                         }
                     ],
-                    "loc": 43
+                    "loc": 34
                 }
             ],
             "classes": []

@@ -17,7 +17,7 @@ from analyze_repo import create_json_of_interactions, read_code
 from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
 from add_context_to_user_prompt import add_context_to_user_prompt
 
-# FUNCTIONS IN THIS FILE:
+# FUNCTION DEFINITIONS IN THIS FILE:
 # main
 # send_message
 # call_initialisation

@@ -6,8 +6,9 @@ import streamlit as st
 from call_stream_response import call_stream_response
 from messages_to_string import messages_to_string 
 
-async def stream_instructor_response(messages, placeholder, theme='light', no_expander=True):
-    conversation_history = messages_to_string(messages)
+async def stream_instructor_response(placeholder, no_expander=True):
+    messages = st.session_state.messages
+    conversation_history = messages_to_string(st.session_state.messages) 
 
     prompt = f"""
     I developed a software called Hephaesta that edits code for users. Unlike GitHub Copilot, which often produces subpar results:
@@ -40,7 +41,6 @@ async def stream_instructor_response(messages, placeholder, theme='light', no_ex
     async for chunk in call_stream_response(internal_messages):
         new_content = chunk["content"][len(full_response):]
         full_response += new_content
-        messages[-1]["content"] = full_response
-        render_message(placeholder, "Instructor", full_response)
-        
-    return internal_messages
+        st.session_state.messages[-1]["content"] = full_response
+        render_message(placeholder, "Instructor", full_response)        
+    return
