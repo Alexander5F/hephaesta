@@ -28,7 +28,8 @@ def prompt_for_assistant():
     
     - The previous system message is from the instructor's instructions to you.     
     - Follow them. They have not been shown to the user. 
-    - All of your output goes straight to the user, so just take the instructor's advice, and don't mention him or his instructions explicitly. 
+    - All of your output goes straight to the user, so just take the instructor's advice, and don't mention him or his instructions explicitly.
+    - Regarding the instructor input: Towards the user, implicitly act as if you had these thoughts yourself.
     - You are just talking to the user.    
     '''
     

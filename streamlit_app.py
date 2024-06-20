@@ -30,20 +30,21 @@ def send_message(settings, github_link=None, repo_json=None):
     if prompt and repo_json is not None and github_link is not None:
         st.toast('Reading through all of your code', icon="📖")
         time.sleep(1)
-        st.toast('Figuring out what\'s relevant', icon="🥒")
-        print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
-        print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        with open('augmented_prompt.txt', 'w') as file:
-            file.write(prompt + prompt_augmentation)
+        #st.toast('Figuring out what\'s relevant', icon="🥒")
+        #print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        #prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
+        #print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
+        #with open('augmented_prompt.txt', 'w') as file:
+        #    file.write(prompt + prompt_augmentation)
         print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
         st.toast('Done', icon="🛎️")
-        asyncio.run(handle_streamed_input(prompt, settings, prompt_augmentation))
+        asyncio.run(handle_streamed_input(prompt, settings, repo_json, github_link))
         st.toast("Done", icon = "🍪")
     elif prompt and repo_json is None:
         st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
-        asyncio.run(handle_streamed_input(prompt, settings))    
-
+        asyncio.run(handle_streamed_input(prompt, settings)) 
+        
+        
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:
         st.toast('Analyzing your codebase', icon="🛰️")

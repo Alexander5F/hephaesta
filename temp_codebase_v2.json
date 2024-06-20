@@ -236,9 +236,14 @@
             ],
             "functions": [
                 {
+                    "name": "prompt_for_assistant",
+                    "args": [],
+                    "calls": [],
+                    "loc": 30
+                },
+                {
                     "name": "stream_assistant_response",
                     "args": [
-                        "messages",
                         "placeholder",
                         "theme",
                         "no_expander",
@@ -246,10 +251,19 @@
                     ],
                     "calls": [
                         {
+                            "function": "prompt_for_assistant",
+                            "file": "cloned_repo/stream_assistant_response.py",
+                            "args_passed": [
+                                "placeholder",
+                                "theme",
+                                "no_expander",
+                                "expanded"
+                            ]
+                        },
+                        {
                             "function": "call_stream_response",
                             "file": "cloned_repo/stream_assistant_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
                                 "theme",
                                 "no_expander",
@@ -260,7 +274,6 @@
                             "function": "render_message",
                             "file": "cloned_repo/stream_assistant_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
                                 "theme",
                                 "no_expander",
@@ -271,7 +284,6 @@
                             "function": "len",
                             "file": "cloned_repo/stream_assistant_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
                                 "theme",
                                 "no_expander",
@@ -279,7 +291,7 @@
                             ]
                         }
                     ],
-                    "loc": 8
+                    "loc": 11
                 }
             ],
             "classes": []
@@ -413,11 +425,10 @@
                 {
                     "name": "create_instructions_for_LLM",
                     "args": [
-                        "json_str",
-                        "user_prompt"
+                        "json_str"
                     ],
                     "calls": [],
-                    "loc": 35
+                    "loc": 31
                 },
                 {
                     "name": "create_list_of_filenames",
@@ -577,6 +588,10 @@
                     "alias": "st"
                 },
                 {
+                    "module": "instructor",
+                    "alias": null
+                },
+                {
                     "module": "create_prompt_from_settings",
                     "alias": null
                 },
@@ -603,7 +618,6 @@
                     "args": [
                         "user_input",
                         "settings",
-                        "prompt_augmentation",
                         "repo_json",
                         "github_link"
                     ],
@@ -614,7 +628,6 @@
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
@@ -625,18 +638,16 @@
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
                         },
                         {
-                            "function": "add_context_to_user_prompt",
+                            "function": "instructor",
                             "file": "cloned_repo/handle_streamed_input.py",
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
@@ -647,7 +658,6 @@
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
@@ -658,7 +668,6 @@
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
@@ -669,24 +678,32 @@
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
                                 "repo_json",
                                 "github_link"
                             ]
                         },
                         {
-                            "function": "stream_instructor_response",
+                            "function": "instructor",
                             "file": "cloned_repo/handle_streamed_input.py",
                             "args_passed": [
                                 "user_input",
                                 "settings",
-                                "prompt_augmentation",
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "instructor",
+                            "file": "cloned_repo/handle_streamed_input.py",
+                            "args_passed": [
+                                "user_input",
+                                "settings",
                                 "repo_json",
                                 "github_link"
                             ]
                         }
                     ],
-                    "loc": 49
+                    "loc": 48
                 }
             ],
             "classes": []
@@ -1046,6 +1063,189 @@
                         }
                     ],
                     "loc": 43
+                }
+            ],
+            "classes": []
+        },
+        {
+            "file_path": "cloned_repo/instructor.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                },
+                {
+                    "module": "json",
+                    "alias": null
+                },
+                {
+                    "module": "gpt_response",
+                    "alias": null
+                },
+                {
+                    "module": "get_text_between_tags",
+                    "alias": null
+                },
+                {
+                    "module": "read_code",
+                    "alias": null
+                },
+                {
+                    "module": "messages_to_string",
+                    "alias": null
+                }
+            ],
+            "functions": [
+                {
+                    "name": "prompt_for_instructor",
+                    "args": [
+                        "repo_json"
+                    ],
+                    "calls": [
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json"
+                            ]
+                        }
+                    ],
+                    "loc": 95
+                },
+                {
+                    "name": "create_list_of_filenames",
+                    "args": [
+                        "input_string"
+                    ],
+                    "calls": [
+                        {
+                            "function": "set",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "input_string"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "input_string"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "input_string"
+                            ]
+                        },
+                        {
+                            "function": "len",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "input_string"
+                            ]
+                        }
+                    ],
+                    "loc": 21
+                },
+                {
+                    "name": "instructor",
+                    "args": [
+                        "repo_json",
+                        "github_link"
+                    ],
+                    "calls": [
+                        {
+                            "function": "prompt_for_instructor",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "messages_to_string",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "gpt_response",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "create_list_of_filenames",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "get_text_between_tags",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "print",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "read_code",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        },
+                        {
+                            "function": "get_text_between_tags",
+                            "file": "cloned_repo/instructor.py",
+                            "args_passed": [
+                                "repo_json",
+                                "github_link"
+                            ]
+                        }
+                    ],
+                    "loc": 41
                 }
             ],
             "classes": []
@@ -1592,6 +1792,26 @@
             "classes": []
         },
         {
+            "file_path": "cloned_repo/show_image_popup 2.py",
+            "imports": [
+                {
+                    "module": "streamlit",
+                    "alias": "st"
+                }
+            ],
+            "functions": [
+                {
+                    "name": "show_image_popup",
+                    "args": [
+                        "image_url"
+                    ],
+                    "calls": [],
+                    "loc": 17
+                }
+            ],
+            "classes": []
+        },
+        {
             "file_path": "cloned_repo/stream_instructor_response.py",
             "imports": [
                 {
@@ -1627,9 +1847,7 @@
                 {
                     "name": "stream_instructor_response",
                     "args": [
-                        "messages",
                         "placeholder",
-                        "theme",
                         "no_expander"
                     ],
                     "calls": [
@@ -1637,9 +1855,7 @@
                             "function": "messages_to_string",
                             "file": "cloned_repo/stream_instructor_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
-                                "theme",
                                 "no_expander"
                             ]
                         },
@@ -1647,9 +1863,7 @@
                             "function": "call_stream_response",
                             "file": "cloned_repo/stream_instructor_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
-                                "theme",
                                 "no_expander"
                             ]
                         },
@@ -1657,9 +1871,7 @@
                             "function": "render_message",
                             "file": "cloned_repo/stream_instructor_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
-                                "theme",
                                 "no_expander"
                             ]
                         },
@@ -1667,9 +1879,7 @@
                             "function": "len",
                             "file": "cloned_repo/stream_instructor_response.py",
                             "args_passed": [
-                                "messages",
                                 "placeholder",
-                                "theme",
                                 "no_expander"
                             ]
                         }
@@ -2488,42 +2698,6 @@
                     "calls": [
                         {
                             "function": "print",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "add_context_to_user_prompt",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "open",
                             "file": "cloned_repo/pages/Just chat.py",
                             "args_passed": [
                                 "settings",
