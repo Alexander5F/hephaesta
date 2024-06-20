@@ -21,23 +21,22 @@ def create_instructions_for_LLM(json_str, user_prompt):
 
 
     ________________________
-    Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to 3 files that you'd like me to show to another LLm that will then be tasked with solving my task.
+    Please don't write any code unless I explicitly ask you to. Before we start with all that, please choose up to 5 files that you'd like me to show to another LLm that will then be tasked with solving my task.
     I'll immediately and without looking run your answer through a string processing algorithm that will look for filenames, and return their source code to you. 
     
     For this to work, it's important to stick with a convention:
     Each filename has to go inside of html tags like this:
     
-    <f>render_messages.py</f>
+    <f>readme.rtfd</f>
     <f>main.py</f>
     <f>transcribe_audio.py</f>
     
-    (Names from my example above are made up. Make sure to only provide filenames present in the json above).       
-    
-    
+    (Names from my example above are made up. Make sure to only provide filenames present in the json above). If there's a readme, always look at that.
+        
     Additionally, since you know the bigger picture of my codebase a little, give tips to the LLM pertaining to that, and place it inside of brackets:
     <tips> TIPS </tips>. 
     
-    Your tips should only be a couple paragraphs long.
+    Your tips should only be a couple paragraphs long.    
     '''
     return instructions_for_LLM
 

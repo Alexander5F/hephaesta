@@ -3,7 +3,7 @@ from streamlit_extras.buy_me_a_coffee import button
 
 # Initialize session state for sidebar state
 
-def load_custom_html():
+def custom_html_for_only_chat():
     if st.session_state.first_load:
         st.toast('Welcome to the party', icon = "🍰")
         st.session_state.first_load = False
@@ -18,41 +18,10 @@ def load_custom_html():
             #st.image('https://i.imgur.com/VcPyudU.jpeg', width=200) # Peanut
             #st.image('https://i.imgur.com/zN8Jn5X.png', width=400) # Peanut                        
             
-            st.write('# HEPHAESTA | *Shorter prompts, better code.*')            
-            #st.write('#### Understands the nuts and bolts of your code')
-            st.divider()
+            st.write('## HEPHAESTA | *Shorter prompts, better code.*')            
+            #st.write('#### Understands the nuts and bolts of your code')            
             
             # Correct path to the page                                    
-            st.write("""
-
-    ### **Usage**
-
-                        📂 Give it your Github repo one time
-        💬 Tell it to “Fix the stuff with the thing” in the chat
-
-    **What it does**
-
-                    🧠 Figures out which files to work on and pulls in the right context.
-        🤖 A team of GPT-4o’s fixes it and criticises each other, to deliver better code than chatGPT, and without you babysitting. 
-                    """
-                    )
-            st.divider()    
-            st.write("""
-
-    ### **Save an hour each day**
-            ✍️ Short prompts are enough. It already has the context.
-            🛋️ Lean back a few seconds and watch it self-improve.
-            💩 Stop spending your day sifting through garbage code 
-            🔧 It takes care not to drop existing functionalities when modifying
-            🧠 Smarter than chatGPT
-            🚀 Faster than chatGPT
-            🔧 Fixes its own mistakes
-            📚 Reads up on newest repos
-            🔍 Doesn't break existing functionality 
-                    """                
-                    )                                        
-            st.divider()    
-
     
     with st.sidebar.expander("Settings", expanded=True): 
         settings = {            

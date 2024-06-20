@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 # Custom functions 
 from repo_visualizer import visualiserepo
 from stream_response import stream_response
-from load_custom_html import load_custom_html
+from custom_html_for_only_chat import custom_html_for_only_chat
 from gpt_response import gpt_response
 from create_prompt_from_settings import create_prompt_from_settings
 from render_message import render_message
@@ -68,13 +68,17 @@ def main():
     left_column, middle_column, right_column = st.columns([1, 4, 1])
 
     with middle_column:
-        settings = load_custom_html()
-        st.write('### **Give it a try**')
+        settings = custom_html_for_only_chat()        
     
         if 'github_link' not in st.session_state:
             st.session_state.github_link = None
         if 'repo_json' not in st.session_state:
             st.session_state.repo_json = None
+
+        on = st.toggle("Tough problem? **Boost.**")
+        if on:
+            st.session_state.iterations = 1
+            st.toast("**Boost activated** for superior problem solving", icon = "🪼")
             
         github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
@@ -83,22 +87,9 @@ def main():
                 st.session_state.repo_json = get_json_of_interactions(github_link)
             st.write(f'GitHub Link: {st.session_state.github_link}')
             
-        on = st.toggle("Though problem? **Boost.**")
-        if on:
-            st.session_state.iterations = 1
-            st.toast("**Boost activated** for superior problem solving", icon = "🪼")
             
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
-        check_and_delete_file_on_first_load()
-        output_image_path = "codebase_graph.png"
-        if os.path.exists(output_image_path):
-            st.image(output_image_path)
-        else:
-            st.image("https://i.imgur.com/k9YDfOV.png")
-            st.write('*Note*: Currently only visualisation, and that is buggy. Loading the context into the conversation background will be here in the next days.')
-        st.divider()
-
     with right_column:
         st.write(' ')
 
