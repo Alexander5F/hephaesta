@@ -14,7 +14,7 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import create_json_of_interactions, read_code
-from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
+from module_for_main import call_initialisation, create_custom_style, set_loggers
 from add_context_to_user_prompt import add_context_to_user_prompt
 
 # FUNCTIONS IN THIS FILE:
@@ -23,6 +23,14 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 # call_initialisation
 # get_json_of_interactions
 # handle_button_click
+
+def set_page_config(): 
+    st.set_page_config(
+        page_title="Copilot on Steroids",
+        page_icon='https://i.imgur.com/gEHSBXK.png',
+        layout="wide",
+        initial_sidebar_state="collapsed"  # Ensure sidebar is expanded
+    )
 
 def send_message(settings, github_link=None, repo_json=None):
     prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')

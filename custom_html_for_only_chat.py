@@ -18,10 +18,9 @@ def custom_html_for_only_chat():
             #st.image('https://i.imgur.com/VcPyudU.jpeg', width=200) # Peanut
             #st.image('https://i.imgur.com/zN8Jn5X.png', width=400) # Peanut                        
             
-            st.write('## HEPHAESTA | *Shorter prompts, better code.*')            
-            #st.write('#### Understands the nuts and bolts of your code')            
-            
-            # Correct path to the page                                    
+            st.write('## HEPHAESTA | *Shorter prompts, better code.*')                        
+            #st.write('#### Understands the nuts and bolts of your code')         
+            st.divider()       
     
     with st.sidebar.expander("Settings", expanded=True): 
         settings = {            
