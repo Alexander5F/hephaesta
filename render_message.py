@@ -14,7 +14,7 @@ def render_message(placeholder, role, new_content, theme='light', expanded=False
         },
         "Instructor": {
             "light": {
-                "background_color": "#f8f4f4",
+                "background_color": "#ffffff",
                 "text_color": "#000000"
             },
             "dark": {
@@ -24,7 +24,7 @@ def render_message(placeholder, role, new_content, theme='light', expanded=False
         },
         "Doing": {
             "light": {
-                "background_color": "#7100a7",
+                "background_color": "#000000",
                 "text_color": "#ffffff"
             },
             "dark": {
@@ -34,8 +34,8 @@ def render_message(placeholder, role, new_content, theme='light', expanded=False
         },
         "You": {
             "light": {
-                "background_color": "#00678c",
-                "text_color": "#ffffff"
+                "background_color": "#f4f4f4",
+                "text_color": "#000000"
             },
             "dark": {
                 "background_color": "#00678c",
