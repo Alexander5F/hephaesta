@@ -8,6 +8,18 @@ def custom_html_for_only_chat():
     if st.session_state.first_load:        
         st.toast("**For when GPT-4 can't hack it**", icon = "🪼")
         st.session_state.first_load = False
+    
+    # Adding custom CSS for the button to have a high z-index
+    st.markdown(
+        """
+        <style>
+        .stButton button {
+            z-index: 1000 !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
     button(username="alexmhayes", floating=True, width=221)    
     left_column, right_column = st.columns([7, 0.1])

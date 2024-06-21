@@ -83,7 +83,7 @@ def set_loggers():
     logging.getLogger('fsevents').setLevel(logging.WARNING)        
 
 def send_message(settings, github_link=None, repo_json=None):
-    prompt = st.chat_input('Chat here. "Speed up my code" | "Fix this error" | "Implement user auth"')
+    prompt = st.chat_input('Chat here. "Fix this" | "Speed up my code"')
     # check whether repo_json exists
     if prompt and repo_json is not None and github_link is not None:
         st.toast('Reading through all of your code', icon="📖")
