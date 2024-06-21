@@ -23,6 +23,13 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 # get_json_of_interactions
 # handle_button_click
 
+
+def display_github_link_on_sidebar():
+    if st.session_state.github_link is None: 
+        st.write("Example: \n https://github.com/Alexander5F/hephaesta")
+    else:
+        st.write(f'Youre repo, already analyzed: {st.session_state.github_link}')
+        
 def set_page_config(): 
     st.set_page_config(
         page_title="Copilot on Steroids",
@@ -30,24 +37,6 @@ def set_page_config():
         layout="wide",
         initial_sidebar_state="expanded"  # Ensure sidebar is expanded
     )
-
-def chain_of_thought_toggles():
-        deep = st.toggle("ChatGPT overwhelmed? **Go deeper.** 🪼 ", value=st.session_state.deep)
-        if deep and not st.session_state.deep:
-            st.session_state.all_in = False
-        st.session_state.deep = deep
-
-        all_in = st.toggle("**Go all in** 🦾 (Will take a minute)", value=st.session_state.all_in)
-        if all_in and not st.session_state.all_in:
-            st.session_state.deep = False
-        st.session_state.all_in = all_in
-        
-        if deep:
-            st.session_state.iterations = 1
-            st.toast("**Going deep.** Chain of thought activated.", icon="🪼")
-        elif all_in:
-            st.session_state.iterations = 2
-            st.toast("**Going all in.** This will take a minute", icon="🦾")    
 
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:
@@ -83,8 +72,9 @@ def main():
             st.session_state.github_link = github_link
             if st.session_state.repo_json is None:
                 st.session_state.repo_json = get_json_of_interactions(github_link)
-            st.write(f'GitHub Link: {st.session_state.github_link}')
-                        
+                    
+        display_github_link_on_sidebar()
+                                        
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
     with right_column:
@@ -92,3 +82,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

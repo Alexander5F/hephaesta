@@ -2,6 +2,7 @@ import streamlit as st
 import logging
 import asyncio
 import time
+from handle_streamed_input import handle_streamed_input
 
 # FUNCTION DEFINITIONS IN HERE:
 # initialisation()
@@ -10,16 +11,17 @@ import time
 # set_loggers()
 # chain_of_thought_toggles
 
+
 def chain_of_thought_toggles():
     deep = st.toggle("ChatGPT overwhelmed? **Go deeper.** 🪼 ")                
     if deep:
         st.session_state.iterations = 1
         st.toast("**Going deep.** Chain of thought activated.", icon = "🪼")            
 
-    all_in = st.toggle("**Go all in** 🦾 (Will take a minute)") 
+    all_in = st.toggle("**Go all in** 🐋 This will take a minute") 
     if all_in:
         st.session_state.iterations = 2
-        st.toast("**Going all in.** This will take a minute", icon = "🦾")
+        st.toast("**Going all in.** This will take a minute", icon = "🐋")
 
 # Initialize session states
 def initialisation(): 

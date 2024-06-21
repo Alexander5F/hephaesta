@@ -797,14 +797,28 @@
                 {
                     "module": "logging",
                     "alias": null
+                },
+                {
+                    "module": "asyncio",
+                    "alias": null
+                },
+                {
+                    "module": "time",
+                    "alias": null
                 }
             ],
             "functions": [
                 {
-                    "name": "call_initialisation",
+                    "name": "chain_of_thought_toggles",
                     "args": [],
                     "calls": [],
-                    "loc": 17
+                    "loc": 10
+                },
+                {
+                    "name": "initialisation",
+                    "args": [],
+                    "calls": [],
+                    "loc": 25
                 },
                 {
                     "name": "set_page_config",
@@ -823,6 +837,35 @@
                     "args": [],
                     "calls": [],
                     "loc": 6
+                },
+                {
+                    "name": "send_message",
+                    "args": [
+                        "settings",
+                        "github_link",
+                        "repo_json"
+                    ],
+                    "calls": [
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/module_for_main.py",
+                            "args_passed": [
+                                "settings",
+                                "github_link",
+                                "repo_json"
+                            ]
+                        },
+                        {
+                            "function": "handle_streamed_input",
+                            "file": "cloned_repo/module_for_main.py",
+                            "args_passed": [
+                                "settings",
+                                "github_link",
+                                "repo_json"
+                            ]
+                        }
+                    ],
+                    "loc": 12
                 }
             ],
             "classes": []
@@ -865,7 +908,7 @@
                     "alias": null
                 },
                 {
-                    "module": "custom_html",
+                    "module": "custom_html_for_only_chat",
                     "alias": null
                 },
                 {
@@ -893,7 +936,7 @@
                     "alias": null
                 },
                 {
-                    "module": "call_initialisation",
+                    "module": "initialisation",
                     "alias": null
                 },
                 {
@@ -903,42 +946,16 @@
             ],
             "functions": [
                 {
-                    "name": "send_message",
-                    "args": [
-                        "settings",
-                        "github_link",
-                        "repo_json"
-                    ],
-                    "calls": [
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        }
-                    ],
-                    "loc": 19
+                    "name": "set_page_config",
+                    "args": [],
+                    "calls": [],
+                    "loc": 6
+                },
+                {
+                    "name": "chain_of_thought_toggles",
+                    "args": [],
+                    "calls": [],
+                    "loc": 17
                 },
                 {
                     "name": "get_json_of_interactions",
@@ -986,7 +1003,7 @@
                             "args_passed": []
                         },
                         {
-                            "function": "call_initialisation",
+                            "function": "initialisation",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
                         },
@@ -1006,7 +1023,12 @@
                             "args_passed": []
                         },
                         {
-                            "function": "custom_html",
+                            "function": "custom_html_for_only_chat",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "chain_of_thought_toggles",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
                         },
@@ -1016,17 +1038,12 @@
                             "args_passed": []
                         },
                         {
-                            "function": "check_and_delete_file_on_first_load",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": []
-                        },
-                        {
                             "function": "get_json_of_interactions",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
                         }
                     ],
-                    "loc": 43
+                    "loc": 26
                 }
             ],
             "classes": []
@@ -2578,7 +2595,7 @@
             "classes": []
         },
         {
-            "file_path": "cloned_repo/pages/Just chat.py",
+            "file_path": "cloned_repo/pages/Quickstart.py",
             "imports": [
                 {
                     "module": "streamlit",
@@ -2609,7 +2626,7 @@
                     "alias": null
                 },
                 {
-                    "module": "custom_html_for_only_chat",
+                    "module": "custom_html",
                     "alias": null
                 },
                 {
@@ -2637,7 +2654,7 @@
                     "alias": null
                 },
                 {
-                    "module": "call_initialisation",
+                    "module": "initialisation",
                     "alias": null
                 },
                 {
@@ -2647,50 +2664,6 @@
             ],
             "functions": [
                 {
-                    "name": "set_page_config",
-                    "args": [],
-                    "calls": [],
-                    "loc": 6
-                },
-                {
-                    "name": "send_message",
-                    "args": [
-                        "settings",
-                        "github_link",
-                        "repo_json"
-                    ],
-                    "calls": [
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Just chat.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        }
-                    ],
-                    "loc": 19
-                },
-                {
                     "name": "get_json_of_interactions",
                     "args": [
                         "github_link",
@@ -2699,7 +2672,7 @@
                     "calls": [
                         {
                             "function": "create_json_of_interactions",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": [
                                 "github_link",
                                 "repo_json"
@@ -2717,7 +2690,7 @@
                     "calls": [
                         {
                             "function": "handle_streamed_input",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": [
                                 "prompt",
                                 "settings"
@@ -2732,46 +2705,51 @@
                     "calls": [
                         {
                             "function": "load_dotenv",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
-                            "function": "call_initialisation",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "function": "initialisation",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
                             "function": "set_page_config",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
                             "function": "set_loggers",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
                             "function": "create_custom_style",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
-                            "function": "custom_html_for_only_chat",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "function": "custom_html",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
                             "function": "send_message",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
+                            "args_passed": []
+                        },
+                        {
+                            "function": "check_and_delete_file_on_first_load",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         },
                         {
                             "function": "get_json_of_interactions",
-                            "file": "cloned_repo/pages/Just chat.py",
+                            "file": "cloned_repo/pages/Quickstart.py",
                             "args_passed": []
                         }
                     ],
-                    "loc": 34
+                    "loc": 43
                 }
             ],
             "classes": []

@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_extras.buy_me_a_coffee import button
 
 # Initialize session state for sidebar state
-
+        
 def custom_html_for_only_chat():
     if st.session_state.first_load:
         st.toast('Welcome to the party', icon = "🍰")
@@ -20,7 +20,7 @@ def custom_html_for_only_chat():
             
             st.write('# HEPHAESTA | *Shorter prompts, better code.*')                        
             #st.write('#### Understands the nuts and bolts of your code')         
-            st.divider()       
+            st.divider()           
     
     with st.sidebar.expander("Settings", expanded=True): 
         settings = {            
