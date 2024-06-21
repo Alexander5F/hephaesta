@@ -14,13 +14,12 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import create_json_of_interactions, read_code
-from module_for_main import call_initialisation, create_custom_style, set_loggers
+from module_for_main import initialisation, create_custom_style, set_loggers, chain_of_thought_toggles, send_message
 from add_context_to_user_prompt import add_context_to_user_prompt
+
 
 # FUNCTIONS IN THIS FILE:
 # main
-# send_message
-# call_initialisation
 # get_json_of_interactions
 # handle_button_click
 
@@ -32,25 +31,23 @@ def set_page_config():
         initial_sidebar_state="collapsed"  # Ensure sidebar is expanded
     )
 
-def send_message(settings, github_link=None, repo_json=None):
-    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
-    # check whether repo_json exists
-    if prompt and repo_json is not None and github_link is not None:
-        st.toast('Reading through all of your code', icon="📖")
-        time.sleep(1)
-        #st.toast('Figuring out what\'s relevant', icon="🥒")
-        #print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        #prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
-        #print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        #with open('augmented_prompt.txt', 'w') as file:
-        #    file.write(prompt + prompt_augmentation)
-        print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
-        st.toast('Done', icon="🛎️")
-        asyncio.run(handle_streamed_input(prompt, settings, repo_json, github_link))
-        st.toast("Done", icon = "🍪")
-    elif prompt and repo_json is None:
-        st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
-        asyncio.run(handle_streamed_input(prompt, settings))    
+def chain_of_thought_toggles():
+        deep = st.toggle("ChatGPT overwhelmed? **Go deeper.** 🪼 ", value=st.session_state.deep)
+        if deep and not st.session_state.deep:
+            st.session_state.all_in = False
+        st.session_state.deep = deep
+
+        all_in = st.toggle("**Go all in** 🦾 (Will take a minute)", value=st.session_state.all_in)
+        if all_in and not st.session_state.all_in:
+            st.session_state.deep = False
+        st.session_state.all_in = all_in
+        
+        if deep:
+            st.session_state.iterations = 1
+            st.toast("**Going deep.** Chain of thought activated.", icon="🪼")
+        elif all_in:
+            st.session_state.iterations = 2
+            st.toast("**Going all in.** This will take a minute", icon="🦾")    
 
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:
@@ -68,7 +65,7 @@ def handle_button_click(prompt, settings):
 
 def main():    
     load_dotenv()
-    call_initialisation()    
+    initialisation()    
     set_page_config()
     set_loggers()
     custom_style = create_custom_style()
@@ -77,25 +74,17 @@ def main():
 
     with middle_column:
         settings = custom_html_for_only_chat()        
-    
-        if 'github_link' not in st.session_state:
-            st.session_state.github_link = None
-        if 'repo_json' not in st.session_state:
-            st.session_state.repo_json = None
+        
+        chain_of_thought_toggles()
 
-        on = st.toggle("Tough problem? **Boost.**")
-        if on:
-            st.session_state.iterations = 1
-            st.toast("**Boost activated** for superior problem solving", icon = "🪼")
-            
+        github_link_placeholder = st.empty()
         github_link = st.chat_input('url to your github repo (optional)')
         if github_link:
             st.session_state.github_link = github_link
             if st.session_state.repo_json is None:
                 st.session_state.repo_json = get_json_of_interactions(github_link)
             st.write(f'GitHub Link: {st.session_state.github_link}')
-            
-            
+                        
         send_message(settings, st.session_state.github_link, st.session_state.repo_json)
         
     with right_column:

@@ -239,7 +239,7 @@
                     "name": "prompt_for_assistant",
                     "args": [],
                     "calls": [],
-                    "loc": 30
+                    "loc": 31
                 },
                 {
                     "name": "stream_assistant_response",
@@ -912,42 +912,6 @@
                     "calls": [
                         {
                             "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "add_context_to_user_prompt",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "print",
-                            "file": "cloned_repo/streamlit_app.py",
-                            "args_passed": [
-                                "settings",
-                                "github_link",
-                                "repo_json"
-                            ]
-                        },
-                        {
-                            "function": "open",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": [
                                 "settings",

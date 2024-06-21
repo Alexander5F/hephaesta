@@ -14,35 +14,15 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import create_json_of_interactions, read_code
-from module_for_main import call_initialisation, set_page_config, create_custom_style, set_loggers
+from module_for_main import initialisation, set_page_config, create_custom_style, set_loggers, send_message
 from add_context_to_user_prompt import add_context_to_user_prompt
 
 # FUNCTION DEFINITIONS IN THIS FILE:
 # main
 # send_message
-# call_initialisation
+# initialisation
 # get_json_of_interactions
 # handle_button_click
-
-def send_message(settings, github_link=None, repo_json=None):
-    prompt = st.chat_input('"Make a webcrawler that avoids bot catchers" | "Speed up my code"')
-    # check whether repo_json exists
-    if prompt and repo_json is not None and github_link is not None:
-        st.toast('Reading through all of your code', icon="📖")
-        time.sleep(1)
-        #st.toast('Figuring out what\'s relevant', icon="🥒")
-        #print('\n\n\n\n\n\n\n\n Entering augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        #prompt_augmentation = add_context_to_user_prompt(repo_json, github_link, prompt)
-        #print('\n\n\n\n\n\n\n\n Leaving augmented_prompt\n\n\n\n\n\n\n\n\n\n')
-        #with open('augmented_prompt.txt', 'w') as file:
-        #    file.write(prompt + prompt_augmentation)
-        print('\n\n\n\n\n\n\n\n writing augmented_prompt.txt to a file\n\n\n\n\n\n\n\n\n\n')
-        st.toast('Done', icon="🛎️")
-        asyncio.run(handle_streamed_input(prompt, settings, repo_json, github_link))
-        st.toast("Done", icon = "🍪")
-    elif prompt and repo_json is None:
-        st.toast('**Note** | You can add your repo link, and I\'ll consider it all while answering.', icon="🥷")
-        asyncio.run(handle_streamed_input(prompt, settings)) 
         
         
 def get_json_of_interactions(github_link, repo_json=None):
@@ -61,7 +41,7 @@ def handle_button_click(prompt, settings):
 
 def main():    
     load_dotenv()
-    call_initialisation()    
+    initialisation()    
     set_page_config()
     set_loggers()
     custom_style = create_custom_style()
@@ -77,7 +57,7 @@ def main():
         if 'repo_json' not in st.session_state:
             st.session_state.repo_json = None
 
-        on = st.toggle("Tough problem? **Boost.**")
+        on = st.toggle("🪼 Tough problem? **Go deep.**")
         if on:
             st.session_state.iterations = 1
             st.toast("**Boost activated** for superior problem solving", icon = "🪼")
