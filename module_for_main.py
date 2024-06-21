@@ -13,8 +13,8 @@ from handle_streamed_input import handle_streamed_input
 
 
 def chain_of_thought_toggles():
-    deep = st.toggle("ChatGPT overwhelmed? **Go deeper.** 🪼 ")                
-    all_in = st.toggle("**Go all in** 🪼 This will take a minute") 
+    deep = st.toggle("**Dive deep** 🪼 ")                
+    all_in = st.toggle("**Bottom of the ocean deep.** 🪼 This will take a minute") 
     
     if deep:
         st.session_state.iterations = 1
