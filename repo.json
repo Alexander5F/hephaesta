@@ -805,6 +805,10 @@
                 {
                     "module": "time",
                     "alias": null
+                },
+                {
+                    "module": "handle_streamed_input",
+                    "alias": null
                 }
             ],
             "functions": [
@@ -946,16 +950,16 @@
             ],
             "functions": [
                 {
+                    "name": "display_github_link_on_sidebar",
+                    "args": [],
+                    "calls": [],
+                    "loc": 5
+                },
+                {
                     "name": "set_page_config",
                     "args": [],
                     "calls": [],
                     "loc": 6
-                },
-                {
-                    "name": "chain_of_thought_toggles",
-                    "args": [],
-                    "calls": [],
-                    "loc": 17
                 },
                 {
                     "name": "get_json_of_interactions",
@@ -1033,6 +1037,11 @@
                             "args_passed": []
                         },
                         {
+                            "function": "display_github_link_on_sidebar",
+                            "file": "cloned_repo/streamlit_app.py",
+                            "args_passed": []
+                        },
+                        {
                             "function": "send_message",
                             "file": "cloned_repo/streamlit_app.py",
                             "args_passed": []
@@ -1043,7 +1052,7 @@
                             "args_passed": []
                         }
                     ],
-                    "loc": 26
+                    "loc": 27
                 }
             ],
             "classes": []

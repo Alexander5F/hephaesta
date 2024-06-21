@@ -25,10 +25,10 @@ from add_context_to_user_prompt import add_context_to_user_prompt
 
 
 def display_github_link_on_sidebar():
-    if st.session_state.github_link is None: 
-        st.write("Example: \n https://github.com/Alexander5F/hephaesta")
+    if st.session_state.github_link is None:
+        st.write("")
     else:
-        st.write(f'Youre repo, already analyzed: {st.session_state.github_link}')
+        st.write(f'Your already analyzed repo: {st.session_state.github_link}')
         
 def set_page_config(): 
     st.set_page_config(
@@ -40,7 +40,9 @@ def set_page_config():
 
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:
-        st.toast('Analyzing your codebase', icon="🛰️")
+        #st.toast('Analyzing your codebase', icon="🛰️")
+        st.toast('**Analyzing your codebase**', icon="🩻")
+                
         repo_json = create_json_of_interactions(github_link)
         if repo_json is None:
             st.toast('Is the link correct?', icon="🐔")

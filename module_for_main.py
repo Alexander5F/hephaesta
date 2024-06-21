@@ -14,14 +14,17 @@ from handle_streamed_input import handle_streamed_input
 
 def chain_of_thought_toggles():
     deep = st.toggle("ChatGPT overwhelmed? **Go deeper.** 🪼 ")                
+    all_in = st.toggle("**Go all in** 🪼 This will take a minute") 
+    
     if deep:
         st.session_state.iterations = 1
         st.toast("**Going deep.** Chain of thought activated.", icon = "🪼")            
-
-    all_in = st.toggle("**Go all in** 🐋 This will take a minute") 
+    
     if all_in:
         st.session_state.iterations = 2
-        st.toast("**Going all in.** This will take a minute", icon = "🐋")
+        st.toast("**Going all in.** This will take a minute", icon = "🪼")
+
+    st.write("")
 
 # Initialize session states
 def initialisation(): 
