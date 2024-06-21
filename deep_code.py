@@ -14,7 +14,7 @@ from render_message import render_message
 from handle_streamed_input import handle_streamed_input
 from check_and_delete_file_on_first_load import check_and_delete_file_on_first_load
 from analyze_repo import create_json_of_interactions, read_code
-from module_for_main import initialisation, create_custom_style, set_loggers, chain_of_thought_toggles, send_message
+from module_for_main import initialisation, create_custom_style, set_loggers, chain_of_thought_toggles, send_message, set_page_config
 from add_context_to_user_prompt import add_context_to_user_prompt
 
 
@@ -29,14 +29,6 @@ def display_github_link_on_sidebar():
         st.write("")
     else:
         st.write(f'Your already analyzed repo: {st.session_state.github_link}')
-        
-def set_page_config(): 
-    st.set_page_config(
-        page_title="Deepcode.io",
-        page_icon='https://i.imgur.com/VZlLzwj.png',
-        layout="wide",
-        initial_sidebar_state="expanded"  # Ensure sidebar is expanded
-    )
 
 def get_json_of_interactions(github_link, repo_json=None):
     if repo_json is None:

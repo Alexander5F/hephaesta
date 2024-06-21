@@ -56,12 +56,12 @@ def initialisation():
 
 def set_page_config(): 
     st.set_page_config(
-        page_title="Copilot on Steroids",
-        page_icon='https://i.imgur.com/gEHSBXK.png',
+        page_title="Deepcode.io",
+        page_icon='https://i.imgur.com/VZlLzwj.png',
         layout="wide",
-        initial_sidebar_state="collapsed"
+        initial_sidebar_state="collapsed"  # Ensure sidebar is expanded
     )
-
+    
 def create_custom_style():
     custom_style = """
         <style>
