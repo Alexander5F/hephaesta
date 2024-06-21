@@ -6,7 +6,7 @@ from streamlit_extras.buy_me_a_coffee import button
 def custom_html_for_only_chat():    
     
     if st.session_state.first_load:        
-        st.toast("**For when chatGPT can't hack it**", icon = "🪼")
+        st.toast("**For when GPT-4 can't hack it**", icon = "🪼")
         st.session_state.first_load = False
 
     button(username="alexmhayes", floating=True, width=221)    

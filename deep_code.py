@@ -61,7 +61,7 @@ def main():
         chain_of_thought_toggles()
 
         github_link_placeholder = st.empty()
-        github_link = st.chat_input('url to your github repo (optional)')
+        github_link = st.chat_input('Your github repo url')
         if github_link:
             st.session_state.github_link = github_link
             if st.session_state.repo_json is None:
