@@ -16,7 +16,6 @@ with col2:
     It's a one-man show for the first couple weeks, but intended to become a business.
     Happy for contributions: [https://github.com/Alexander5F/hephaesta](https://github.com/Alexander5F/hephaesta)        
 
-    
     ## **🫀 Why**
     I used GPT-4 and Copilot a ton for coding, and got sick of having to babysit it. I wanted to send-and-forget. That sometimes works if I take 15 minutes to craft a prompt.
 

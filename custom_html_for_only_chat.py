@@ -13,9 +13,8 @@ def custom_html_for_only_chat():
     left_column, right_column = st.columns([7, 0.1])
 
     with left_column:            
-            #st.image('https://i.imgur.com/F4u8x0x.jpeg', width=200) # Blue Jellyfish, more saturated colors
-            #st.image('https://i.imgur.com/acGmu2P.jpeg', width=200) # Octopus
-            st.image('https://i.imgur.com/VZlLzwj.png', width=200) # Octopus 
+            st.image('https://i.imgur.com/F4u8x0x.jpeg', width=200) # Blue Jellyfish, more saturated colors            
+            #st.image('https://i.imgur.com/VZlLzwj.png', width=200) # Alien Octopus 
             
             #st.image('https://i.imgur.com/k35QRvs.png', width=300) # Blue Jellyfish                        
             #st.image('https://i.imgur.com/OKuRojC.png', width=300) # Purple Jellyfish        
