@@ -59,7 +59,7 @@ def set_page_config():
         page_title="Copilot on Steroids",
         page_icon='https://i.imgur.com/gEHSBXK.png',
         layout="wide",
-        initial_sidebar_state="expanded"  # Ensure sidebar is expanded
+        initial_sidebar_state="collapsed"
     )
 
 def create_custom_style():
