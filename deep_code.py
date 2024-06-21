@@ -32,8 +32,8 @@ def display_github_link_on_sidebar():
         
 def set_page_config(): 
     st.set_page_config(
-        page_title="Copilot on Steroids",
-        page_icon='https://i.imgur.com/gEHSBXK.png',
+        page_title="Deepcode.io",
+        page_icon='https://i.imgur.com/VZlLzwj.png',
         layout="wide",
         initial_sidebar_state="expanded"  # Ensure sidebar is expanded
     )

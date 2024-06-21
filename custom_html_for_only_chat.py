@@ -6,16 +6,14 @@ from streamlit_extras.buy_me_a_coffee import button
 def custom_html_for_only_chat():    
     
     if st.session_state.first_load:        
-        st.toast('Welcome to the party', icon = "🪼")
+        st.toast("**For when chatGPT can't hack it**", icon = "🪼")
         st.session_state.first_load = False
 
     button(username="alexmhayes", floating=True, width=221)    
     left_column, right_column = st.columns([7, 0.1])
 
     with left_column:                            
-        st.write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        st.write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-
+        st.write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")        
     
         st.image('https://i.imgur.com/F4u8x0x.jpeg', width=200) # Blue Jellyfish, more saturated colors                                                                         
         #st.image('https://i.imgur.com/VZlLzwj.png', width=200) # Alien Octopus         
@@ -27,8 +25,7 @@ def custom_html_for_only_chat():
         #st.image('https://i.imgur.com/VcPyudU.jpeg', width=200) # Peanut
         #st.image('https://i.imgur.com/zN8Jn5X.png', width=400) # Peanut                        
         
-        st.write('## D E E P C O D E.io')
-        st.write( "#### For when chatGPT is not enough.\n Shorter prompts, better code.")        
+        st.write('## Deepcode | *Shorter prompts, better code*')
         #st.write('#### Understands the nuts and bolts of your code')         
         st.divider()           
     

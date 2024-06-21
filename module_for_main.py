@@ -13,16 +13,16 @@ from handle_streamed_input import handle_streamed_input
 
 
 def chain_of_thought_toggles():
-    deep = st.toggle("**Dive deep** 🪼 ")                
-    all_in = st.toggle("**Bottom of the ocean deep.** 🪼 This will take a minute") 
+    deep = st.toggle("**Dive deep** | Chain of thought 🪼 ")                
+    all_in = st.toggle("**Even deeper** | More iterations 🪼") 
     
     if deep:
         st.session_state.iterations = 1
-        st.toast("**Going deep.** Chain of thought activated.", icon = "🪼")            
+        st.toast("**Diving deep.** Chain of thought activated.", icon = "🪼")            
     
     if all_in:
         st.session_state.iterations = 2
-        st.toast("**Going all in.** This will take a minute", icon = "🪼")
+        st.toast("**Bottom-of-the-ocean deep.** This will take 20s longer", icon = "🪼")
 
     st.write("")
 
