@@ -65,7 +65,7 @@ def add_context_to_user_prompt(repo_json, github_link, user_prompt):
     
     # Have gpt look at the json, and return a list with up to n entries of filanmes.                
     json_str = json.dumps(repo_json, indent=4)    
-    instructions_for_LLM = create_instructions_for_LLM(json_str, user_prompt)
+    instructions_for_LLM = create_instructions_for_LLM(json_str)
         
     response = gpt_response(instructions_for_LLM)
     response = response.replace("cloned_repo/", "") # removes "cloned_repo/"
